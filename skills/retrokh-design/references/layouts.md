@@ -1,4 +1,7 @@
-# Layouts
+# Layouts (app screens)
+
+For public websites (profiles, company or organisation sites, shops, events, blogs, landing pages) use
+`websites.md`. This file covers app screens and dashboards.
 
 Layouts are fluid with `max-width` containers, flex/grid with `gap`, and wrap at phone width. Default root:
 ```html
@@ -58,7 +61,7 @@ A single sheet (max 640px) on the ground with an `8px` shadow. Optionally an off
 gap; the labels are bold muted. Group related fields in a 2-column grid with `minmax(0,1fr)`, and collapse to 1 column below
 600px. Footer: a `3px double` rule, then the actions aligned right (ghost Cancel, primary Submit). Show inline validation per field.
 
-## 6. Landing / marketing
+## 6. Landing / marketing (summary; the full recipes are in `websites.md`)
 
 - Hero: rays background, with the seal + Moul title + banner tagline + primary CTA (48px) on a paper plate (sheet, shadow-2).
 - The zigzag strip separates sections. Alternate between paper sections and ink sections (paper text, paper-muted secondary).

@@ -1,13 +1,22 @@
 # retrokh-design
 
-An agent skill that designs and builds UI in **RetroKh**, a Khmer old-school, 1970s print style. It looks like
+An agent skill that designs and builds **websites and apps** in **RetroKh**, a Khmer old-school, 1970s print style. It looks like
 cream paper and dark-brown ink with red, turmeric and teal spot colours. It uses Moul and Koulen display type, square
 corners, hard offset shadows, zigzag, halftone and sunburst patterns, and rubber-stamp labels.
 
+Use it for personal profiles and CVs, company profiles, organisation, NGO and school sites, restaurants and shops,
+events, blogs, landing pages, dashboards and app screens.
+
+![RetroKh company profile](docs/preview-company.png)
+
+<details><summary>Personal profile (English-primary)</summary>
+
+![RetroKh personal profile](docs/preview-personal.png)
+</details>
+
+<details><summary>App components, light and dark</summary>
+
 ![RetroKh showcase, light](docs/preview-light.png)
-
-<details><summary>Dark mode (night print)</summary>
-
 ![RetroKh showcase, dark](docs/preview-dark.png)
 </details>
 
@@ -29,9 +38,12 @@ For Claude.ai, zip the `skills/retrokh-design` folder and upload it under **Sett
 ## Use
 
 Ask for anything in the style, for example:
+- "Build my personal profile website in Khmer retro style"
+- "Make a company profile site for my print shop, RetroKh style, Khmer and English"
+- "Create an NGO website that looks like a 1970s Cambodian poster"
 - "Build a Khmer retro login page in Vue + Tailwind"
 - "Make this dashboard look like an old-school Khmer print, keep it bilingual"
-- "Design a ticket / poster / landing page, RetroKh style"
+- "Design a restaurant menu page / wedding invitation site, RetroKh style"
 
 The skill triggers on phrases such as *Khmer retro*, *old school Khmer*, *Cambodian vintage*, *60s/70s Khmer*,
 *golden era* and *RetroKh*, or you can call it directly with `/retrokh-design`.
@@ -46,15 +58,18 @@ skills/retrokh-design/
 │   ├── typography.md           # Moul / Koulen / Battambang / Special Elite, Khmer script rules, numerals, voice
 │   ├── patterns.md             # zigzag, halftone, rays, ruled, diamonds, seal, stamps, official header
 │   ├── components.md           # buttons, inputs, tabs, header, ledger nav, drawer, cards, tables, states
-│   ├── layouts.md              # app shell, phone, splash, dashboard, form, landing, style tile
+│   ├── websites.md             # site planning, section catalogue, recipes per site type, images
+│   ├── layouts.md              # app shell, phone, splash, dashboard, form, style tile
 │   ├── tailwind.md             # v3 preset + v4 @theme recipes
-│   └── vue.md                  # Vue 3 component set + SFC examples, khmer digit helper
+│   └── vue.md                  # Vue 3 components incl. RkSiteNav / RkSection, khmer digit helper
 ├── assets/
-│   ├── retrokh.css             # drop-in tokens, patterns, components (light + dark)
+│   ├── retrokh.css             # drop-in tokens, patterns, app + website components (light + dark)
 │   ├── tailwind.preset.js      # Tailwind v3
 │   └── tailwind.v4.css         # Tailwind v4
 └── examples/
-    └── showcase.html           # working reference page (open in a browser; toggle dark mode)
+    ├── company-profile.html    # Khmer company site (nav, hero, services, timeline, news, FAQ, contact)
+    ├── personal-profile.html   # English-primary profile / CV
+    └── showcase.html           # app components (toggle dark mode)
 ```
 
 ## Palette

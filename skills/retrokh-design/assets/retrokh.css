@@ -33,6 +33,7 @@
   /* Accent — the one colour that marks "current". Swap to teal or plum per product. */
   --rk-accent: var(--rk-red);
   --rk-on-accent: var(--rk-paper);
+  --rk-mark: var(--rk-red);      /* solid "you are here" block on ink bars (nav current page); follows data-accent */
 
   /* Semantic aliases */
   --rk-bg: var(--rk-ground);
@@ -101,8 +102,8 @@
   --rk-focus: #E0A526; --rk-rule: rgba(217, 199, 160, .18); --rk-danger: #E2735A;
   --rk-sheet: #E6DCC4;
 }
-[data-accent="teal"] { --rk-accent: var(--rk-teal); }
-[data-accent="plum"] { --rk-accent: var(--rk-plum); }
+[data-accent="teal"] { --rk-accent: var(--rk-teal); --rk-mark: var(--rk-teal); }
+[data-accent="plum"] { --rk-accent: var(--rk-plum); --rk-mark: var(--rk-plum); }
 
 /* ───────────────────────── 2. Base ───────────────────────── */
 .rk, .rk-root {
@@ -166,9 +167,11 @@
 
 /* ───────────────────────── 5. Surfaces ───────────────────────── */
 /* Paper context: light sheets stay printed paper in dark mode, so text inside them resets to ink */
-.rk-sheet, .rk-panel-dashed, .rk-stat, .rk-input, .rk-menu, .rk-dialog, .rk-table, .rk-tag, .rk-segmented, .rk-paper-context {
+.rk-sheet, .rk-panel-dashed, .rk-stat, .rk-input, .rk-menu, .rk-dialog, .rk-table, .rk-tag, .rk-segmented, .rk-paper-context,
+.rk-hero-plate, .rk-feature, .rk-photo, .rk-stats, .rk-quote, .rk-logos, .rk-faq, .rk-post, .rk-ticket, .rk-section-sheet {
   --rk-text: var(--rk-ink); --rk-text-muted: var(--rk-ink-muted); --rk-edge: var(--rk-ink);
   --rk-accent: var(--rk-red); --rk-on-accent: var(--rk-paper); --rk-focus: var(--rk-red); --rk-danger: var(--rk-red);
+  --rk-primary: var(--rk-ink); --rk-on-primary: var(--rk-paper); --rk-primary-shadow: var(--rk-red);
   color: var(--rk-ink);
 }
 .rk-frame   { border: var(--rk-border-double); }
@@ -310,7 +313,179 @@ textarea.rk-textarea {
 .rk-stat { display: flex; flex-direction: column; padding: 14px 16px; background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-1); }
 .rk-stat .rk-stat-value { font-family: var(--rk-font-numeral); font-size: 36px; line-height: 1.2; color: var(--rk-accent); }
 
-/* ───────────────────────── 13. Motion ───────────────────────── */
+/* ───────────────────────── 13. Website ───────────────────────── */
+/* Profiles, company/org sites, shops, events, blogs. See references/websites.md. */
+html:has(.rk-nav) { scroll-padding-top: 80px; }
+.rk-container { width: min(100% - 32px, 1200px); margin-inline: auto; }
+.rk-narrow { width: min(100% - 32px, 760px); margin-inline: auto; }
+.rk-skip { position: absolute; left: -9999px; top: 8px; z-index: 100; padding: 8px 14px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); font-weight: 700; }
+.rk-skip:focus { left: 16px; }
+
+/* Ink contexts: nav, page head, ink section, CTA band, footer. Text flips to paper; accent brightens to stay ≥4.5:1 */
+.rk-nav, .rk-pagehead, .rk-section-ink, .rk-cta, .rk-footer {
+  --rk-text: var(--rk-paper); --rk-text-muted: var(--rk-paper-muted); --rk-edge: var(--rk-paper-muted);
+  --rk-accent: #E2735A; --rk-on-accent: #1C130D; --rk-focus: var(--rk-turmeric); --rk-danger: #E2735A;
+  background: var(--rk-header); color: var(--rk-paper);
+}
+.rk-nav :where(a:hover), .rk-pagehead :where(a:hover), .rk-section-ink :where(a:hover), .rk-cta :where(a:hover), .rk-footer :where(a:hover) { color: var(--rk-paper); }
+
+/* Site nav: sticky ink bar; links wrap without JS, collapse behind a toggle when html.js is set */
+.rk-nav { position: sticky; top: 0; z-index: 20; }
+.rk-nav-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; min-height: 68px; padding-block: 8px; }
+.rk-nav-brand { display: flex; align-items: center; gap: 10px; margin-right: auto; color: inherit; text-decoration: none; }
+.rk-nav-brand .rk-display { font-size: 20px; line-height: 1.5; }
+.rk-nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.rk-nav-links a { min-height: var(--rk-touch); padding: 0 12px; display: flex; align-items: center; color: var(--rk-paper); text-decoration: none; font-weight: 700; border-bottom: 3px solid transparent; }
+.rk-nav-links a:hover { border-bottom-color: var(--rk-turmeric); color: var(--rk-paper); }
+.rk-nav-links a[aria-current="page"] { background: var(--rk-mark); color: var(--rk-paper); border-bottom-color: var(--rk-mark); }
+.rk-nav-toggle { display: none; }
+
+/* Inner-page header band: title + breadcrumb, followed by a zigzag strip */
+.rk-pagehead { padding: 40px 0 32px; }
+.rk-pagehead h1 { margin: 0; font-family: var(--rk-font-display); font-weight: 400; font-size: clamp(26px, 4vw, 40px); line-height: 1.6; }
+.rk-breadcrumb { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--rk-paper-muted); }
+.rk-breadcrumb li + li::before { content: "·"; margin-right: 6px; }
+
+/* Hero: a pattern backdrop (add .rk-rays or .rk-halftone) with the copy on a printed plate, never on the pattern */
+.rk-hero { padding: 72px 0; }
+.rk-hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; }
+.rk-hero-plate { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 40px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2);
+}
+.rk-hero-title { margin: 0; font-family: var(--rk-font-display); font-weight: 400; font-size: clamp(32px, 5vw, 56px); line-height: 1.5; }
+.rk-hero-title .rk-hl { color: var(--rk-accent); }
+
+/* Sections */
+.rk-section { padding: 72px 0; }
+.rk-section-paper { background: var(--rk-surface); }
+.rk-section-sheet { background: var(--rk-sheet); color: var(--rk-ink); }
+.rk-section-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 36px; }
+.rk-section-head.is-center { align-items: center; text-align: center; }
+.rk-eyebrow { font-family: var(--rk-font-numeral); font-size: 17px; line-height: 1.5; color: var(--rk-accent); }
+.rk-section-title { margin: 0; padding-bottom: 10px; font-family: var(--rk-font-display); font-weight: 400; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.6; border-bottom: 3px double var(--rk-edge); }
+.rk-section-head.is-center .rk-section-title { border-bottom: 0; padding-bottom: 0; }
+.rk-lead { margin: 0; max-width: 62ch; font-size: 18px; line-height: 1.8; color: var(--rk-text-muted); }
+
+.rk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--rk-min, 260px)), 1fr)); gap: 28px; }
+.rk-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center; }
+
+/* Feature / service card with an ink number block */
+.rk-feature { display: flex; flex-direction: column; gap: 10px; padding: 24px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
+.rk-feature h3 { margin: 0; font-family: var(--rk-font-display); font-weight: 400; font-size: 18px; line-height: 1.7; }
+.rk-feature p { margin: 0; color: var(--rk-ink-muted); }
+.rk-feature-num { width: 48px; height: 48px; display: grid; place-items: center; background: var(--rk-ink); color: var(--rk-paper); font-family: var(--rk-font-numeral); font-size: 22px; box-shadow: 3px 3px 0 var(--rk-red); }
+
+/* Photos: printed-photo treatment (paper border, sepia, fine halftone). Placeholders get a bracketed label on a sheet chip */
+.rk-photo { margin: 0; padding: 10px 10px 8px; background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-2); display: flex; flex-direction: column; gap: 8px; color: var(--rk-ink); }
+.rk-photo.is-tilted { transform: rotate(-1.5deg); }
+.rk-photo-frame { position: relative; aspect-ratio: var(--rk-ratio, 4 / 3); overflow: hidden; border: 2px solid var(--rk-ink); display: grid; place-items: center;
+  background: radial-gradient(circle, rgba(20, 52, 50, .25) 1.3px, transparent 1.6px) 0 0 / 8px 8px, var(--rk-teal-halftone); }
+.rk-photo-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: sepia(.35) saturate(.85) contrast(1.05); }
+.rk-photo-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply;
+  background: radial-gradient(circle, rgba(42, 29, 20, .16) .9px, transparent 1.2px) 0 0 / 4px 4px; }
+.rk-photo-label { position: relative; z-index: 1; padding: 2px 10px; background: var(--rk-sheet); border: 2px solid var(--rk-ink); font-size: 14px; }
+.rk-photo figcaption { font-size: 14px; line-height: 1.6; color: var(--rk-ink-muted); }
+.rk-portrait { width: var(--rk-size, 160px); aspect-ratio: 1; border-radius: 50%; border: 3px solid var(--rk-ink); outline: 2px dashed var(--rk-ink); outline-offset: 5px; overflow: hidden; display: grid; place-items: center;
+  background: radial-gradient(circle, rgba(20, 52, 50, .25) 1.3px, transparent 1.6px) 0 0 / 8px 8px, var(--rk-teal-halftone); }
+.rk-portrait img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.35) saturate(.85) contrast(1.05); }
+
+/* Stats band */
+.rk-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
+.rk-stats > * { display: flex; flex-direction: column; padding: 20px 24px; border-left: 2px dashed var(--rk-ink); margin-left: -2px; }
+.rk-stats b { font-family: var(--rk-font-numeral); font-weight: 400; font-size: 44px; line-height: 1.2; color: var(--rk-red); }
+.rk-stats span { font-size: 15px; color: var(--rk-ink-muted); }
+
+/* Timeline: a ledger with a Koulen year column */
+.rk-timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.rk-timeline > li { display: grid; grid-template-columns: 104px minmax(0, 1fr); }
+.rk-timeline-year { padding: 2px 16px 0 0; border-right: 2px solid var(--rk-accent); color: var(--rk-accent); font-family: var(--rk-font-numeral); font-size: 22px; line-height: 1.4; text-align: right; }
+.rk-timeline-body { position: relative; padding: 0 0 28px 24px; }
+.rk-timeline-body::before { content: ""; position: absolute; left: -7px; top: 10px; width: 12px; height: 12px; background: var(--rk-accent); transform: rotate(45deg); }
+.rk-timeline-body h3 { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.7; }
+.rk-timeline-body p { margin: 0; color: var(--rk-text-muted); }
+
+/* Testimonial / quote */
+.rk-quote { margin: 0; display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
+.rk-quote blockquote { margin: 0; font-size: 18px; line-height: 1.8; }
+.rk-quote blockquote::before { content: "«"; display: block; font-family: var(--rk-font-display); font-size: 44px; line-height: 1; color: var(--rk-red); }
+.rk-quote figcaption { padding-top: 12px; border-top: 1px dashed var(--rk-ink); font-size: 15px; color: var(--rk-ink-muted); }
+.rk-quote figcaption b { color: var(--rk-ink); }
+
+/* Partner / client strip */
+.rk-logos { display: flex; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; border: var(--rk-border); background: var(--rk-sheet); }
+.rk-logos > li { flex: 1 1 160px; min-height: 80px; display: grid; place-items: center; padding: 12px 16px; border-left: 2px dashed var(--rk-ink); margin-left: -2px; color: var(--rk-ink-muted); font-weight: 700; text-align: center; }
+.rk-logos img { max-height: 40px; max-width: 140px; filter: grayscale(1) sepia(.4) contrast(1.1); }
+
+/* CTA band (ink, framed by zigzag strips in the markup) */
+.rk-cta { padding: 56px 0; text-align: center; }
+.rk-cta h2 { margin: 0 0 8px; font-family: var(--rk-font-display); font-weight: 400; font-size: clamp(22px, 3vw, 32px); line-height: 1.6; }
+.rk-btn-paper { min-height: var(--rk-touch-primary); padding: 0 20px; background: var(--rk-paper); color: var(--rk-ink); border-color: var(--rk-paper); box-shadow: 3px 3px 0 var(--rk-red); }
+.rk-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.rk-cta .rk-actions { justify-content: center; margin-top: 20px; }
+
+/* FAQ (native details) */
+.rk-faq { border: var(--rk-border); background: var(--rk-sheet); color: var(--rk-ink); box-shadow: var(--rk-shadow-2); }
+.rk-faq details + details { border-top: 1px dashed var(--rk-ink); }
+.rk-faq summary { min-height: 56px; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-weight: 700; cursor: pointer; list-style: none; }
+.rk-faq summary::-webkit-details-marker { display: none; }
+.rk-faq summary::after { content: "+"; font-family: var(--rk-font-numeral); font-size: 26px; line-height: 1; color: var(--rk-red); }
+.rk-faq details[open] summary::after { content: "−"; }
+.rk-faq details > div { padding: 0 20px 18px; color: var(--rk-ink-muted); }
+
+/* News / blog post card and event ticket */
+.rk-post { display: flex; flex-direction: column; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
+.rk-post .rk-photo-frame { border-width: 0 0 2px; }
+.rk-post-body { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 20px; }
+.rk-post time { font-family: var(--rk-font-numeral); font-size: 16px; color: var(--rk-red); }
+.rk-post h3 { margin: 0; font-family: var(--rk-font-display); font-weight: 400; font-size: 18px; line-height: 1.7; }
+.rk-post h3 a { color: var(--rk-ink); text-decoration: none; }
+.rk-post h3 a:hover { text-decoration: underline 3px var(--rk-turmeric); }
+.rk-post p { margin: 0; color: var(--rk-ink-muted); }
+.rk-ticket { display: grid; grid-template-columns: 96px minmax(0, 1fr); background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-1); }
+.rk-ticket-stub { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px 8px; border-right: 2px dashed var(--rk-ink); text-align: center; }
+.rk-ticket-stub b { font-family: var(--rk-font-numeral); font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--rk-red); }
+.rk-ticket-stub span { font-size: 14px; font-weight: 700; }
+.rk-ticket-body { padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
+
+/* Contact list */
+.rk-contact { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.rk-contact li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; align-items: center; }
+.rk-contact .rk-contact-icon { width: 44px; height: 44px; display: grid; place-items: center; background: var(--rk-ink); color: var(--rk-paper); }
+
+/* Long-form text (blog post, about page) */
+.rk-prose { max-width: 70ch; font-size: 17px; line-height: 1.85; }
+.rk-prose h2 { margin: 2em 0 .5em; font-family: var(--rk-font-display); font-weight: 400; font-size: 24px; line-height: 1.6; }
+.rk-prose h3 { margin: 1.6em 0 .4em; font-size: 19px; font-weight: 700; }
+.rk-prose blockquote { margin: 1.5em 0; padding: 12px 0; border-top: 3px double var(--rk-edge); border-bottom: 3px double var(--rk-edge); font-size: 19px; }
+.rk-prose li::marker { color: var(--rk-accent); }
+
+/* Footer */
+.rk-footer { padding: 48px 0 24px; border-top: 4px double var(--rk-paper-muted); }
+.rk-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 32px; }
+.rk-footer h2, .rk-footer h3 { margin: 0 0 8px; font-family: var(--rk-font-display); font-weight: 400; font-size: 16px; line-height: 1.8; }
+.rk-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.rk-footer a { color: var(--rk-paper-muted); text-decoration: none; }
+.rk-footer a:hover { color: var(--rk-paper); text-decoration: underline 2px var(--rk-turmeric); }
+.rk-footer-base { margin-top: 36px; padding-top: 16px; border-top: 1px dashed var(--rk-ink-faint); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+/* English-primary headings: Koulen's condensed Latin reads as a 1970s poster face */
+.rk-display:lang(en), .rk-title:lang(en), .rk-hero-title:lang(en), .rk-section-title:lang(en),
+.rk-pagehead h1:lang(en), .rk-cta h2:lang(en), .rk-feature h3:lang(en), .rk-post h3:lang(en) {
+  font-family: var(--rk-font-numeral); letter-spacing: .01em; line-height: 1.2;
+}
+
+@media (max-width: 760px) {
+  .rk-section { padding: 48px 0; }
+  .rk-hero { padding: 40px 0; }
+  .rk-hero-grid, .rk-split { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .rk-hero-plate { padding: 24px; }
+  .rk-stats b { font-size: 34px; }
+  .rk-timeline > li { grid-template-columns: 76px minmax(0, 1fr); }
+  .js .rk-nav-toggle { display: inline-flex; }
+  .js .rk-nav-links { display: none; width: 100%; flex-direction: column; align-items: stretch; padding-bottom: 8px; }
+  .js .rk-nav[data-open] .rk-nav-links { display: flex; }
+}
+
+/* ───────────────────────── 14. Motion ───────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .rk-btn { transition: none; }
   .rk-btn:active { transform: none; }

@@ -83,6 +83,18 @@ Latin contexts (codes, URLs, hex values, version numbers) keep ASCII digits in S
 - `lang="km"` on `<html>`; `lang="en"` on English runs, so screen readers and hyphenation behave.
 - Date format: `ថ្ងៃទី ៦ ខែវិច្ឆិកា ឆ្នាំ២០២៦`; short form `០៦/១១/២០២៦`.
 
+## English-primary and bilingual sites
+
+- Set `lang="en"` on `<html>` (or on a section). `retrokh.css` switches `.rk-display`, `.rk-hero-title`,
+  `.rk-section-title`, `.rk-pagehead h1`, `.rk-cta h2`, `.rk-feature h3` and `.rk-post h3` to **Koulen**, whose
+  condensed Latin reads as a 1970s poster face. Line-height drops to 1.2 for those Latin headings.
+- Body text stays Battambang, which has good Latin glyphs. Keep body line-height at 1.7 even in English, for rhythm.
+- Keep one Khmer touch per screen even on English sites: the wordmark, an eyebrow (`សួស្ដី · Hello`), section
+  numbers or a stamp. Mark it with `lang="km"`.
+- Bilingual headings: put the Khmer in Moul, then the English underneath in Special Elite (eyebrow style) or Koulen
+  at about 60% of the size. Don't set both languages at the same size side by side.
+- English section numbers use ASCII digits (`01 · About`); Khmer ones use Khmer digits (`០១ · អំពីយើង`).
+
 ## Voice
 
 Use the formal but warm register of a 1970s school or ministry notice:

@@ -167,6 +167,77 @@ const open = ref(props.groups.findIndex(g => g.items.some(i => i.current)));
 </template>
 ```
 
+## Website components
+
+For websites (see `websites.md`), wrap the section classes in thin components so pages stay declarative.
+
+```vue
+<!-- RkSiteNav.vue -->
+<script setup lang="ts">
+import { ref } from 'vue';
+defineProps<{ brand: string; brandLatin?: string; links: { label: string; href: string; current?: boolean }[]; menuLabel?: string }>();
+const open = ref(false);
+</script>
+<template>
+  <header class="rk-nav" :data-open="open || undefined">
+    <div class="rk-container rk-nav-inner">
+      <a class="rk-nav-brand" href="/">
+        <span style="display:flex;flex-direction:column">
+          <span class="rk-display">{{ brand }}</span>
+          <span v-if="brandLatin" class="rk-latin" style="color:var(--rk-paper-muted)">{{ brandLatin }}</span>
+        </span>
+      </a>
+      <button class="rk-btn rk-btn-ghost rk-btn-icon rk-nav-toggle" :aria-label="menuLabel ?? 'ម៉ឺនុយ'"
+        :aria-expanded="open" aria-controls="rk-site-links" @click="open = !open">
+        <svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+      <nav style="display:contents">
+        <ul id="rk-site-links" class="rk-nav-links">
+          <li v-for="l in links" :key="l.href">
+            <a :href="l.href" :aria-current="l.current ? 'page' : undefined" @click="open = false">{{ l.label }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="rk-zigzag" aria-hidden="true"></div>
+</template>
+```
+Add `document.documentElement.classList.add('js')` in `main.ts` (or `index.html`) so the phone menu collapses.
+
+```vue
+<!-- RkSection.vue -->
+<script setup lang="ts">
+import { useId } from 'vue';
+withDefaults(defineProps<{
+  eyebrow?: string; title: string; tone?: 'ground' | 'paper' | 'ink' | 'halftone'; center?: boolean; narrow?: boolean; id?: string;
+}>(), { tone: 'ground' });
+const headingId = useId();
+</script>
+<template>
+  <section :id="id" :aria-labelledby="headingId"
+    :class="['rk-section', { 'rk-section-paper': tone === 'paper', 'rk-section-ink': tone === 'ink', 'rk-halftone': tone === 'halftone' }]">
+    <div :class="narrow ? 'rk-narrow' : 'rk-container'">
+      <div :class="['rk-section-head', { 'is-center': center }]">
+        <span v-if="eyebrow" class="rk-eyebrow">{{ eyebrow }}</span>
+        <h2 :id="headingId" class="rk-section-title">{{ title }}</h2>
+        <div v-if="center" class="rk-diamonds" style="width:120px;margin-top:8px" aria-hidden="true"></div>
+      </div>
+      <slot />
+    </div>
+  </section>
+</template>
+```
+
+Usage (in a parent template):
+```html
+<RkSiteNav brand="ហាងបោះពុម្ព សូរិយា" brand-latin="SORIYA PRINT HOUSE"
+  :links="[{ label: 'ទំព័រដើម', href: '/', current: true }, { label: 'សេវាកម្ម', href: '#services' }]" />
+<RkSection id="services" eyebrow="០១ · សេវាកម្ម" title="អ្វីដែលយើងធ្វើ">
+  <div class="rk-grid"><article class="rk-feature">…</article></div>
+</RkSection>
+```
+
 ## shadcn-vue / Reka UI / headless kits
 
 If the project already has a component kit, **restyle it rather than replacing it**. Set the CSS variables to

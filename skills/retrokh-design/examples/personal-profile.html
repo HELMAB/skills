@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Profile</title>
+<meta name="description" content="Personal profile / CV template in the RetroKh 1970s Khmer print style (English-primary, Khmer accents).">
+<!-- Sample personal-profile template. Bracketed text marks facts the person must supply. -->
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Moul&family=Koulen&family=Battambang:wght@400;700&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="../assets/retrokh.css">
+<style>
+  body { margin: 0; }
+  .hero-me { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
+  .hero-me .rk-hero-plate { flex: 1 1 380px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+</style>
+</head>
+<body class="rk" data-accent="teal">
+<a class="rk-skip" href="#main">Skip to content</a>
+
+<header class="rk-nav">
+  <div class="rk-container rk-nav-inner">
+    <a class="rk-nav-brand" href="#">
+      <span style="display:flex;flex-direction:column">
+        <span class="rk-display" lang="km">[ ឈ្មោះ ]</span>
+        <span class="rk-latin" style="color:var(--rk-paper-muted)">[ YOUR NAME ]</span>
+      </span>
+    </a>
+    <button class="rk-btn rk-btn-ghost rk-btn-icon rk-nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-links">
+      <svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <nav aria-label="Main" style="display:contents">
+      <ul class="rk-nav-links" id="site-links">
+        <li><a href="#" aria-current="page">Profile</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="rk-zigzag" aria-hidden="true"></div>
+
+<main id="main">
+  <section class="rk-hero rk-rays" aria-labelledby="hero-title">
+    <div class="rk-container hero-me">
+      <div class="rk-portrait" style="--rk-size: 220px"><span class="rk-photo-label">[ Portrait ]</span></div>
+      <div class="rk-hero-plate">
+        <span class="rk-eyebrow" lang="km">សួស្ដី · Hello</span>
+        <h1 class="rk-hero-title" id="hero-title">[ Your Name ]</h1>
+        <p class="rk-lead">[ Role ] based in [ City ]. [ One sentence on what you do and for whom. ]</p>
+        <div class="rk-actions">
+          <a class="rk-btn rk-btn-primary" href="#contact">Get in touch</a>
+          <a class="rk-btn rk-btn-ghost" href="#" download>
+            <svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M4 20h16"/></svg>Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rk-section rk-section-paper" aria-labelledby="about-title">
+    <div class="rk-container rk-split" style="align-items:start">
+      <div>
+        <div class="rk-section-head">
+          <span class="rk-eyebrow">01 · About</span>
+          <h2 class="rk-section-title" id="about-title">About me</h2>
+        </div>
+        <div class="rk-prose"><p>[ Two or three short paragraphs about your background, what you care about, and the kind of work you want next. ]</p></div>
+      </div>
+      <div>
+        <div class="rk-section-head">
+          <span class="rk-eyebrow">02 · Skills</span>
+          <h2 class="rk-section-title">Skills</h2>
+        </div>
+        <div class="tags">
+          <span class="rk-tag">[ Skill ]</span><span class="rk-tag">[ Skill ]</span><span class="rk-tag">[ Skill ]</span>
+          <span class="rk-tag">[ Skill ]</span><span class="rk-tag">[ Skill ]</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:24px">
+          <span class="rk-label">Languages</span>
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center"><span lang="km">ខ្មែរ</span><div class="rk-progress" role="img" aria-label="Khmer: native"><span style="width:100%"></span></div></div>
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center"><span>English</span><div class="rk-progress" role="img" aria-label="English: [ level ]"><span style="width:70%"></span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rk-section" id="work" aria-labelledby="work-title">
+    <div class="rk-container">
+      <div class="rk-section-head">
+        <span class="rk-eyebrow">03 · Work</span>
+        <h2 class="rk-section-title" id="work-title">Selected work</h2>
+      </div>
+      <div class="rk-grid" style="--rk-min:280px">
+        <article class="rk-post"><div class="rk-photo-frame"><span class="rk-photo-label">[ Project image ]</span></div><div class="rk-post-body"><time>[ Year ]</time><h3><a href="#">[ Project title ]</a></h3><p>[ What it was, your role, the result. ]</p></div></article>
+        <article class="rk-post"><div class="rk-photo-frame"><span class="rk-photo-label">[ Project image ]</span></div><div class="rk-post-body"><time>[ Year ]</time><h3><a href="#">[ Project title ]</a></h3><p>[ What it was, your role, the result. ]</p></div></article>
+        <article class="rk-post"><div class="rk-photo-frame"><span class="rk-photo-label">[ Project image ]</span></div><div class="rk-post-body"><time>[ Year ]</time><h3><a href="#">[ Project title ]</a></h3><p>[ What it was, your role, the result. ]</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="rk-section rk-section-paper" id="experience" aria-labelledby="exp-title">
+    <div class="rk-narrow">
+      <div class="rk-section-head">
+        <span class="rk-eyebrow">04 · Experience</span>
+        <h2 class="rk-section-title" id="exp-title">Experience &amp; education</h2>
+      </div>
+      <ol class="rk-timeline">
+        <li><span class="rk-timeline-year">[ 20XX ]</span><div class="rk-timeline-body"><h3>[ Role ] · [ Organisation ]</h3><p>[ One line on scope and impact. ]</p></div></li>
+        <li><span class="rk-timeline-year">[ 20XX ]</span><div class="rk-timeline-body"><h3>[ Role ] · [ Organisation ]</h3><p>[ One line on scope and impact. ]</p></div></li>
+        <li><span class="rk-timeline-year">[ 20XX ]</span><div class="rk-timeline-body"><h3>[ Degree ] · [ University ]</h3><p>[ Field of study ]</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="rk-zigzag" aria-hidden="true"></div>
+  <section class="rk-cta" id="contact" aria-labelledby="cta-title">
+    <div class="rk-container">
+      <h2 id="cta-title">Let's work together</h2>
+      <p style="margin:0;color:var(--rk-paper-muted)">[ email@example.com ] · [ Phone ] · [ City ]</p>
+      <div class="rk-actions"><a class="rk-btn rk-btn-paper" href="mailto:email@example.com">Send an email</a><a class="rk-btn rk-btn-ghost" href="#">LinkedIn</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="rk-footer" style="padding-top:24px">
+  <div class="rk-container rk-footer-base" style="margin-top:0;border-top:0;padding-top:0">
+    <span class="rk-small" style="color:var(--rk-paper-muted)">© 2026 [ Your Name ]</span>
+    <span class="rk-latin" style="color:var(--rk-paper-muted)">MADE IN THE RETROKH STYLE</span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.querySelector('.rk-nav'), toggle = nav.querySelector('.rk-nav-toggle');
+  toggle.addEventListener('click', () => toggle.setAttribute('aria-expanded', String(nav.toggleAttribute('data-open'))));
+</script>
+</body>
+</html>

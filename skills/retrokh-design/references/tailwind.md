@@ -87,3 +87,52 @@ Dark mode in v4 is class-based via `data-theme="dark"`. Use `dark:` variants wit
 - Never emit `bg-gradient-*`; the only allowed gradients are the `bg-rk-*` pattern utilities.
 - `font-display` is only for text ≥16px (`text-base` and up). Pair it with `leading-[1.6]`–`leading-[1.8]`, never `leading-none` or `leading-tight`.
 - No `tracking-*` or `uppercase` on Khmer; `tracking-latin uppercase` only goes with `font-latin`.
+
+## Website sections
+
+Websites can mix both approaches: import `retrokh.css` for the section classes in `websites.md`, and use Tailwind for
+layout. Or build them in pure utilities:
+
+```html
+<!-- Sticky site nav (phone menu: toggle `hidden` on #links with a button + aria-expanded) -->
+<header class="sticky top-0 z-20 bg-rk-ink text-rk-paper">
+  <div class="mx-auto flex min-h-[68px] w-[min(100%-32px,1200px)] flex-wrap items-center gap-x-4 gap-y-2 py-2">
+    <a href="/" class="mr-auto font-display text-xl leading-normal">[ ឈ្មោះ ]</a>
+    <ul id="links" class="flex flex-wrap gap-1 max-md:hidden max-md:w-full max-md:flex-col">
+      <li><a aria-current="page" class="flex min-h-touch items-center bg-rk-red px-3 font-bold">ទំព័រដើម</a></li>
+      <li><a href="#about" class="flex min-h-touch items-center border-b-[3px] border-transparent px-3 font-bold hover:border-rk-turmeric">អំពីយើង</a></li>
+    </ul>
+  </div>
+</header>
+<div class="h-3.5 bg-rk-zigzag max-sm:h-2.5" aria-hidden="true"></div>
+
+<!-- Hero: copy on a plate over rays -->
+<section class="bg-rk-rays py-[72px] max-md:py-10">
+  <div class="mx-auto grid w-[min(100%-32px,1200px)] items-center gap-12 md:grid-cols-[1.1fr_.9fr]">
+    <div class="flex flex-col items-start gap-4 border-2 border-rk-ink bg-rk-sheet p-10 shadow-rk-2 max-md:p-6">
+      <span class="font-numeral text-[17px] text-rk-red">០១ · ស្វាគមន៍</span>
+      <h1 class="font-display text-[clamp(32px,5vw,56px)] leading-[1.5]">…</h1>
+      <p class="max-w-[62ch] text-lg leading-[1.8] text-rk-ink-muted">…</p>
+    </div>
+    <!-- printed photo -->
+    <figure class="-rotate-[1.5deg] border-2 border-rk-ink bg-rk-sheet p-2.5 shadow-rk-2">
+      <img src="…" alt="…" class="aspect-[4/3] w-full border-2 border-rk-ink object-cover [filter:sepia(.35)_saturate(.85)_contrast(1.05)]">
+      <figcaption class="pt-2 text-sm text-rk-ink-muted">…</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Section head -->
+<div class="mb-9 flex flex-col gap-1">
+  <span class="font-numeral text-[17px] text-rk-red">០២ · សេវាកម្ម</span>
+  <h2 class="border-b-[3px] border-double border-rk-ink pb-2.5 font-display text-[clamp(24px,3.2vw,34px)] leading-[1.6]">…</h2>
+</div>
+
+<!-- CTA band between zigzags -->
+<div class="h-3.5 bg-rk-zigzag" aria-hidden="true"></div>
+<section class="bg-rk-ink py-14 text-center text-rk-paper">…
+  <a class="press inline-flex min-h-touch-lg items-center border-2 border-rk-paper bg-rk-paper px-5 font-bold text-rk-ink shadow-rk-primary">…</a>
+</section>
+<div class="h-3.5 bg-rk-zigzag" aria-hidden="true"></div>
+```
+English-primary pages: swap `font-display` for `font-numeral leading-tight` on headings (Koulen Latin).
