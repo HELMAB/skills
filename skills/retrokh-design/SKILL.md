@@ -57,8 +57,8 @@ second plate slightly out of register.
    - `references/layouts.md` has app skeletons (app shell, sidebar ledger, reader, splash, dashboard, form) and responsive rules.
 4. **Build** using the semantic tokens (`--rk-surface`, `--rk-text`, `--rk-accent`…) rather than raw hex values, so dark mode and accent swaps work.
 5. **Check the result against the checklist below** before you hand it over. Working pages to copy from:
-   `examples/company-profile.html` (Khmer company site), `examples/personal-profile.html` (English-primary
-   profile/CV) and `examples/showcase.html` (app components, light and dark).
+   `examples/company-profile.html` (Khmer company site) and `examples/personal-profile.html` (English-primary
+   profile/CV).
 
 ## Core tokens (quick reference)
 

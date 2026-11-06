@@ -14,12 +14,6 @@ events, blogs, landing pages, dashboards and app screens.
 ![RetroKh personal profile](docs/preview-personal.png)
 </details>
 
-<details><summary>App components, light and dark</summary>
-
-![RetroKh showcase, light](docs/preview-light.png)
-![RetroKh showcase, dark](docs/preview-dark.png)
-</details>
-
 It works in Claude Code, Claude.ai and any agent that supports the [Agent Skills](https://agentskills.io) format.
 
 ## Install
@@ -68,8 +62,7 @@ skills/retrokh-design/
 │   └── tailwind.v4.css         # Tailwind v4
 └── examples/
     ├── company-profile.html    # Khmer company site (nav, hero, services, timeline, news, FAQ, contact)
-    ├── personal-profile.html   # English-primary profile / CV
-    └── showcase.html           # app components (toggle dark mode)
+    └── personal-profile.html   # English-primary profile / CV
 ```
 
 ## Palette
