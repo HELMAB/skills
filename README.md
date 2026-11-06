@@ -57,21 +57,6 @@ the *Dobpi* 1970s Khmer Retro design canvas. Google Sans is used under the SIL O
 
 ---
 
-## Adding a skill
-
-1. Create `skills/<name>/SKILL.md`, where `name:` matches the folder name (lowercase and hyphens). Write the `description:` in
-   the third person, and say what the skill does and when to use it, in 1024 characters or fewer.
-2. Keep `SKILL.md` lean. The [best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
-   cap it at 500 lines. Put the details in `references/`, one level deep, with a table of contents for any file over 100 lines.
-   Put files the agent should copy (not read) in `assets/`.
-3. Add at least three scenarios to `evals/<name>/evals.json`.
-4. Add a row to the table above and a `## <name>` section.
-5. Validate:
-   ```bash
-   uvx --from skills-ref agentskills validate skills/<name>
-   npx skills add . --list
-   ```
-
 ## License
 
 [MIT](LICENSE) © 2026 Hel Mab. Each skill also declares `license: MIT` in its `SKILL.md`, so the licence still applies when a
