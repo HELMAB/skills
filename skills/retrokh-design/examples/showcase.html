@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RetroKh Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Moul&family=Koulen&family=Battambang:wght@400;700&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="../assets/retrokh.css">
+<style>
+  body { margin: 0; }
+  .shell { display: flex; flex-wrap: wrap; align-items: stretch; min-height: calc(100vh - 82px); }
+  .side { flex: 1 1 320px; max-width: 100%; display: flex; flex-direction: column; gap: 20px; padding: 24px 0; background: var(--rk-surface); border-right: var(--rk-border-double); }
+  .side > .pad { padding: 0 24px; display: flex; flex-direction: column; gap: 6px; }
+  .main { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 40px 24px 24px; }
+  .page { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 32px; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .bar { height: 10px; background: var(--rk-ink); opacity: .16; }
+  @media (max-width: 600px) { .main { padding: 24px 16px; } .rk-sheet.doc { padding: 22px !important; } }
+</style>
+</head>
+<body class="rk">
+
+<header class="rk-header">
+  <button class="rk-btn rk-btn-ghost rk-btn-icon" aria-label="បើកម៉ឺនុយ">
+    <svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <div style="display:flex;align-items:center;gap:12px">
+    <svg width="48" height="48" viewBox="-14 -14 128 128" aria-hidden="true"><circle cx="50" cy="50" r="62" fill="#9E2F18"/><circle cx="50" cy="50" r="55" fill="none" stroke="#F1E4C6" stroke-width="2" stroke-dasharray="4 4"/><text x="50" y="54" text-anchor="middle" dominant-baseline="middle" fill="#F1E4C6" font-family="Moul" font-size="46">រ</text></svg>
+    <div style="display:flex;flex-direction:column">
+      <span class="rk-display" style="font-size:20px;line-height:1.5">រេត្រូខ្មែរ</span>
+      <span class="rk-latin" style="color:var(--rk-paper-muted)">RETROKH</span>
+    </div>
+  </div>
+  <div style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <span class="rk-display" style="font-size:20px">ក្បួនរចនា</span>
+    <span class="rk-small" style="color:var(--rk-paper-muted)">ប្រព័ន្ធរចនាបោះពុម្ពខ្មែរ · ឆ្នាំ១៩៧០</span>
+  </div>
+  <div class="row">
+    <button class="rk-btn rk-btn-ghost" id="theme" aria-pressed="false">
+      <svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>របៀបងងឹត
+    </button>
+  </div>
+</header>
+<div class="rk-zigzag" aria-hidden="true"></div>
+
+<div class="shell">
+  <aside class="side">
+    <div class="pad">
+      <h2 class="rk-title" style="margin:0;color:var(--rk-accent)">ឯកសារ</h2>
+      <span class="rk-small rk-muted">បញ្ជីតាមឆ្នាំ</span>
+    </div>
+    <div class="pad rk-field">
+      <label for="q" class="rk-label">ស្វែងរក</label>
+      <div class="rk-input">
+        <svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>
+        <input id="q" type="search" placeholder="មុខវិជ្ជា ឬឆ្នាំ…">
+      </div>
+    </div>
+    <div class="pad">
+      <div class="rk-tabs" role="tablist" aria-label="ថ្នាក់">
+        <button role="tab" aria-selected="false">សង្គម</button>
+        <button role="tab" aria-selected="true">វិទ្យាសាស្ត្រពិត</button>
+      </div>
+    </div>
+    <nav class="rk-ruled" aria-label="តាមឆ្នាំ" style="border-top:1px solid var(--rk-rule)">
+      <button class="rk-ledger-row" aria-expanded="false"><span class="rk-ledger-key">២០២១</span><span class="rk-ledger-text rk-muted">៨ មុខវិជ្ជា</span></button>
+      <button class="rk-ledger-row" aria-expanded="true"><span class="rk-ledger-key">២០២២</span><span class="rk-ledger-text" style="font-weight:700">៣ មុខវិជ្ជា</span></button>
+      <ol class="rk-ledger">
+        <li class="rk-ledger-row"><span class="rk-ledger-key" aria-hidden="true"></span><a class="rk-ledger-text" href="#" style="color:inherit;text-decoration:none" aria-label="១. អក្សរសាស្ត្រខ្មែរ — បានទាញយក">១. អក្សរសាស្ត្រខ្មែរ<span class="rk-stamp rk-stamp-saved" aria-hidden="true">បានទាញយក</span></a></li>
+        <li class="rk-ledger-row"><span class="rk-ledger-key" aria-hidden="true"></span><a class="rk-current" href="#" aria-current="page">២. គណិតវិទ្យា</a></li>
+        <li class="rk-ledger-row"><span class="rk-ledger-key" aria-hidden="true"></span><a class="rk-ledger-text" href="#" style="color:inherit;text-decoration:none">៣. រូបវិទ្យា</a></li>
+      </ol>
+    </nav>
+    <div class="rk-panel-dashed" style="margin:auto 24px 0">
+      <span style="font-weight:700;color:var(--rk-teal)">អានពេលគ្មានអ៊ីនធឺណិត</span>
+      <span class="rk-small rk-muted">បានរក្សាទុក ១២ / ១៣៨</span>
+      <div class="rk-progress is-system" role="progressbar" aria-label="បានរក្សាទុក" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"><span style="width:9%"></span></div>
+      <button class="rk-btn rk-btn-system">ទាញយកទាំងអស់</button>
+    </div>
+  </aside>
+
+  <main class="main rk-halftone">
+    <div class="page">
+      <article class="rk-sheet doc" style="padding:56px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;flex-direction:column;align-items:center;text-align:center">
+          <span class="rk-display" style="font-size:18px;line-height:1.8">ព្រះរាជាណាចក្រកម្ពុជា</span>
+          <span style="font-weight:700">ជាតិ សាសនា ព្រះមហាក្សត្រ</span>
+          <div class="rk-diamonds" style="width:120px;margin-top:6px" aria-hidden="true"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px;padding:12px 0;border-top:var(--rk-rule-double);border-bottom:var(--rk-rule-double);border-color:var(--rk-ink)">
+          <span>វិញ្ញាសា៖ <b>គណិតវិទ្យា</b></span><span style="text-align:right">សម័យ៖ <b>២០២២</b></span>
+          <span>ថ្នាក់៖ <b>វិទ្យាសាស្ត្រពិត</b></span><span style="text-align:right">រយៈពេល៖ <b>[ … នាទី ]</b></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px"><span class="rk-numeral" style="font-size:22px">I.</span><div class="bar" style="width:94%"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:56%"></div></div>
+      </article>
+
+      <div class="grid3">
+        <section class="rk-card">
+          <h3 class="rk-card-head">១ · ប៊ូតុង</h3>
+          <div class="rk-card-body">
+            <button class="rk-btn rk-btn-primary">បន្ទាប់<svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+            <button class="rk-btn rk-btn-raised">រក្សាទុក</button>
+            <button class="rk-btn rk-btn-ghost">បោះបង់</button>
+          </div>
+        </section>
+        <section class="rk-card">
+          <h3 class="rk-card-head">២ · បរាជ័យ</h3>
+          <div class="rk-card-body" role="alert" style="align-items:center;text-align:center">
+            <span class="rk-stamp rk-stamp-fail" aria-hidden="true">បរាជ័យ</span>
+            <b>មិនអាចបើកឯកសារបានទេ</b>
+            <span class="rk-small rk-muted">សូមពិនិត្យអ៊ីនធឺណិត ហើយព្យាយាមម្ដងទៀត</span>
+          </div>
+        </section>
+        <section class="rk-card">
+          <h3 class="rk-card-head">៣ · ស្ថិតិ</h3>
+          <div class="rk-card-body">
+            <div class="rk-stat"><span class="rk-small rk-muted">វិញ្ញាសាសរុប</span><span class="rk-stat-value">១៣៨</span></div>
+            <div class="rk-toast" role="status"><svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>បានទាញយក</div>
+          </div>
+        </section>
+      </div>
+
+      <div class="row" style="justify-content:space-between">
+        <span class="rk-chip-ink" style="border:2px solid var(--rk-paper);box-shadow:var(--rk-shadow-1)">ទំព័រ <b>១ / ៤</b></span>
+        <nav class="rk-segmented" aria-label="មុន និងបន្ទាប់">
+          <a href="#"><svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>មុន</a>
+          <span class="rk-numeral" style="font-size:18px;font-weight:400">១៣៣ / ១៣៨</span>
+          <a href="#" class="is-primary">បន្ទាប់<svg class="rk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+        </nav>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const btn = document.getElementById('theme');
+  btn.addEventListener('click', () => {
+    const dark = document.documentElement.dataset.theme !== 'dark';
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    btn.setAttribute('aria-pressed', String(dark));
+  });
+</script>
+</body>
+</html>

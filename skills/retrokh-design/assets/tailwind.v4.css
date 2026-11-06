@@ -1,0 +1,83 @@
+/* RetroKh for Tailwind CSS v4.
+ *   @import "tailwindcss";
+ *   @import "./retrokh.tailwind.css";
+ * Fonts: add the Google Fonts <link> from retrokh.css to your HTML head.
+ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-rk-ground: #EADBB8;
+  --color-rk-paper: #F1E4C6;
+  --color-rk-sheet: #FBF5E6;
+  --color-rk-paper-muted: #D9C7A0;
+  --color-rk-ink: #2A1D14;
+  --color-rk-ink-muted: #5A4632;
+  --color-rk-ink-faint: #6E5B45;
+  --color-rk-red: #9E2F18;
+  --color-rk-red-deep: #6E1F0F;
+  --color-rk-red-night: #E2735A;
+  --color-rk-turmeric: #E0A526;
+  --color-rk-turmeric-light: #E9B94A;
+  --color-rk-teal: #245A57;
+  --color-rk-teal-halftone: #2F6E6A;
+  --color-rk-plum: #7A3E8E;
+  --color-rk-night: #1C130D;
+  --color-rk-sheet-night: #E6DCC4;
+  --color-rk-edge-night: #6E5B45;
+
+  --font-display: "Moul", "Khmer OS Muol Light", serif;
+  --font-numeral: "Koulen", "Khmer OS Bokor", sans-serif;
+  --font-body: "Battambang", "Noto Sans Khmer", "Khmer OS", serif;
+  --font-latin: "Special Elite", "Courier New", monospace;
+
+  --shadow-rk-1: 3px 3px 0 #2A1D14;
+  --shadow-rk-2: 8px 8px 0 #2A1D14;
+  --shadow-rk-primary: 3px 3px 0 #9E2F18;
+  --shadow-rk-black-1: 3px 3px 0 #000;
+  --shadow-rk-black-2: 8px 8px 0 #000;
+  --shadow-rk-drawer: 8px 0 0 rgba(42,29,20,.6);
+
+  --leading-km: 1.7;
+  --tracking-latin: 3px;
+  --spacing-touch: 44px;
+  --spacing-touch-lg: 48px;
+  --radius-*: initial;
+  --radius-none: 0;
+}
+
+@utility bg-rk-zigzag {
+  background: linear-gradient(135deg,#E0A526 25%,transparent 25%) -10px 0/20px 20px,
+              linear-gradient(225deg,#E0A526 25%,transparent 25%) -10px 0/20px 20px,#9E2F18;
+}
+@utility bg-rk-halftone {
+  background: radial-gradient(circle,rgba(20,52,50,.25) 1.3px,transparent 1.6px) 0 0/8px 8px,#2F6E6A;
+}
+@utility bg-rk-halftone-night {
+  background: radial-gradient(circle,rgba(47,110,106,.35) 1.3px,transparent 1.6px) 0 0/8px 8px,#14100C;
+}
+@utility bg-rk-rays {
+  background: repeating-conic-gradient(from 0deg at 50% 38%,#E0A526 0deg 9deg,#E9B94A 9deg 18deg);
+}
+@utility bg-rk-ruled {
+  background: repeating-linear-gradient(to bottom,transparent 0 43px,rgba(36,90,87,.22) 43px 44px);
+}
+@utility bg-rk-diamonds {
+  background: linear-gradient(45deg,transparent 42%,#2A1D14 42% 58%,transparent 58%) 0 0/12px 12px,
+              linear-gradient(-45deg,transparent 42%,#2A1D14 42% 58%,transparent 58%) 0 0/12px 12px;
+}
+@utility bg-rk-hatch {
+  background: repeating-linear-gradient(-45deg,#2A1D14 0 6px,#5A4632 6px 12px);
+}
+@utility border-rk-double { border: 4px double currentColor; }
+@utility press { &:active { transform: translate(3px,3px); box-shadow: none; } }
+
+@layer base {
+  html:lang(km), .rk { font-family: var(--font-body); line-height: 1.7; font-synthesis: none; overflow-wrap: anywhere; }
+}
+
+@layer components {
+  .rk-stamp {
+    display: inline-block; padding: 0 6px; border: 2px solid currentColor;
+    font-family: var(--font-numeral); font-size: 14px; line-height: 1.5; transform: rotate(-5deg);
+  }
+}

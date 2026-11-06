@@ -1,0 +1,321 @@
+/*!
+ * retrokh.css — Khmer 1970s print design system (retrokh-design skill)
+ * Paper, ink, three spot colours, square corners, hard offset shadows.
+ *
+ * Fonts (put in <head>):
+ * <link rel="preconnect" href="https://fonts.googleapis.com">
+ * <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ * <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Moul&family=Koulen&family=Battambang:wght@400;700&family=Special+Elite&display=swap">
+ */
+
+/* ───────────────────────── 1. Tokens ───────────────────────── */
+:root {
+  /* Paper — surfaces */
+  --rk-ground: #EADBB8;        /* page background behind panels */
+  --rk-paper: #F1E4C6;         /* default surface, sidebar, text on ink */
+  --rk-sheet: #FBF5E6;         /* raised sheet, inputs, cards */
+  --rk-paper-muted: #D9C7A0;   /* secondary text / borders ON ink */
+
+  /* Ink — text, primary actions, bars */
+  --rk-ink: #2A1D14;           /* 12.9:1 on paper */
+  --rk-ink-muted: #5A4632;     /* 7.1:1 on paper — secondary text */
+  --rk-ink-faint: #6E5B45;     /* 5.1:1 on paper — placeholders, hints */
+
+  /* Spot colours — exactly one role each */
+  --rk-red: #9E2F18;           /* "you are here": current item, brand accent, error */
+  --rk-red-deep: #6E1F0F;      /* link hover */
+  --rk-turmeric: #E0A526;      /* highlight + ornament only (never text colour) */
+  --rk-turmeric-light: #E9B94A;
+  --rk-teal: #245A57;          /* system / offline / saved / success */
+  --rk-teal-halftone: #2F6E6A; /* halftone backdrop base */
+  --rk-plum: #7A3E8E;          /* optional alternate accent */
+
+  /* Accent — the one colour that marks "current". Swap to teal or plum per product. */
+  --rk-accent: var(--rk-red);
+  --rk-on-accent: var(--rk-paper);
+
+  /* Semantic aliases */
+  --rk-bg: var(--rk-ground);
+  --rk-surface: var(--rk-paper);
+  --rk-raised: var(--rk-sheet);
+  --rk-text: var(--rk-ink);
+  --rk-text-muted: var(--rk-ink-muted);
+  --rk-edge: var(--rk-ink);
+  --rk-shadow-color: var(--rk-ink);
+  --rk-header: var(--rk-ink);
+  --rk-on-header: var(--rk-paper);
+  --rk-primary: var(--rk-ink);
+  --rk-on-primary: var(--rk-paper);
+  --rk-primary-shadow: var(--rk-red);
+  --rk-scrim: rgba(42, 29, 20, .55);
+  --rk-rule: rgba(36, 90, 87, .22);
+  --rk-focus: var(--rk-red);
+  --rk-danger: var(--rk-red);  /* error text, fail stamp, invalid field (brightens in dark) */
+
+  /* Type */
+  --rk-font-display: 'Moul', 'Khmer OS Muol Light', serif;          /* big headings only, ≥16px */
+  --rk-font-numeral: 'Koulen', 'Khmer OS Bokor', sans-serif;         /* numerals, stamps, counters */
+  --rk-font-body: 'Battambang', 'Noto Sans Khmer', 'Khmer OS', serif; /* everything else */
+  --rk-font-latin: 'Special Elite', 'Courier New', monospace;        /* Latin-only labels */
+  --rk-leading: 1.7;            /* Khmer stacks need room: never below 1.5 */
+  --rk-leading-display: 1.7;
+
+  /* Shape — square corners, hard shadows, two elevations */
+  --rk-radius: 0;
+  --rk-border: 2px solid var(--rk-edge);
+  --rk-border-double: 4px double var(--rk-edge);
+  --rk-rule-double: 3px double var(--rk-edge);
+  --rk-shadow-1: 3px 3px 0 var(--rk-shadow-color); /* controls */
+  --rk-shadow-2: 8px 8px 0 var(--rk-shadow-color); /* sheets, panels, menus */
+
+  /* Space (px) */
+  --rk-1: 4px; --rk-2: 8px; --rk-3: 12px; --rk-4: 16px; --rk-5: 20px;
+  --rk-6: 24px; --rk-8: 32px; --rk-10: 40px; --rk-14: 56px;
+
+  /* Sizes */
+  --rk-touch: 44px;             /* minimum hit target */
+  --rk-touch-primary: 48px;
+  --rk-zigzag: 14px;            /* 10px on phones */
+}
+
+/* Dark: night print — ink becomes the ground, red brightens to #E2735A */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --rk-bg: #1C130D; --rk-surface: #2A1D14; --rk-raised: #2A1D14;
+    --rk-text: #F1E4C6; --rk-text-muted: #D9C7A0;
+    --rk-edge: #6E5B45; --rk-shadow-color: #000000;
+    --rk-header: #1C130D; --rk-on-header: #F1E4C6;
+    --rk-accent: #E2735A; --rk-on-accent: #1C130D;
+    --rk-primary: #E2735A; --rk-on-primary: #1C130D; --rk-primary-shadow: #000000;
+    --rk-focus: #E0A526; --rk-rule: rgba(217, 199, 160, .18); --rk-danger: #E2735A;
+    --rk-sheet: #E6DCC4;        /* paper sheets stay light on the night ground */
+  }
+}
+:root[data-theme="dark"] {
+  --rk-bg: #1C130D; --rk-surface: #2A1D14; --rk-raised: #2A1D14;
+  --rk-text: #F1E4C6; --rk-text-muted: #D9C7A0;
+  --rk-edge: #6E5B45; --rk-shadow-color: #000000;
+  --rk-header: #1C130D; --rk-on-header: #F1E4C6;
+  --rk-accent: #E2735A; --rk-on-accent: #1C130D;
+  --rk-primary: #E2735A; --rk-on-primary: #1C130D; --rk-primary-shadow: #000000;
+  --rk-focus: #E0A526; --rk-rule: rgba(217, 199, 160, .18); --rk-danger: #E2735A;
+  --rk-sheet: #E6DCC4;
+}
+[data-accent="teal"] { --rk-accent: var(--rk-teal); }
+[data-accent="plum"] { --rk-accent: var(--rk-plum); }
+
+/* ───────────────────────── 2. Base ───────────────────────── */
+.rk, .rk-root {
+  background: var(--rk-bg);
+  color: var(--rk-text);
+  font-family: var(--rk-font-body);
+  font-size: 16px;
+  line-height: var(--rk-leading);
+  font-synthesis: none;          /* never fake-bold Moul/Koulen */
+  overflow-wrap: anywhere;       /* Khmer has no spaces between words */
+}
+.rk *, .rk-root * { box-sizing: border-box; border-radius: 0; }
+.rk button, .rk-root button { font: inherit; cursor: pointer; }
+/* :where() keeps base links at low specificity so component classes (.rk-current, .rk-segmented…) win */
+.rk :where(a) { color: var(--rk-accent); }
+.rk :where(a:hover) { color: var(--rk-red-deep); }
+.rk :focus-visible { outline: 3px solid var(--rk-focus); outline-offset: 2px; }
+.rk .rk-header :focus-visible, .rk .rk-bar-ink :focus-visible { outline-color: var(--rk-turmeric); }
+.rk ::placeholder { color: var(--rk-ink-faint); opacity: 1; }
+.rk mark, .rk-mark { background: var(--rk-turmeric); color: var(--rk-ink); padding: 0 2px; }
+.rk-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ───────────────────────── 3. Type ───────────────────────── */
+.rk-display  { font-family: var(--rk-font-display); font-weight: 400; line-height: 1.6; } /* 20–48px */
+.rk-title    { font-family: var(--rk-font-display); font-weight: 400; font-size: 22px; line-height: var(--rk-leading-display); }
+.rk-numeral  { font-family: var(--rk-font-numeral); font-weight: 400; line-height: 1.3; }
+.rk-latin    { font-family: var(--rk-font-latin); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--rk-text-muted); }
+.rk-muted    { color: var(--rk-text-muted); }
+.rk-small    { font-size: 14px; line-height: 1.6; }
+.rk-label    { font-size: 14px; font-weight: 700; color: var(--rk-text-muted); }
+
+/* ───────────────────────── 4. Patterns (decor: always aria-hidden) ───────────────────────── */
+.rk-zigzag {
+  height: var(--rk-zigzag);
+  background:
+    linear-gradient(135deg, var(--rk-turmeric) 25%, transparent 25%) -10px 0 / 20px 20px,
+    linear-gradient(225deg, var(--rk-turmeric) 25%, transparent 25%) -10px 0 / 20px 20px,
+    var(--rk-red);
+}
+.rk-halftone {
+  background: radial-gradient(circle, rgba(20, 52, 50, .25) 1.3px, transparent 1.6px) 0 0 / 8px 8px, var(--rk-teal-halftone);
+}
+:root[data-theme="dark"] .rk-halftone {
+  background: radial-gradient(circle, rgba(47, 110, 106, .35) 1.3px, transparent 1.6px) 0 0 / 8px 8px, #14100C;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .rk-halftone {
+    background: radial-gradient(circle, rgba(47, 110, 106, .35) 1.3px, transparent 1.6px) 0 0 / 8px 8px, #14100C;
+  }
+}
+.rk-rays { background: repeating-conic-gradient(from 0deg at 50% 38%, var(--rk-turmeric) 0deg 9deg, var(--rk-turmeric-light) 9deg 18deg); }
+.rk-ruled { background: repeating-linear-gradient(to bottom, transparent 0 43px, var(--rk-rule) 43px 44px); }
+.rk-ruled-tight { background: repeating-linear-gradient(to bottom, transparent 0 21px, rgba(36, 90, 87, .3) 21px 22px), var(--rk-paper); }
+.rk-diamonds {
+  height: 12px;
+  background:
+    linear-gradient(45deg, transparent 42%, var(--rk-ink) 42% 58%, transparent 58%) 0 0 / 12px 12px,
+    linear-gradient(-45deg, transparent 42%, var(--rk-ink) 42% 58%, transparent 58%) 0 0 / 12px 12px;
+}
+.rk-hatch { background: repeating-linear-gradient(-45deg, var(--rk-ink) 0 6px, var(--rk-ink-muted) 6px 12px); }
+
+/* ───────────────────────── 5. Surfaces ───────────────────────── */
+/* Paper context: light sheets stay printed paper in dark mode, so text inside them resets to ink */
+.rk-sheet, .rk-panel-dashed, .rk-stat, .rk-input, .rk-menu, .rk-dialog, .rk-table, .rk-tag, .rk-segmented, .rk-paper-context {
+  --rk-text: var(--rk-ink); --rk-text-muted: var(--rk-ink-muted); --rk-edge: var(--rk-ink);
+  --rk-accent: var(--rk-red); --rk-on-accent: var(--rk-paper); --rk-focus: var(--rk-red); --rk-danger: var(--rk-red);
+  color: var(--rk-ink);
+}
+.rk-frame   { border: var(--rk-border-double); }
+.rk-sheet   { background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
+.rk-card    { background: var(--rk-raised); border: var(--rk-border); box-shadow: var(--rk-shadow-2); display: flex; flex-direction: column; }
+.rk-card > .rk-card-head {
+  margin: 0; padding: 4px 12px; background: var(--rk-header); color: var(--rk-on-header); border-bottom: 2px solid var(--rk-edge);
+  font-size: 14px; font-weight: 700;
+}
+.rk-card > .rk-card-body { padding: var(--rk-4); display: flex; flex-direction: column; gap: var(--rk-3); }
+.rk-panel-dashed { border: 2px dashed var(--rk-teal); background: var(--rk-sheet); padding: var(--rk-4); display: flex; flex-direction: column; gap: var(--rk-2); }
+.rk-rule-double { border: 0; border-top: var(--rk-rule-double); margin: 0; }
+.rk-divider-dashed { border: 0; border-top: 1px dashed var(--rk-edge); margin: 0; }
+
+/* ───────────────────────── 6. Header ───────────────────────── */
+.rk-header {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--rk-4);
+  padding: 12px 24px; background: var(--rk-header); color: var(--rk-on-header);
+}
+.rk-header .rk-btn-ghost { color: var(--rk-on-header); border-color: var(--rk-paper-muted); }
+
+/* ───────────────────────── 7. Buttons ───────────────────────── */
+.rk-btn {
+  min-height: var(--rk-touch); padding: 0 16px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-family: var(--rk-font-body); font-size: 16px; font-weight: 700; line-height: 1.4;
+  border: 2px solid var(--rk-ink); border-radius: 0; text-decoration: none;
+  transition: transform .06s, box-shadow .06s;
+}
+.rk-btn:active { transform: translate(3px, 3px); box-shadow: none; }
+.rk-btn:disabled, .rk-btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; transform: none; }
+.rk-btn-primary  { min-height: var(--rk-touch-primary); padding: 0 18px; background: var(--rk-primary); color: var(--rk-on-primary); border-color: var(--rk-primary); box-shadow: 3px 3px 0 var(--rk-primary-shadow); }
+.rk-btn-system   { background: var(--rk-teal); color: var(--rk-paper); box-shadow: var(--rk-shadow-1); }
+.rk-btn-accent   { background: var(--rk-accent); color: var(--rk-on-accent); box-shadow: var(--rk-shadow-1); }
+.rk-btn-raised   { background: var(--rk-sheet); color: var(--rk-ink); box-shadow: var(--rk-shadow-1); }
+.rk-btn-ghost    { background: transparent; color: var(--rk-text); font-weight: 400; border-color: var(--rk-edge); }
+.rk-btn-icon     { width: var(--rk-touch); padding: 0; }
+.rk-btn-icon.rk-btn-lg { width: var(--rk-touch-primary); min-height: var(--rk-touch-primary); }
+.rk-btn svg, .rk-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Segmented control (pager, zoom): one bordered box, dashed inner dividers */
+.rk-segmented { display: inline-flex; align-items: stretch; border: var(--rk-border); background: var(--rk-sheet); box-shadow: var(--rk-shadow-1); }
+.rk-segmented > * { min-height: var(--rk-touch-primary); padding: 0 16px; display: flex; align-items: center; gap: 6px; border: 0; background: transparent; color: var(--rk-ink); text-decoration: none; font-weight: 700; }
+.rk-segmented > * + * { border-left: 2px dashed var(--rk-ink); }
+.rk-segmented > .is-primary { background: var(--rk-ink); color: var(--rk-paper); }
+
+/* ───────────────────────── 8. Forms ───────────────────────── */
+.rk-field { display: flex; flex-direction: column; gap: 6px; }
+.rk-input {
+  display: flex; align-items: center; gap: 8px; height: var(--rk-touch); padding: 0 12px;
+  background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-1); color: var(--rk-ink);
+}
+.rk-input input, .rk-input select, input.rk-input, select.rk-input {
+  flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
+  font-family: var(--rk-font-body); font-size: 16px; color: var(--rk-ink);
+}
+.rk-input:focus-within { outline: 3px solid var(--rk-focus); outline-offset: 2px; }
+textarea.rk-textarea {
+  width: 100%; min-height: 120px; padding: 10px 12px; resize: vertical;
+  background: var(--rk-sheet) repeating-linear-gradient(to bottom, transparent 0 26px, var(--rk-rule) 26px 27px);
+  border: var(--rk-border); box-shadow: var(--rk-shadow-1);
+  font-family: var(--rk-font-body); font-size: 16px; line-height: 27px; color: var(--rk-ink);
+}
+.rk-check { display: inline-flex; align-items: center; gap: 10px; min-height: var(--rk-touch); }
+.rk-check input { appearance: none; width: 22px; height: 22px; margin: 0; border: var(--rk-border); background: var(--rk-sheet); display: grid; place-content: center; }
+.rk-check input[type="radio"] { border-radius: 50%; }
+.rk-check input:checked { background: var(--rk-ink); box-shadow: inset 0 0 0 3px var(--rk-sheet); }
+.rk-error-text { color: var(--rk-danger); font-size: 14px; font-weight: 700; }
+.rk-input[aria-invalid="true"], .rk-input.is-invalid { border-color: var(--rk-danger); box-shadow: 3px 3px 0 var(--rk-danger); }
+
+/* Tabs: segmented grid, selected = accent */
+.rk-tabs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+.rk-tabs [role="tab"] { min-height: var(--rk-touch-primary); background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); font-weight: 700; }
+.rk-tabs [role="tab"] + [role="tab"] { border-left: 0; }
+.rk-tabs [role="tab"][aria-selected="true"] { background: var(--rk-accent); color: var(--rk-on-accent); }
+
+/* ───────────────────────── 9. Navigation lists ───────────────────────── */
+/* Ledger rail: a fixed numeral column with an accent rule, rows on 44px ruled paper */
+.rk-ledger { display: flex; flex-direction: column; list-style: none; margin: 0; padding: 0; }
+.rk-ledger-row { height: var(--rk-touch); display: flex; align-items: center; background: transparent; border: 0; padding: 0; color: var(--rk-text); text-align: left; text-decoration: none; width: 100%; }
+.rk-ledger-key {
+  width: 84px; height: var(--rk-touch); flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-right: 2px solid var(--rk-accent); color: var(--rk-accent); font-family: var(--rk-font-numeral); font-size: 18px; line-height: 1.1;
+}
+.rk-ledger-text { flex: 1; padding: 0 20px 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+/* Current item: a filled accent tab with hard shadow — the only red block on screen */
+.rk-current, [aria-current="page"].rk-ledger-text {
+  height: 36px; margin: 0 20px 0 12px; padding: 0 12px; flex: 1;
+  background: var(--rk-accent); color: var(--rk-on-accent); font-weight: 700; text-decoration: none; box-shadow: var(--rk-shadow-1);
+  display: flex; align-items: center;
+}
+
+/* Menu */
+.rk-menu { list-style: none; margin: 0; padding: 0; min-width: 220px; background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
+.rk-menu [role="menuitem"] { width: 100%; min-height: var(--rk-touch); display: flex; align-items: center; gap: 10px; padding: 0 14px; background: transparent; border: 0; color: var(--rk-ink); font-size: 16px; text-align: left; }
+.rk-menu li + li [role="menuitem"] { border-top: 1px dashed var(--rk-ink); }
+.rk-menu [role="menuitem"]:hover { background: var(--rk-paper); }
+
+/* ───────────────────────── 10. Marks: stamps, chips, badges ───────────────────────── */
+.rk-stamp {
+  display: inline-block; padding: 0 6px; border: 2px solid currentColor;
+  font-family: var(--rk-font-numeral); font-size: 14px; line-height: 1.5; transform: rotate(-5deg);
+}
+.rk-stamp-saved { color: var(--rk-teal); }
+.rk-stamp-fail  { color: var(--rk-danger); border-width: 3px; font-size: 20px; padding: 0 10px; transform: rotate(-4deg); }
+.rk-chip-ink { height: var(--rk-touch); padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; background: var(--rk-ink); color: var(--rk-paper); font-size: 15px; }
+.rk-chip-ink b, .rk-chip-ink .rk-numeral { font-family: var(--rk-font-numeral); font-weight: 400; font-size: 18px; }
+.rk-tag { height: 32px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; background: var(--rk-sheet); border: var(--rk-border); color: var(--rk-ink); font-size: 14px; }
+.rk-banner {
+  display: inline-block; padding: 6px 20px; background: var(--rk-ink); color: var(--rk-paper);
+  font-family: var(--rk-font-display); font-size: 16px; line-height: 1.8; transform: rotate(-2deg);
+  box-shadow: 3px 3px 0 var(--rk-accent);
+}
+
+/* ───────────────────────── 11. Feedback ───────────────────────── */
+.rk-progress { height: 14px; border: var(--rk-border); background: var(--rk-paper); }
+.rk-progress > span { display: block; height: 100%; background: var(--rk-ink); }
+.rk-progress.is-striped > span { background: repeating-linear-gradient(-45deg, var(--rk-ink) 0 6px, var(--rk-ink-muted) 6px 12px); }
+.rk-progress.is-system { border-color: var(--rk-teal); height: 10px; }
+.rk-progress.is-system > span { background: var(--rk-teal); }
+.rk-toast { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--rk-header); color: var(--rk-on-header); border: 2px solid var(--rk-edge); box-shadow: 3px 3px 0 var(--rk-teal); }
+.rk-alert-system { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--rk-teal); color: var(--rk-paper); border: var(--rk-border); }
+.rk-alert-ok { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--rk-paper); color: var(--rk-teal); border: 2px dashed var(--rk-teal); font-weight: 700; }
+.rk-alert-warn { padding: 8px 12px; border: 2px solid var(--rk-danger); color: var(--rk-text); }
+.rk-alert-warn b { color: var(--rk-danger); }
+.rk-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 16px; text-align: center; border: 2px dashed var(--rk-edge); }
+.rk-empty > .rk-empty-title { font-family: var(--rk-font-display); font-size: 16px; line-height: 1.8; }
+.rk-scrim { position: fixed; inset: 0; background: var(--rk-scrim); }
+.rk-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: min(330px, 85vw); display: flex; flex-direction: column; gap: 16px; background: var(--rk-paper); border-right: var(--rk-border-double); box-shadow: 8px 0 0 rgba(42, 29, 20, .6); }
+.rk-dialog { max-width: 480px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); padding: 0; }
+.rk-dialog::backdrop { background: var(--rk-scrim); }
+
+/* ───────────────────────── 12. Data ───────────────────────── */
+.rk-table { width: 100%; border-collapse: collapse; background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
+.rk-table th { background: var(--rk-ink); color: var(--rk-paper); font-weight: 700; font-size: 14px; text-align: left; padding: 6px 12px; }
+.rk-table td { padding: 8px 12px; border-top: 1px dashed var(--rk-ink); }
+.rk-table td.num { font-family: var(--rk-font-numeral); font-size: 17px; text-align: right; }
+.rk-table-wrap { overflow-x: auto; padding: 0 8px 8px 0; }
+.rk-stat { display: flex; flex-direction: column; padding: 14px 16px; background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-1); }
+.rk-stat .rk-stat-value { font-family: var(--rk-font-numeral); font-size: 36px; line-height: 1.2; color: var(--rk-accent); }
+
+/* ───────────────────────── 13. Motion ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .rk-btn { transition: none; }
+  .rk-btn:active { transform: none; }
+}
+@media (max-width: 600px) {
+  :root { --rk-zigzag: 10px; }
+  .rk-header { padding: 8px 10px; gap: 8px; }
+}
