@@ -1,0 +1,40 @@
+[
+  {
+    "id": "khmer-music-thumbnail",
+    "skills": ["retrokh-social"],
+    "query": "ធ្វើ YouTube thumbnail សម្រាប់វីដេអូ ចម្រៀងខ្មែរបុរាណ សម័យ ៦០ រចនាបែបប៉ុស្ទ័រចាស់",
+    "files": [],
+    "expected_behavior": [
+      "Copies assets/template.html and renders with scripts/render.py using the youtube-thumbnail format",
+      "Output image is exactly 1280×720 and under 2MB",
+      "Title is Khmer, at most 5 words, split into title lines at a word boundary",
+      "Uses Google Sans only, in weights 400 to 700, with no other font family",
+      "Does not draw or imitate a real singer; uses a motif or a user photo",
+      "Reviews the -small.png preview and finishes with 0 renderer errors"
+    ]
+  },
+  {
+    "id": "all-platform-event",
+    "skills": ["retrokh-social"],
+    "query": "I need vintage Khmer style promo images for our Phnom Penh coffee shop's live jazz night, for a YouTube thumbnail, TikTok cover and Facebook event banner. Khmer and English.",
+    "files": [],
+    "expected_behavior": [
+      "Writes one HTML artwork and renders youtube-thumbnail, tiktok-cover and facebook-event from it",
+      "Does not invent the date, venue name, price or performers: uses [ … ] placeholders and lists them",
+      "All text stays inside each format's safe area, with 0 renderer errors",
+      "Shows Khmer and English text with Khmer as the lead line"
+    ]
+  },
+  {
+    "id": "photo-channel-banner",
+    "skills": ["retrokh-social"],
+    "query": "Make my cooking channel 'Bay Sach Kitchen' a YouTube banner and a Facebook page cover in the old Cambodian poster style, use my photo me.png, it has a transparent background.",
+    "files": [],
+    "expected_behavior": [
+      "Uses the data-frame=\"cutout\" photo treatment",
+      "Renders youtube-banner and facebook-page-cover",
+      "Banner text stays inside the centred 1546×423 strip",
+      "Tells the user to preview the page cover in Facebook because the crop differs by device"
+    ]
+  }
+]

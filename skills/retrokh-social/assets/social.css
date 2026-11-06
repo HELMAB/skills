@@ -1,0 +1,80 @@
+/* RetroKh Social. render.py inlines this file, so artwork only needs template.html.
+   --u is 1% of the short side of the safe area, so one artwork scales to every format. */
+:root{--u:1vmin;--art-size:60vmin;--safe-t:6vmin;--safe-r:6vmin;--safe-b:6vmin;--safe-l:6vmin;--focus-x:72%;--focus-y:50%;
+  --paper:#F1E4C6;--sheet:#FBF5E6;--ink:#2A1D14;--red:#C4301A;--oxblood:#7A2418;--turmeric:#F2C230;--mustard:#E4B53F;
+  --teal:#245A57;--night:#14302E;--nightdeep:#0A1716;--blue:#1F3C88;--aged:#DCCBA2;--coal:#16110E;
+  --font:"Google Sans",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+.rs-canvas{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--bg);color:var(--fg);font-family:var(--font);font-weight:400;font-synthesis:none}
+.rs-bg{position:absolute;inset:0;overflow:hidden}
+.rs-bg::before,.rs-bg::after{content:"";position:absolute}
+.rs-stage{position:absolute;top:var(--safe-t);right:var(--safe-r);bottom:var(--safe-b);left:var(--safe-l);display:grid;gap:calc(var(--u)*4)}
+.rs-head{grid-area:head;position:relative;z-index:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:calc(var(--u)*1.2)}
+.rs-foot{grid-area:foot;position:relative;z-index:1;min-width:0}
+.rs-art{grid-area:art;min-width:0;min-height:0;position:relative;display:flex;align-items:center;justify-content:center}
+.rs-art>svg,.rs-art>img{width:100%;height:100%;display:block;overflow:visible;transform:rotate(var(--art-rot,0deg))}
+
+html[data-shape=landscape] .rs-stage{grid-template:"head art" minmax(0,1fr) "foot art" auto / 1.25fr 1fr}
+html[data-shape=banner] .rs-stage{grid-template:"head art" minmax(0,1fr) "foot art" auto / 2fr 1fr}
+html[data-shape=square] .rs-stage,html[data-shape=portrait] .rs-stage{grid-template:"head" auto "art" minmax(0,1fr) "foot" auto / minmax(0,1fr)}
+html[data-layout=art-left][data-shape=landscape] .rs-stage{grid-template:"art head" minmax(0,1fr) "art foot" auto / 1fr 1.25fr}
+html[data-layout=art-left][data-shape=banner] .rs-stage{grid-template:"art head" minmax(0,1fr) "art foot" auto / 1fr 2fr}
+
+.rs-kicker,.rs-sub,.rs-meta{margin:0}
+.rs-title{margin:0;font-weight:700;color:var(--title);text-shadow:var(--misprint,none);display:flex;flex-direction:column;align-items:var(--align,flex-start)}
+.rs-title>span{display:block;width:max-content;white-space:nowrap;line-height:1.55}
+.rs-title>span:lang(en){line-height:1.1}
+.rs-kicker{font-weight:700;font-size:calc(var(--u)*5.4);line-height:1.5;color:var(--accent)}
+.rs-kicker:lang(en){font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+.rs-sub{font-weight:500;font-size:calc(var(--u)*6);line-height:1.2;letter-spacing:.18em;color:var(--fg)}
+.rs-sub:lang(km){font-weight:700;letter-spacing:0;line-height:1.55}
+.rs-meta{font-size:calc(var(--u)*5.6);line-height:1.7;font-weight:700;color:var(--fg)}
+.rs-seal{position:absolute;width:calc(var(--u)*18);height:calc(var(--u)*18);border-radius:50%;background:var(--accent);color:var(--paper);display:flex;align-items:center;justify-content:center;text-align:center;transform:rotate(-8deg);font-weight:700;font-size:calc(var(--u)*4.4);line-height:1.5;box-shadow:calc(var(--u)*.6) calc(var(--u)*.6) 0 var(--ink)}
+
+/* The YouTube banner's guaranteed strip is only 423px tall, so it carries the title and one line. */
+html[data-format=youtube-banner] .rs-kicker,html[data-format=youtube-banner] .rs-foot{display:none}
+html[data-format=youtube-banner] .rs-sub{font-size:calc(var(--u)*11)}
+html[data-style=giant-type][data-shape=landscape] .rs-stage{grid-template-columns:1.8fr 1fr}
+html[data-style=giant-type][data-shape=landscape][data-layout=art-left] .rs-stage{grid-template-columns:1fr 1.8fr}
+
+/* Photos: pass a person cut-out, or a framed photo with data-frame. */
+.rs-photo{object-fit:cover;filter:grayscale(1) contrast(1.25) sepia(var(--photo-sepia,.25))}
+.rs-art[data-frame=circle]{aspect-ratio:1;height:100%;max-width:100%;max-height:100%;margin:auto;border-radius:50%;overflow:hidden;border:calc(var(--u)*1.2) solid var(--ink);box-shadow:0 0 0 calc(var(--u)*1.2) var(--accent)}
+.rs-art[data-frame=cutout] .rs-photo{object-fit:contain;object-position:bottom;filter:grayscale(1) contrast(1.25) sepia(var(--photo-sepia,.25)) drop-shadow(calc(var(--u)*1.1) calc(var(--u)*1.1) 0 var(--photo-offset,var(--accent)))}
+.rs-art[data-frame] .rs-dots{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;background-image:radial-gradient(circle,var(--ink) 22%,transparent 26%);background-size:calc(var(--u)*.9) calc(var(--u)*.9);opacity:.35}
+
+.rs-wear{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:var(--wear-blend,multiply);pointer-events:none;opacity:var(--wear,1)}
+
+/* Sunburst: record-sleeve rays. Copy sits on plates because rays are unreadable behind text. */
+html[data-style=sunburst]{--bg:var(--turmeric);--fg:var(--ink);--title:#B02A14;--accent:var(--teal);--misprint:.035em .035em 0 var(--teal);--m1:var(--ink);--m2:var(--paper);--m3:var(--red);--m4:var(--turmeric)}
+html[data-style=sunburst] .rs-bg{background:repeating-conic-gradient(from 4deg at var(--focus-x) var(--focus-y),var(--red) 0 11deg,var(--turmeric) 11deg 22deg)}
+html[data-style=sunburst] .rs-head{align-self:center;background:var(--turmeric);border:calc(var(--u)*.6) solid var(--ink);box-shadow:calc(var(--u)*1.2) calc(var(--u)*1.2) 0 var(--ink);padding:calc(var(--u)*2) calc(var(--u)*3.4)}
+html[data-style=sunburst] .rs-foot{background:var(--paper);border:calc(var(--u)*.6) solid var(--ink);box-shadow:calc(var(--u)*1.2) calc(var(--u)*1.2) 0 var(--ink);padding:calc(var(--u)*1) calc(var(--u)*3.4)}
+
+/* Giant type: one flat ground, the title fills the width line by line. */
+html[data-style=giant-type]{--bg:var(--mustard);--fg:#3A1610;--title:var(--oxblood);--accent:var(--oxblood);--m1:var(--oxblood);--m2:var(--mustard);--m3:var(--oxblood);--m4:var(--mustard);--wear:.8}
+html[data-style=giant-type] .rs-bg::before{left:var(--focus-x);top:var(--focus-y);width:calc(var(--art-size)*1.08);height:calc(var(--art-size)*1.08);border-radius:50%;background:#F4E3B5;transform:translate(-50%,-50%)}
+
+/* Night press: dark teal, halftone sun, gold title with a red misprint. */
+html[data-style=night-press]{--bg:var(--night);--fg:var(--paper);--title:#F0BE3A;--accent:#F0BE3A;--misprint:.04em .03em 0 #9E2F18;--m1:var(--nightdeep);--m2:#F0BE3A;--m3:var(--nightdeep);--m4:#F0BE3A;--wear-blend:screen;--wear:.5;--grain-alpha:-.92}
+html[data-style=night-press] .rs-bg::before{left:var(--focus-x);top:var(--focus-y);width:calc(var(--art-size)*1.28);height:calc(var(--art-size)*1.28);border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#C93A22 0 54%,transparent 54.5%),radial-gradient(circle,#C93A22 38%,transparent 41%) center/calc(var(--u)*2) calc(var(--u)*2);-webkit-mask-image:radial-gradient(circle,#000 58%,transparent 71%);mask-image:radial-gradient(circle,#000 58%,transparent 71%)}
+
+/* Torn collage: stacked torn paper in red and blue. */
+html[data-style=torn-collage]{--bg:var(--red);--fg:var(--paper);--title:var(--paper);--accent:var(--turmeric);--misprint:.03em .03em 0 var(--ink);--m1:var(--ink);--m2:var(--paper);--m3:var(--red);--m4:var(--turmeric)}
+html[data-style=torn-collage] .rs-bg::before,html[data-style=torn-collage] .rs-bg::after{left:-2%;right:-2%;bottom:-2%;top:calc(var(--tear-y,46%) + var(--u)*3.6);clip-path:polygon(0 12%,6% 7%,11% 13%,17% 5%,24% 11%,31% 2%,38% 10%,45% 6%,52% 13%,60% 4%,67% 11%,74% 3%,81% 10%,88% 5%,94% 12%,100% 6%,100% 100%,0 100%)}
+html[data-style=torn-collage] .rs-stage{gap:calc(var(--u)*8)}
+html[data-style=torn-collage] .rs-bg::before{background:var(--paper);margin-top:calc(var(--u)*-1.4)}
+html[data-style=torn-collage] .rs-bg::after{background:#17396B}
+
+
+/* Songbook: a single blue ink on foxed paper with stave lines. */
+html[data-style=songbook]{--bg:var(--aged);--fg:var(--blue);--title:var(--blue);--accent:var(--blue);--m1:var(--blue);--m2:var(--aged);--m3:var(--blue);--m4:var(--aged);--photo-sepia:0}
+html[data-style=songbook] .rs-bg::before{left:var(--staff-l,0);right:var(--staff-r,0);top:var(--focus-y);height:calc(var(--u)*26);transform:translateY(-50%);background:repeating-linear-gradient(to bottom,var(--blue) 0 calc(var(--u)*.35),transparent calc(var(--u)*.35) calc(var(--u)*5.6));opacity:.45}
+
+html[data-style=songbook][data-shape=landscape],html[data-style=songbook][data-shape=banner]{--staff-l:calc(var(--focus-x) - var(--art-size)*.62)}
+html[data-style=songbook][data-layout=art-left][data-shape=landscape],html[data-style=songbook][data-layout=art-left][data-shape=banner]{--staff-l:0;--staff-r:calc(100% - var(--focus-x) - var(--art-size)*.62)}
+
+/* Halftone noir: coal ground, gold type, dots. Best with a strong photo. */
+html[data-style=halftone-noir]{--bg:var(--coal);--fg:var(--paper);--title:var(--turmeric);--accent:#E8533A;--misprint:.03em .03em 0 #9E2F18;--m1:var(--turmeric);--m2:var(--coal);--m3:#E8533A;--m4:var(--coal);--wear-blend:screen;--wear:.5;--photo-sepia:.1;--photo-offset:#9E2F18}
+html[data-style=halftone-noir] .rs-bg::before{inset:0;background:radial-gradient(circle,#9E2F18 34%,transparent 38%) 0 0/calc(var(--u)*2.2) calc(var(--u)*2.2);-webkit-mask-image:radial-gradient(circle at var(--focus-x) var(--focus-y),#000 8%,transparent 46%);mask-image:radial-gradient(circle at var(--focus-x) var(--focus-y),#000 8%,transparent 46%)}

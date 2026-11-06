@@ -19,6 +19,7 @@ npx skills add helmab/skills --list                  # list only
 | Skill | What it does |
 |---|---|
 | [`retrokh-design`](#retrokh-design) | Builds websites and UIs that look like 1960s–70s Cambodian golden-era print |
+| [`retrokh-social`](#retrokh-social) | Makes TikTok, YouTube and Facebook thumbnails, covers and posters in the same golden-era style |
 
 ### retrokh-design
 
@@ -38,6 +39,22 @@ Call it directly with `/retrokh-design`.
 | `#F1E4C6` | `#FBF5E6` | `#2A1D14` | `#9E2F18` | `#E0A526` | `#245A57` |
 
 All text colours meet WCAG AA. Evals are in [`evals/retrokh-design/`](evals/retrokh-design/).
+
+### retrokh-social
+
+Makes social images that look printed in 1960s Phnom Penh: record sleeves, song books and cinema bills. You describe the post, and
+the skill writes one artwork, then renders and checks a PNG at each platform's exact size.
+
+- **Styles:** sunburst, giant type, night press, torn collage, song book and halftone noir, with drawn motifs or your own photo.
+- **Font:** Google Sans only, for Khmer and Latin. The renderer rejects anything else.
+- **Formats:** YouTube thumbnail, banner, Shorts cover and community post; TikTok cover and poster; Facebook post, story, link image, event banner and page cover.
+- **Checks:** text inside each safe area, clear of platform UI, large enough to read, fonts loaded, file size within limits.
+- **Needs:** Chrome or Chromium and network access to Google Fonts. Pillow is optional, for small previews and JPEG output.
+
+**Try:** *"Make a YouTube thumbnail for my Khmer classic songs video"* or *"Vintage Khmer promo images for our jazz night, for YouTube, TikTok and Facebook."*
+Call it directly with `/retrokh-social`.
+
+Evals are in [`evals/retrokh-social/`](evals/retrokh-social/).
 
 ---
 

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="km" data-style="sunburst" data-layout="art-right">
+<head>
+<meta charset="utf-8">
+<title>[ title ]</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap">
+<style>
+/* Artwork-only overrides go here. Styles and layouts come from assets/social.css. */
+</style>
+</head>
+<body>
+<main class="rs-canvas">
+  <div class="rs-bg" aria-hidden="true"></div>
+  <div class="rs-stage">
+    <header class="rs-head">
+      <p class="rs-kicker">[ kicker ]</p>
+      <h1 class="rs-title" data-fit="block"><span>[ ចំណងជើង ]</span></h1>
+      <p class="rs-sub" lang="en">[ SUBTITLE ]</p>
+    </header>
+    <div class="rs-art"><rs-motif name="vinyl"></rs-motif></div>
+    <footer class="rs-foot"><p class="rs-meta">[ ថ្ងៃ ខែ ឆ្នាំ ] · [ ទីកន្លែង ]</p></footer>
+  </div>
+  <svg class="rs-wear" aria-hidden="true">
+    <filter id="rs-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="7"></feTurbulence>
+      <feColorMatrix values="0 0 0 0 .4  0 0 0 0 .3  0 0 0 0 .18  1.7 0 0 0 -.74"></feColorMatrix>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#rs-grain)"></rect>
+  </svg>
+</main>
+</body>
+</html>
