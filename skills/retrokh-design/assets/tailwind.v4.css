@@ -1,7 +1,7 @@
 /* RetroKh for Tailwind CSS v4.
  *   @import "tailwindcss";
  *   @import "./retrokh.tailwind.css";
- * Fonts: add the Google Fonts <link> from retrokh.css to your HTML head.
+ * Fonts: <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap" rel="stylesheet">
  */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
@@ -25,10 +25,8 @@
   --color-rk-sheet-night: #E6DCC4;
   --color-rk-edge-night: #6E5B45;
 
-  --font-display: "Moul", "Khmer OS Muol Light", serif;
-  --font-numeral: "Koulen", "Khmer OS Bokor", sans-serif;
-  --font-body: "Battambang", "Noto Sans Khmer", "Khmer OS", serif;
-  --font-latin: "Special Elite", "Courier New", monospace;
+  /* One typeface; roles come from weight (font-normal / font-medium / font-bold) */
+  --font-sans: "Google Sans", sans-serif;
 
   --shadow-rk-1: 3px 3px 0 #2A1D14;
   --shadow-rk-2: 8px 8px 0 #2A1D14;
@@ -38,7 +36,7 @@
   --shadow-rk-drawer: 8px 0 0 rgba(42,29,20,.6);
 
   --leading-km: 1.7;
-  --tracking-latin: 3px;
+  --tracking-latin: .18em;
   --spacing-touch: 44px;
   --spacing-touch-lg: 48px;
   --radius-*: initial;
@@ -72,12 +70,12 @@
 @utility press { &:active { transform: translate(3px,3px); box-shadow: none; } }
 
 @layer base {
-  html:lang(km), .rk { font-family: var(--font-body); line-height: 1.7; font-synthesis: none; overflow-wrap: anywhere; }
+  html:lang(km), .rk { font-family: var(--font-sans); line-height: 1.7; font-synthesis: none; overflow-wrap: anywhere; }
 }
 
 @layer components {
   .rk-stamp {
     display: inline-block; padding: 0 6px; border: 2px solid currentColor;
-    font-family: var(--font-numeral); font-size: 14px; line-height: 1.5; transform: rotate(-5deg);
+    font-weight: 700; font-variant-numeric: tabular-nums; font-size: 14px; line-height: 1.5; transform: rotate(-5deg);
   }
 }

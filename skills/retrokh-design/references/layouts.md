@@ -12,10 +12,10 @@ Layouts are fluid with `max-width` containers, flex/grid with `gap`, and wrap at
 
 ```
 ┌──────────────────────── ink header ────────────────────────┐
-│ [☰] (seal) WORDMARK      Moul title / sub       [− ១០០% +] [⤓] [⋯] │
+│ [☰] (seal) WORDMARK      bold title / sub       [− ១០០% +] [⤓] [⋯] │
 ├▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ zigzag 14px ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┤
 │ sidebar (paper) ║  main (halftone or ground)                │
-│ Moul title      ║   ┌─────── sheet 720 ───────┐▌           │
+│ bold title      ║   ┌─────── sheet 720 ───────┐▌           │
 │ [search]        ║   │                         │▌ 8px shadow│
 │ [tab|TAB]       ║   └─────────────────────────┘▌           │
 │ ledger rows ... ║   ┌─────────────────────────┐            │
@@ -37,22 +37,22 @@ Layouts are fluid with `max-width` containers, flex/grid with `gap`, and wrap at
 
 ## 3. Splash / first run
 
-A rays background with the origin at 50% 38%. Inside a centred column: a 150px seal (3px ink outline), a Moul 48 title with a paper
+A rays background with the origin at 50% 38%. Inside a centred column: a 150px seal (3px ink outline), a bold 48 title with a paper
 text-shadow, a −2° ink banner tagline, and a progress bar plus status. Footer: a paper strip with a `3px double` top edge, a 15px hint and a
-Special Elite URL/brand line. Use `role="status" aria-live="polite"` on the column.
+Latin caps URL/brand line. Use `role="status" aria-live="polite"` on the column.
 
 ## 4. Dashboard
 
 ```
 ink header + zigzag
 ground bg, padding 24, max-width 1280, centred
-H1 Moul 26 + 3px double rule underneath, with a Special Elite eyebrow on the right
-grid(auto-fit, minmax(220px,1fr)) gap 24: .rk-stat × 4      (Koulen values, accent)
+H1 bold 26 + 3px double rule underneath, with a Latin caps eyebrow on the right
+grid(auto-fit, minmax(220px,1fr)) gap 24: .rk-stat × 4      (bold tabular values, accent)
 grid(2fr 1fr) gap 24:
-  .rk-card  ink head "១ · …"  + .rk-table (dashed rows, Koulen numerals)
+  .rk-card  ink head "១ · …"  + .rk-table (dashed rows, bold tabular numerals)
   .rk-card  ink head "២ · …"  + ledger list / toasts / offline panel
 ```
-Charts: flat fills only, using ink, red, teal, turmeric (with an ink outline) and plum in that order, with 2px ink axes, Koulen tick labels
+Charts: flat fills only, using ink, red, teal, turmeric (with an ink outline) and plum in that order, with 2px ink axes, tabular tick labels
 in Khmer numerals, no gridline blur, and a 1px dashed teal-rule gridline. Bars have square ends and a 2px ink stroke.
 
 ## 5. Form page
@@ -63,16 +63,16 @@ gap; the labels are bold muted. Group related fields in a 2-column grid with `mi
 
 ## 6. Landing / marketing (summary; the full recipes are in `websites.md`)
 
-- Hero: rays background, with the seal + Moul title + banner tagline + primary CTA (48px) on a paper plate (sheet, shadow-2).
+- Hero: rays background, with the seal + bold title + banner tagline + primary CTA (48px) on a paper plate (sheet, shadow-2).
 - The zigzag strip separates sections. Alternate between paper sections and ink sections (paper text, paper-muted secondary).
 - Feature cards in a 3-up grid, each with an ink head strip numbered `១ · ២ · ៣` in Khmer numerals.
 - Pricing or plan tables use `.rk-table`; the highlighted plan gets a red stamp ("ពេញនិយម") rather than a glow.
-- Footer: an ink background, a `4px double` paper-muted top edge and Special Elite links.
+- Footer: an ink background, a `4px double` paper-muted top edge and medium-weight links.
 
 ## 7. Style tile (when asked to present the design system)
 
-A 1000 × 900 sheet with a `4px double` outer frame and a header with a Special Elite eyebrow and a Moul H1 over a `3px double` rule. Sections are
-numbered in Khmer: ១ colours (swatch cards with shadow-1, the role in Khmer, the hex in Special Elite), ២ type specimens (dashed
+A 1000 × 900 sheet with a `4px double` outer frame and a header with a Latin caps eyebrow and a bold H1 over a `3px double` rule. Sections are
+numbered in Khmer: ១ colours (swatch cards with shadow-1, the role in Khmer, the hex in Latin caps), ២ type specimens (dashed
 row separators), ៣ patterns (5 swatches), ៤ elevation, ៥ components, and a dark-mode strip.
 
 ## Responsive rules

@@ -24,7 +24,7 @@ export const kmCount = (a: number, b: number) => `${toKhmerDigits(a)} / ${toKhme
 | `RkTabs` | `items: {id,label}[]`, `v-model` | `.rk-tabs` with roving tabindex |
 | `RkLedger` | `groups: {key, sub?, count, items: {label, href, current?, saved?}[]}[]`, `label` | ruled ledger nav |
 | `RkStamp` | `tone: 'saved'\|'fail'`, `text` | `.rk-stamp` (aria-hidden) |
-| `RkPager` | `current`, `total`, `prevHref`, `nextHref` | segmented pager with Koulen counter |
+| `RkPager` | `current`, `total`, `prevHref`, `nextHref` | segmented pager with bold tabular counter |
 | `RkProgress` | `value` 0–100, `label`, `tone?: 'ink'\|'system'`, `striped?` | `.rk-progress` + `role="progressbar"` |
 | `RkToast` | `message`, `v-model:open` | `.rk-toast` in a `role="status"` region |
 | `RkEmpty` | `title`, `hint` | `.rk-empty` |
@@ -148,7 +148,7 @@ const open = ref(props.groups.findIndex(g => g.items.some(i => i.current)));
     <template v-for="(g, gi) in groups" :key="gi">
       <button class="rk-ledger-row" :aria-expanded="open === gi" @click="open = open === gi ? -1 : gi">
         <span class="rk-ledger-key">{{ toKhmerDigits(g.key) }}
-          <small v-if="g.sub" style="font-family:var(--rk-font-body);font-size:12px;font-weight:700">{{ g.sub }}</small>
+          <small v-if="g.sub" style="font-size:12px;font-weight:700">{{ g.sub }}</small>
         </span>
         <span class="rk-ledger-text rk-muted">{{ g.count }}</span>
       </button>
@@ -249,5 +249,5 @@ tabindex) and change only the skin.
 
 - Drawer and dialog: trap focus, close on Esc and scrim click, and return focus to the trigger. Lock body scroll.
 - Toasts: one live region (`role="status"`), at least 5s, and pause on hover or focus.
-- The pager counter and every Koulen number go through `toKhmerDigits`. `aria-valuetext` uses Khmer digits too.
+- The pager counter and every bold tabular number go through `toKhmerDigits`. `aria-valuetext` uses Khmer digits too.
 - Theme toggle: set `document.documentElement.dataset.theme = 'dark' | 'light'`. The default follows `prefers-color-scheme`.

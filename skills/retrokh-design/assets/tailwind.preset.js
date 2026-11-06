@@ -2,6 +2,7 @@
  * RetroKh Tailwind v3 preset.
  *   // tailwind.config.js
  *   module.exports = { presets: [require('./retrokh.preset.js')], content: [...] }
+ * Fonts: <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap" rel="stylesheet">
  * Pair with retrokh.css (for the dark-mode CSS variables, patterns, and base) or the plugin below.
  */
 const plugin = require('tailwindcss/plugin');
@@ -36,11 +37,9 @@ module.exports = {
           edge: 'var(--rk-edge, #2A1D14)',
         },
       },
+      // One typeface. Roles come from weight: font-normal (body), font-medium (Latin caps labels), font-bold (headings, numerals).
       fontFamily: {
-        display: ['Moul', '"Khmer OS Muol Light"', 'serif'],
-        numeral: ['Koulen', '"Khmer OS Bokor"', 'sans-serif'],
-        body: ['Battambang', '"Noto Sans Khmer"', '"Khmer OS"', 'serif'],
-        latin: ['"Special Elite"', '"Courier New"', 'monospace'],
+        sans: ['"Google Sans"', 'sans-serif'],
       },
       lineHeight: { km: '1.7', 'km-display': '1.6' },
       boxShadow: {
@@ -53,7 +52,7 @@ module.exports = {
       minHeight: { touch: '44px', 'touch-lg': '48px' },
       height: { touch: '44px', 'touch-lg': '48px' },
       width: { touch: '44px', 'touch-lg': '48px' },
-      letterSpacing: { latin: '3px' },
+      letterSpacing: { latin: '.18em' },
     },
   },
   plugins: [
@@ -87,7 +86,7 @@ module.exports = {
       addComponents({
         '.rk-stamp': {
           display: 'inline-block', padding: '0 6px', border: '2px solid currentColor',
-          fontFamily: 'Koulen, sans-serif', fontSize: '14px', lineHeight: '1.5', transform: 'rotate(-5deg)',
+          fontWeight: '700', fontVariantNumeric: 'tabular-nums', fontSize: '14px', lineHeight: '1.5', transform: 'rotate(-5deg)',
         },
       });
     }),

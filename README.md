@@ -1,7 +1,7 @@
 # retrokh-design
 
 An agent skill that designs and builds **websites and apps** in **RetroKh**, a Khmer old-school, 1970s print style. It looks like
-cream paper and dark-brown ink with red, turmeric and teal spot colours. It uses Moul and Koulen display type, square
+cream paper and dark-brown ink with red, turmeric and teal spot colours. It uses a single typeface (Google Sans, Khmer + Latin) set big and bold, square
 corners, hard offset shadows, zigzag, halftone and sunburst patterns, and rubber-stamp labels.
 
 Use it for personal profiles and CVs, company profiles, organisation, NGO and school sites, restaurants and shops,
@@ -55,7 +55,7 @@ skills/retrokh-design/
 ├── SKILL.md                    # laws, workflow, token table, signature moves, checklist
 ├── references/
 │   ├── tokens.md               # palette + roles + contrast, dark mode, shape, space, token JSON
-│   ├── typography.md           # Moul / Koulen / Battambang / Special Elite, Khmer script rules, numerals, voice
+│   ├── typography.md           # Google Sans roles (weight/size/case), Khmer script rules, numerals, voice
 │   ├── patterns.md             # zigzag, halftone, rays, ruled, diamonds, seal, stamps, official header
 │   ├── components.md           # buttons, inputs, tabs, header, ledger nav, drawer, cards, tables, states
 │   ├── websites.md             # site planning, section catalogue, recipes per site type, images
@@ -82,8 +82,8 @@ Every text pair meets WCAG AA (ink on paper 12.9:1, red on paper 5.8:1, teal on 
 
 ## Credits
 
-Distilled from the *Dobpi* 1970s Khmer Retro design canvas. The fonts (Moul, Koulen, Battambang and Special Elite)
-are from Google Fonts under the SIL Open Font License.
+Distilled from the *Dobpi* 1970s Khmer Retro design canvas. The only typeface is Google Sans
+(Khmer + Latin), from Google Fonts under the SIL Open Font License.
 
 ## License
 

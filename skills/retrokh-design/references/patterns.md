@@ -49,9 +49,9 @@ a paper glyph or monogram centred. With a 3px ink outline it works on the splash
 <svg width="48" height="48" viewBox="-14 -14 128 128" aria-hidden="true">
   <circle cx="50" cy="50" r="62" fill="var(--rk-accent)" stroke="#2A1D14" stroke-width="3"/>
   <circle cx="50" cy="50" r="55" fill="none" stroke="#F1E4C6" stroke-width="1.6" stroke-dasharray="3 3"/>
-  <!-- your monogram: a Khmer letter set in Moul, or a simple paper-coloured path -->
+  <!-- your monogram: a Khmer letter set in bold Google Sans, or a simple paper-coloured path -->
   <text x="50" y="50" text-anchor="middle" dominant-baseline="central" fill="#F1E4C6"
-        font-family="Moul" font-size="44">ក</text>
+        font-family="Google Sans" font-weight="700" font-size="44">ក</text>
 </svg>
 ```
 Header seal: 48px. Splash seal: about 150px. Never put a photo or gradient in a seal.
@@ -68,7 +68,7 @@ The stamp is visual. Put the same meaning in the parent's `aria-label` or in vis
 
 ## Banner (rotated ribbon)
 
-An ink block in Moul 16px, rotated −2°, with a `3px 3px 0` accent shadow. Use it once, on a splash or hero, as a
+An ink block in bold 16px, rotated −2°, with a `3px 3px 0` accent shadow. Use it once, on a splash or hero, as a
 tagline. Class: `.rk-banner`.
 
 ## Official-document header
@@ -89,7 +89,7 @@ Use it only for genuinely formal content (exam papers, certificates, government-
 ## Placeholder text bars
 
 For mock document content, use 8–10px ink bars at 16% opacity with varied widths (94%, 88%, 60%…), under a
-Koulen roman numeral (I. II. III.). Use a dashed 2px box with a bracketed label for image placeholders
+bold roman numeral (I. II. III.). Use a dashed 2px box with a bracketed label for image placeholders
 (`[ រូបភាព / ក្រាប ]`). Never use lorem ipsum.
 
 ## Optional extensions (keep the same restraint)

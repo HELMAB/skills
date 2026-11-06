@@ -14,7 +14,7 @@ All classes below are in `assets/retrokh.css` (section 13). Working pages: `exam
 2. **Choose the accent**: red (default; warm, commercial, cultural), teal (calm; professional, health, education,
    NGO) or plum (creative, arts, events). Set it with `data-accent="teal|plum"` on `<body>`.
 3. **Choose the language mode**: Khmer-first (`lang="km"`), bilingual (Khmer headings with English eyebrows), or
-   English-primary (`lang="en"`, where headings switch to Koulen automatically). See `typography.md`.
+   English-primary (`lang="en"`, where headings switch to tighter Latin caps automatically). See `typography.md`.
 4. **Pick 2–4 signature moves** for the whole site (section 5), and repeat the same ones on every page.
 5. **Collect real content.** Never invent stats, testimonials, client names, prices, dates or contact details.
    Write `[ … ]` placeholders in the page's language and list what the owner must supply.
@@ -62,21 +62,21 @@ and **one** ink band (the CTA) per page, and put the rays only in the hero. Neve
 | **Section head** | `.rk-section-head` containing `.rk-eyebrow` (`០១ · សេវាកម្ម`) and `h2.rk-section-title` | Double rule under the title. `.is-center` drops the rule; add a `.rk-diamonds` divider below |
 | **Services / features** | `.rk-grid > article.rk-feature` containing `.rk-feature-num`, `h3` and `p` | Ink number blocks in Khmer numerals. 3 or 6 items; set `--rk-min` to tune the columns |
 | **About split** | `.rk-container.rk-split` with a `.rk-photo` and the text | Photo on the left, text on the right; alternate the sides further down the page |
-| **Stats band** | `.rk-stats > div` containing `b` (number) and `span` (label) | Koulen numbers in red with dashed dividers. **Real numbers only** |
-| **Timeline / history / CV** | `ol.rk-timeline > li` containing `.rk-timeline-year` and `.rk-timeline-body` | A ledger rail: Koulen years, an accent rule and diamond bullets |
+| **Stats band** | `.rk-stats > div` containing `b` (number) and `span` (label) | bold tabular numbers in red with dashed dividers. **Real numbers only** |
+| **Timeline / history / CV** | `ol.rk-timeline > li` containing `.rk-timeline-year` and `.rk-timeline-body` | A ledger rail: bold tabular years, an accent rule and diamond bullets |
 | **Team** | `.rk-grid` of `.rk-photo` cards: portrait frame, then `figcaption` with the name in **bold** and the role | Or use `.rk-portrait` circles (seal-style) for small teams |
 | **Testimonials** | `.rk-section.rk-halftone` with `.rk-grid` of `figure.rk-quote` | The section title sits on a sheet chip (never on the halftone). **Real, permitted quotes only** |
 | **Partners / clients** | `ul.rk-logos > li` (a name or `img`) | Logos are rendered sepia/greyscale to fit the print palette |
-| **News / blog list** | `.rk-grid` of `article.rk-post` containing `.rk-photo-frame` and `.rk-post-body` (`time`, `h3 a`, `p`) | Dates in Koulen red, in Khmer numerals and month names |
+| **News / blog list** | `.rk-grid` of `article.rk-post` containing `.rk-photo-frame` and `.rk-post-body` (`time`, `h3 a`, `p`) | Dates in bold red, in Khmer numerals and month names |
 | **Events** | `article.rk-ticket` containing `.rk-ticket-stub` (`b` day, `span` month) and `.rk-ticket-body` | A perforated ticket stub |
 | **Gallery / portfolio** | `.rk-grid` of `figure.rk-photo` (add `.is-tilted` to one or two) | Captions under every photo |
-| **Pricing / plans** | `.rk-grid` of `.rk-card` with an ink head, a Koulen price and a list | Mark the recommended plan with a red stamp (`ពេញនិយម`), not a glow or a scale-up |
-| **FAQ** | `.rk-faq > details > summary + div` | Native disclosure; Koulen `+` and `−` markers |
+| **Pricing / plans** | `.rk-grid` of `.rk-card` with an ink head, a bold tabular price and a list | Mark the recommended plan with a red stamp (`ពេញនិយម`), not a glow or a scale-up |
+| **FAQ** | `.rk-faq > details > summary + div` | Native disclosure; bold `+` and `−` markers |
 | **CTA band** | zigzag, then `section.rk-cta` with `h2`, `p` and `.rk-actions` holding `.rk-btn-paper` + `.rk-btn-ghost`, then zigzag | One per page, near the end |
 | **Contact** | `.rk-split` with `ul.rk-contact` (ink icon squares) and a `form.rk-sheet` | Every field has a visible `<label>`; `autocomplete` attributes; a primary submit button |
 | **Map** | `.rk-photo` with `.rk-photo-frame` containing an embedded map or static image | Sepia filter keeps it on palette. Use an `<a>` link to the map app as a fallback |
-| **Long-form article** | `article.rk-narrow.rk-prose` | Moul h2s, double-ruled pull quotes, accent list markers |
-| **Footer** | `footer.rk-footer` with `.rk-footer-grid` (brand + 2–3 link columns) and `.rk-footer-base` | Ink; `4px double` top edge; a Special Elite Latin brand line |
+| **Long-form article** | `article.rk-narrow.rk-prose` | bold h2s, double-ruled pull quotes, accent list markers |
+| **Footer** | `footer.rk-footer` with `.rk-footer-grid` (brand + 2–3 link columns) and `.rk-footer-base` | Ink; `4px double` top edge; a Latin caps brand line |
 
 ## 4. Recipes by site type
 
@@ -103,12 +103,12 @@ number and address. For a government or school body, the **official-document hea
 hero plate. Accent: teal.
 
 ### Restaurant, café or shop
-Hero (rays, dish or storefront photo, *Order*/*Call* buttons) → Menu as `.rk-table` or ledger-style lists with Koulen
+Hero (rays, dish or storefront photo, *Order*/*Call* buttons) → Menu as `.rk-table` or ledger-style lists with bold tabular
 prices in Khmer numerals and riel/USD → Gallery (tilted photos) → Opening hours (`.rk-table`; mark today's row with a
 red `ថ្ងៃនេះ` stamp) → Location + map → footer. Accent: red.
 
 ### Event or wedding
-Hero with the date in Koulen, a `.rk-banner` ribbon and a countdown-free date → Programme (`.rk-timeline` with times) →
+Hero with the date in bold tabular figures, a `.rk-banner` ribbon and a countdown-free date → Programme (`.rk-timeline` with times) →
 Venue (`.rk-split` + map) → Gallery → RSVP form (`.rk-sheet`) → footer. Bilingual Khmer/English is common here.
 Accent: plum or red.
 
@@ -127,11 +127,11 @@ Pick 2–4 per site:
 - **Rays hero with a printed plate**: copy on a sheet with an `8px` shadow over a sunburst.
 - **Zigzag seams**: under the nav and around the CTA band.
 - **Printed photos**: sepia, a fine halftone, a paper border, the hard shadow and one tilted print per page.
-- **Numbered section heads**: `០១ · សេវាកម្ម` eyebrows in Koulen.
-- **Ledger timeline**: Koulen years on an accent rule.
+- **Numbered section heads**: `០១ · សេវាកម្ម` eyebrows in bold tabular figures.
+- **Ledger timeline**: bold tabular years on an accent rule.
 - **Stamps** for status or emphasis: `ពេញនិយម` (popular), `ថ្មី` (new), `អស់ហើយ` (sold out), `បានបញ្ចប់` (finished).
 - **Official header** (civic and school sites only).
-- **Seal logo**: a round accent disc with a dashed ring and a Khmer initial in Moul.
+- **Seal logo**: a round accent disc with a dashed ring and a Khmer initial in bold.
 
 ## 6. Images
 

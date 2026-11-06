@@ -1,9 +1,9 @@
 ---
 name: retrokh-design
-description: Design and build websites and apps in the "RetroKh" style, a Khmer old-school, 1970s print look (cream paper, dark-brown ink, red/turmeric/teal spot colours, Moul and Koulen Khmer display type, square corners, hard offset shadows, zigzag/halftone/sunburst patterns, sepia printed photos, rubber-stamp labels). Use for any site or UI that should feel Khmer retro, vintage Cambodian, 60s/70s Khmer, golden-era or old-school Khmer, including personal profiles, CVs and portfolios, company profiles, organisation, NGO and school sites, restaurants and shops, events and weddings, blogs and news, landing pages, dashboards and app screens. Also use when the user names RetroKh or wants a Khmer-language (km) site to look nostalgic or print-like. Covers HTML/CSS, Tailwind and Vue; Khmer-first with English and bilingual support.
+description: Design and build websites and apps in the "RetroKh" style, a Khmer old-school, 1970s print look (cream paper, dark-brown ink, red/turmeric/teal spot colours, a single typeface (Google Sans, Khmer + Latin) set big and bold, square corners, hard offset shadows, zigzag/halftone/sunburst patterns, sepia printed photos, rubber-stamp labels). Use for any site or UI that should feel Khmer retro, vintage Cambodian, 60s/70s Khmer, golden-era or old-school Khmer, including personal profiles, CVs and portfolios, company profiles, organisation, NGO and school sites, restaurants and shops, events and weddings, blogs and news, landing pages, dashboards and app screens. Also use when the user names RetroKh or wants a Khmer-language (km) site to look nostalgic or print-like. Covers HTML/CSS, Tailwind and Vue; Khmer-first with English and bilingual support.
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   source: "Distilled from the Dobpi 1970s Khmer Retro design canvas"
 ---
 
@@ -26,8 +26,9 @@ second plate slightly out of register.
    shadow is red.
 3. **Corners are square, everywhere.** `border-radius: 0`. The only round things are radio
    buttons, seals and logos.
-4. **Moul is only for big headings (≥16px).** Koulen is for numerals, counters and stamps.
-   Battambang is for everything else. Special Elite is only for short Latin labels.
+4. **One typeface: Google Sans, nothing else.** Roles come from weight, size and case: display 700, numerals 700
+   with `tabular-nums`, body 400, and Latin caps labels 500 with `.18em` tracking. Use only weights 400, 500 and 700.
+   The retro character comes from colour, patterns, shadows, stamps and the `.rk-misprint` hero shadow, not from fonts.
 5. **Khmer needs vertical room.** Keep line-height between 1.6 and 1.8, never clip Khmer text
    with a fixed height plus `overflow:hidden`, and never letter-space Khmer.
 6. **Ornament is a band, never a backdrop under text.** Use the zigzag strip under the header,
@@ -75,8 +76,8 @@ second plate slightly out of register.
 | teal | `#245A57` (halftone `#2F6E6A`) | same | offline, saved, system, success |
 | plum | `#7A3E8E` | | optional alternate accent |
 
-Fonts: `Moul` (display), `Koulen` (numerals/stamps), `Battambang` 400/700 (body), `Special Elite` (Latin labels).
-Google Fonts: `family=Moul&family=Koulen&family=Battambang:wght@400;700&family=Special+Elite&display=swap`.
+Font: **Google Sans only** (it covers Khmer and Latin). Display 700 · numerals 700 + `tabular-nums` · body 400 · Latin labels 500 caps.
+Google Fonts: `https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap`.
 
 Sizes: 44px minimum hit target, 48px for primary actions. Spacing runs on a 4px base: 4·8·12·16·20·24·32·40·56.
 Borders are `2px solid` ink. Use `4px double` for structural edges (the sidebar edge, the outer frame) and `3px double`
@@ -88,28 +89,28 @@ between list or menu rows.
 Websites:
 - A **rays hero with a printed plate**: the copy sits on a sheet with an `8px` shadow over a sunburst, never on the rays.
 - **Printed photos**: sepia, a fine halftone, a paper border, the hard shadow, and one tilted print per page.
-- **Numbered section heads** (`០១ · សេវាកម្ម`) over a double rule, and a **ledger timeline** with Koulen years.
+- **Numbered section heads** (`០១ · សេវាកម្ម`) over a double rule, and a **ledger timeline** with bold tabular years.
 - An **ink CTA band** framed by zigzag strips, and an ink footer with a `4px double` top edge.
 
 Apps and shared:
 - An **ink header bar** with a **14px zigzag strip** (red/turmeric) directly under it.
-- A **ledger rail**: an 84px numeral column in Koulen with an accent right rule, on 44px ruled paper.
+- A **ledger rail**: an 84px column of bold tabular numerals with an accent right rule, on 44px ruled paper.
 - The **current item** as a filled accent tab with a `3px 3px 0` ink shadow. It is the only red block on the screen.
-- **Rubber stamps**: Koulen in a 2px box rotated −5°, teal for "saved" (បានទាញយក) and red for "failed" (បរាជ័យ).
+- **Rubber stamps**: bold text in a 2px box rotated −5°, teal for "saved" (បានទាញយក) and red for "failed" (បរាជ័យ).
 - A **printed sheet** in `#FBF5E6` with a 2px ink border and an `8px 8px 0` shadow, sitting on a halftone teal backdrop.
-- A **splash** with a sunburst-rays background, a giant Moul title with a `3px 3px 0` paper text-shadow and an ink banner rotated −2°.
+- A **splash** with a sunburst-rays background, a giant bold title with a `3px 3px 0` paper text-shadow and an ink banner rotated −2°.
 - An **official-document header** (only for formal or civic content): ព្រះរាជាណាចក្រកម្ពុជា / ជាតិ សាសនា ព្រះមហាក្សត្រ,
   then a diamond divider and a double-ruled meta grid.
-- A **segmented control** (pager, zoom) in one bordered box with 2px dashed inner dividers and Koulen counters such as `១៣៣ / ១៣៨`.
+- A **segmented control** (pager, zoom) in one bordered box with 2px dashed inner dividers and bold tabular counters such as `១៣៣ / ១៣៨`.
 
 ## Khmer-first bilingual rules
 
 - Set `lang="km"` on the root and `lang="en"` on English runs. Use Khmer copy by default. When the user wants an
-  English or bilingual site, set `lang="en"` on the root: headings switch from Moul to Koulen automatically, and
+  English or bilingual site, set `lang="en"` on the root: Latin headings switch to tight poster caps automatically, and
   the look stays the same (see `typography.md`).
-- Use Khmer numerals (០១២៣៤៥៦៧៨៩) in Khmer UI, especially Koulen counters, years and page numbers. Convert at render
+- Use Khmer numerals (០១២៣៤៥៦៧៨៩) in Khmer UI, especially counters, years and page numbers. Convert at render
   time with `toKhmerDigits()`. Never store them; keep data in ASCII digits.
-- Latin brand words and codes (DOBPI, URLs, hex values) go in Special Elite, 12px, uppercase, `letter-spacing: 3px`, muted.
+- Latin brand words and codes (DOBPI, URLs, hex values) go in `.rk-latin`: 12px, weight 500, uppercase, `letter-spacing: .18em`, muted.
 - Never invent facts on a website (stats, testimonials, clients, prices, dates, contacts). Use `[ … ]` placeholders
   in the page's language and list what the owner must supply.
 - Use the polite, concise government/school register: «សូមពិនិត្យអ៊ីនធឺណិត ហើយព្យាយាមម្ដងទៀត». Labels are verbs or nouns, not sentences.
@@ -119,7 +120,8 @@ Apps and shared:
 
 - Rounded corners, pill buttons, soft or blurred shadows, glassmorphism, neumorphism.
 - Gradient washes, pure `#FFFFFF` or `#000000` surfaces (black is allowed only as the dark-mode shadow), emoji as icons.
-- Moul for body text, buttons or anything under 16px. Bold weights on Moul or Koulen (they have one weight; set `font-synthesis: none`).
+- Any font other than Google Sans (serif, mono, display or Khmer-specific families). Weights above 700; set `font-synthesis: none`.
+- Thin or light display text: headings are always 700. Body text at 700 except for emphasis, buttons and the current item.
 - `letter-spacing` or `text-transform` on Khmer. Line-height below 1.5. Truncating Khmer titles mid-cluster.
 - Turmeric or teal used as a text colour on paper for body copy (turmeric fails contrast; teal is reserved for status).
 - More than one red "current" block on a screen. Patterns behind paragraphs.
@@ -128,10 +130,10 @@ Apps and shared:
 
 ## Delivery checklist
 
-- [ ] Fonts loaded (Moul, Koulen, Battambang, Special Elite) with fallbacks; `lang="km"`.
+- [ ] Only Google Sans is loaded (`wght@400..700`) and used everywhere; `lang="km"`.
 - [ ] Only token colours are used, and each colour is in its single role. Text pairs ≥4.5:1 (see the tokens table).
 - [ ] `border-radius: 0`; only the two shadow levels; no blur anywhere.
-- [ ] Moul ≥16px for headings only; numerals in Koulen; Khmer line-height ≥1.6; no clipped Khmer.
+- [ ] Headings 700; numerals 700 tabular; body 400; Khmer line-height ≥1.5 for headings and ≥1.6 for body; no clipped Khmer.
 - [ ] Hit targets ≥44px (48px primary); real `<button>`, `<a href>` and `<label>`; Khmer `aria-label` on icon buttons.
 - [ ] Visible focus: a 3px outline in red on paper, or in turmeric on ink bars and in dark mode.
 - [ ] Patterns are `aria-hidden` and never sit behind text; at most 2–4 signature moves.

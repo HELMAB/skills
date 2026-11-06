@@ -44,13 +44,13 @@ or turmeric on ink. Disabled is 45% opacity with `cursor:not-allowed`.
 ## Segmented control (pager, zoom)
 
 One box with a 2px border, sheet bg and shadow-1. Children are 48px tall with 2px **dashed** dividers between them. The
-counter is set in Koulen 18px (`១៣៣ / ១៣៨`). The forward action is filled with ink. On an ink header, use a transparent bg and a
+counter is set in bold tabular 18px (`១៣៣ / ១៣៨`). The forward action is filled with ink. On an ink header, use a transparent bg and a
 `paper-muted` border, with `#6E5B45` dashed dividers.
 
 ## Inputs
 
 - **Text or search**: a `.rk-input` wrapper, 44px high, sheet bg, 2px ink border, shadow-1, 12px side padding, 18px leading icon,
-  Battambang 16px, placeholder in `#6E5B45`. The visible `<label>` above it is 14px, 700, `ink-muted`; on phones it can
+  regular 16px, placeholder in `#6E5B45`. The visible `<label>` above it is 14px, 700, `ink-muted`; on phones it can
   be visually hidden with `.rk-sr`.
 - **Invalid**: the border and shadow turn red, with a `.rk-error-text` message below (14px, 700, red) linked via `aria-describedby`.
 - **Textarea**: ruled every 27px to match the line-height (`textarea.rk-textarea`).
@@ -60,11 +60,11 @@ counter is set in Koulen 18px (`១៣៣ / ១៣៨`). The forward action is f
 ## Tabs
 
 A grid of equal columns. Each tab is 48px, sheet bg, 2px ink border (the left border is removed on siblings so the borders join),
-Battambang 700. The selected tab is accent bg with on-accent text. Use `role="tablist"`, `role="tab"` and `aria-selected`.
+weight 700. The selected tab is accent bg with on-accent text. Use `role="tablist"`, `role="tab"` and `aria-selected`.
 
 ## Header (app bar)
 
-An ink bar (`.rk-header`): `[menu 44] [seal 48 + Moul wordmark 20 / Special Elite eyebrow 12] [centred Moul title 20 +
+An ink bar (`.rk-header`): `[menu 44] [seal 48 + bold wordmark 20 / Latin caps eyebrow 12 (500, .18em)] [centred bold title 20 +
 muted 14 subtitle] [actions]`, with 12px × 24px padding and wrapping on narrow screens. Header buttons are ghost buttons with `paper-muted`
 borders. A **zigzag strip** always follows directly below it.
 
@@ -73,19 +73,20 @@ Phone: 8px × 10px padding, `[menu] [title stack, ellipsis] [2 icon buttons]`, a
 ## Sidebar and ledger navigation
 
 - Sidebar: paper bg, `4px double` ink right edge, 24px vertical padding, flex column with a gap of 20.
-- Title block: Moul 22px in the accent colour, with a muted 14px subtitle.
+- Title block: bold 22px in the accent colour, with a muted 14px subtitle.
 - **Ledger rows** (`.rk-ledger-row`) on `.rk-ruled`, 44px high:
-  `[key column 84px: Koulen 18px accent, 2px accent right rule, optional 12px 700 sub-label] [text, 16px] [chevron 16px]`.
+  `[key column 84px: bold tabular 18px accent, 2px accent right rule, optional 12px 700 sub-label] [text, 16px] [chevron 16px]`.
   Group rows are `<button aria-expanded>`; children are an `<ol>` of links with an empty key column (the rule continues).
 - **Current item**: a 36px filled accent tab, 12px margin from the rule, 700 weight, shadow-1, `aria-current="page"`.
-- **Saved item**: a teal stamp on the right, with the meaning repeated in `aria-label`.
+- **Saved item**: a teal stamp on the right, with the meaning repeated in `aria-label`. Stamps never wrap (`white-space: nowrap`); give the
+  sidebar at least 360px so a long Khmer label and a stamp fit on one 44px row.
 - An offline panel at the bottom: `.rk-panel-dashed` (2px dashed teal, sheet bg) containing a bold teal title, a muted count, a
   10px teal progress bar and a full-width system button.
 
 ## Drawer (phone)
 
 A scrim at `rgba(42,29,20,.55)` over the content. The drawer is 330px (max 85vw), paper bg, with a `4px double` right edge and shadow
-`8px 0 0 rgba(42,29,20,.6)`. Its header is an ink bar with a Moul 18 title and a 44px ghost close button, followed by a 10px zigzag. Use `role="dialog"
+`8px 0 0 rgba(42,29,20,.6)`. Its header is an ink bar with a bold 18 title and a 44px ghost close button, followed by a 10px zigzag. Use `role="dialog"
 aria-modal="true"`, trap focus, close on Esc, and return focus to the menu button.
 
 ## Sheets and cards
@@ -94,48 +95,48 @@ aria-modal="true"`, trap focus, close on Esc, and return focus to the menu butto
   phones), stacked with a 32px gap on a halftone backdrop.
 - **Card** (`.rk-card`): the same frame; the optional head strip `.rk-card-head` is an ink bar, 4px × 12px, 14px 700 paper text.
   Numbered heads use Khmer numerals: `១ · កំពុងផ្ទុក`.
-- **Stat** (`.rk-stat`): sheet, shadow-1, a muted label and a Koulen 36px value in the accent colour.
+- **Stat** (`.rk-stat`): sheet, shadow-1, a muted label and a bold tabular 36px value in the accent colour.
 
 ## Lists, tables, menus
 
 - **Table** (`.rk-table`): a sheet with a 2px border and shadow-2. The header row is ink with 14px 700 paper text. Rows are separated by 1px **dashed**
-  ink. Numeric cells are Koulen 17px, right-aligned. Wrap the table in `.rk-table-wrap` to scroll horizontally on phones.
+  ink. Numeric cells are bold tabular 17px, right-aligned. Wrap the table in `.rk-table-wrap` to scroll horizontally on phones.
 - **Search results**: 40px rows with 1px teal-rule separators; the matched text in `<mark>` (turmeric bg); the year on the right in
-  Koulen 16 red.
+  bold tabular 16 red.
 - **Menu** (`.rk-menu`): sheet, 2px border, shadow-2 (`#000` when it opens over ink), 44px items with 18px icon + label,
   1px dashed separators, `role="menu"` and `role="menuitem"`, and arrow-key navigation.
 
 ## Chips and tags
 
-- **Ink chip** (`.rk-chip-ink`): 44px, ink bg, paper 15px text with a Koulen 18 number (`ទំព័រ ១ / ៤`). When floating over sheets, add a 2px
+- **Ink chip** (`.rk-chip-ink`): 44px, ink bg, paper 15px text with a bold tabular 18 number (`ទំព័រ ១ / ៤`). When floating over sheets, add a 2px
   paper border and shadow-1.
-- **Tag** (`.rk-tag`): 32px, sheet, 2px border, 14px, with an optional Koulen red index number.
+- **Tag** (`.rk-tag`): 32px, sheet, 2px border, 14px, with an optional bold red index number.
 - **Highlight**: `<mark>` in turmeric with ink text and 0 2px padding.
 
 ## Feedback states
 
 | State | Recipe |
 |---|---|
-| Loading | Halftone backdrop; a centred card (230px, sheet, shadow-1) with "កំពុងផ្ទុក" plus a Koulen % and a 14px progress bar with a hatch fill. `role="status"` |
-| Splash loading | Rays, the seal, the Moul title, then a 220px progress bar (ink fill) and a bold "កំពុងរៀបចំ…" |
+| Loading | Halftone backdrop; a centred card (230px, sheet, shadow-1) with "កំពុងផ្ទុក" plus a bold % and a 14px progress bar with a hatch fill. `role="status"` |
+| Splash loading | Rays, the seal, the bold title, then a 220px progress bar (ink fill) and a bold "កំពុងរៀបចំ…" |
 | Error | `role="alert"`, centred: a red stamp "បរាជ័យ" (−4°), a bold 17px message, a muted 15px remedy, and a primary Retry button |
 | Offline | `.rk-alert-system`: teal bg, paper text, offline icon, 15px message. Back online: `.rk-alert-ok` (dashed teal on paper, check icon, bold) |
 | Not available offline | `.rk-alert-warn`: 2px red border with the bold red lead-in "…មិនទាន់បានរក្សាទុកទេ", then ink text |
-| Empty or no results | `.rk-empty`: 2px dashed ink box, a Moul 16 title, and a muted hint with an example in «» |
+| Empty or no results | `.rk-empty`: 2px dashed ink box, a bold 16 title, and a muted hint with an example in «» |
 | Toast | `.rk-toast`: ink bg, paper text, check icon, shadow `3px 3px 0 teal`; auto-dismiss after ≥5s in a `role="status"` region |
 | Install prompt | Paper box, 2px border: bold title + muted body + a 44px ghost close button, and a full-width primary button below |
 
 ## Dialog
 
-`<dialog class="rk-dialog">`: sheet bg, 2px border, shadow-2, max 480px. The head is an ink bar with a Moul 16–18 title and a close button.
+`<dialog class="rk-dialog">`: sheet bg, 2px border, shadow-2, max 480px. The head is an ink bar with a bold 16–18 title and a close button.
 The body has 20px padding. The footer is right-aligned: a ghost Cancel button and a primary confirm button, with a 12px gap. The backdrop is the scrim colour.
 
 ## Compare / split view
 
-Two columns on halftone, separated by a `4px double` ink divider. Each column has a `.rk-tag` with a Koulen red index and
-a sheet with shadow-1. The toolbar above it is a paper strip with a 2px bottom border and a Moul 16 title, followed by a ghost Swap button and an ink Exit button.
+Two columns on halftone, separated by a `4px double` ink divider. Each column has a `.rk-tag` with a bold red index and
+a sheet with shadow-1. The toolbar above it is a paper strip with a 2px bottom border and a bold 16 title, followed by a ghost Swap button and an ink Exit button.
 
 ## Bottom navigation (phone reader)
 
-72px, raised surface, with a `4px double` top edge and 3 columns: a Previous link, a counter (Koulen 18 red + 12px muted label) with
+72px, raised surface, with a `4px double` top edge and 3 columns: a Previous link, a counter (bold tabular 18 red + 12px muted label) with
 2px dashed side rules, and a filled primary Next button (10px inset, shadow `3px 3px 0 red`).

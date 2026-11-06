@@ -1,49 +1,58 @@
 # Typography: Khmer-first, bilingual
 
-## The four faces
+## One typeface: Google Sans
 
-| Face | Role | Sizes | Line-height | Notes |
+RetroKh uses **only Google Sans**. It covers Khmer (U+1780–17FF) and Latin, and Google Fonts serves real weights
+from 400 to 700. Don't add other families. The 1970s print character comes from colour, patterns, hard shadows,
+stamps, rules and the off-register `.rk-misprint` shadow, not from typeface variety. Typographic roles are set
+by **weight, size, case and figure style**:
+
+| Role | Weight | Sizes | Line-height | Use |
 |---|---|---|---|---|
-| **Moul** | Display: page titles, section titles, brand wordmark, splash title, banner, empty-state title | 16–48px (never <16) | 1.5–1.8 | One weight (400). Never `font-weight:700`. Heavy, hand-lettered poster feel. |
-| **Koulen** | Numerals and stamps: years, counters (`១ / ៤`), percentages, roman section numbers (I. II.), stamps, stat values | 14–36px | 1.1–1.5 | Condensed display; one weight. Use for anything that is *counted*. |
-| **Battambang** | Body: paragraphs, labels, buttons, inputs, nav items, captions | 13–17px (16 default) | 1.6–1.7 | 400 and 700. Buttons and current items use 700. |
-| **Special Elite** | Latin-only typewriter labels: brand romanisation, URLs, codes, hex values, "STYLE TILE · 1970" eyebrows | 12–16px | 1.4 | Uppercase, `letter-spacing:3px`, muted. **No Khmer glyphs** in this font. |
+| **Display** | 700 | 16–56px | Khmer 1.5–1.7 · Latin 1.1–1.25 | Page, section and card titles, the wordmark, splash title, banner, empty-state title |
+| **Numeral** | 700 + `font-variant-numeric: tabular-nums` | 14–44px | 1.1–1.4 | Years, counters (`១ / ៤`), percentages, roman section numbers, stamps, stat values, prices: anything that is *counted* |
+| **Body** | 400 (700 for emphasis, buttons and current items) | 14–18px (16 default) | 1.6–1.8 | Paragraphs, inputs, nav items, captions |
+| **Label** | 500 | 12–14px | 1.4 | Latin-only caps labels: brand romanisation, URLs, codes, hex values, eyebrows. `text-transform: uppercase; letter-spacing: .18em` |
 
-Font stacks:
 ```css
---rk-font-display: 'Moul', 'Khmer OS Muol Light', serif;
---rk-font-numeral: 'Koulen', 'Khmer OS Bokor', sans-serif;
---rk-font-body: 'Battambang', 'Noto Sans Khmer', 'Khmer OS', serif;
---rk-font-latin: 'Special Elite', 'Courier New', monospace;
+--rk-font: 'Google Sans', sans-serif;
+--rk-w-body: 400; --rk-w-label: 500; --rk-w-strong: 700;
 ```
-
-Battambang includes Latin glyphs, so mixed Khmer and English body copy needs no second font. Use Special
-Elite only when you want the typewriter-label effect.
+Never ask for weights above 700. They aren't served, and `font-synthesis: none` stops the browser faking them.
 
 Loading:
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Moul&family=Koulen&family=Battambang:wght@400;700&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap">
 ```
-Self-host for offline apps or PWAs. All four are under the SIL Open Font License.
+Google Fonts splits the family by script (`unicode-range`), so a Khmer page downloads the Khmer and Latin files only.
+For offline apps or PWAs, self-host the Khmer and Latin `woff2` subsets. Google Sans is under the SIL Open Font License.
+
+**Making one sans feel 1970s:**
+- Set display text big and bold, with tight Latin leading and caps for English headings (poster style).
+- Put the hero title on a plate with `.rk-misprint` (`text-shadow: 3px 3px 0 turmeric`), like a second ink pass slightly
+  out of register.
+- Use bold tabular numerals in red for years, prices and counters, and rotated stamps for status.
+- Use Latin caps labels with wide tracking (`.rk-latin`) as the typewriter/letterpress accent.
 
 ## Scale
 
-| Step | Face | Size / LH | Example use |
+| Step | Role | Size / LH | Example use |
 |---|---|---|---|
-| Splash | Moul | 48 / 1.5 | App name on the splash, with `text-shadow: 3px 3px 0 paper` |
-| H1 | Moul | 26–30 / 1.6 | Page title above a `3px double` rule |
-| H2 | Moul | 20–22 / 1.7 | Sidebar title, header title |
-| H3 | Moul | 16–18 / 1.7–1.8 | Card titles, dialog titles, empty-state titles, doc header |
-| Section label | Battambang 700 | 14–15 / 1.6 | Numbered section heads: `១ · ពណ៌ និងតួនាទី` |
-| Body | Battambang 400 | 16 / 1.7 | Default |
-| Small | Battambang 400 | 14 / 1.6 | Meta, helper text (`ink-muted`) |
-| Micro | Battambang 700 | 12–13 / 1.4 | Sub-labels under numerals (`លើកទី ១`). Khmer never goes below 12 |
-| Numeral L | Koulen | 22–36 / 1.2 | Stat values, roman section numbers |
-| Numeral M | Koulen | 16–18 / 1.1–1.3 | Ledger years, pager counters, zoom % |
-| Stamp | Koulen | 14 (saved) / 20 (fail) / 1.5 | Rotated stamps |
-| Eyebrow | Special Elite | 12, `ls:3px`, uppercase | Latin brand line under a Khmer wordmark |
+| Hero | Display 700 | 32–56 / 1.5 (Latin 1.1) | Hero or splash title, optional `.rk-misprint` |
+| H1 | Display 700 | 26–40 / 1.6 | Page title above a `3px double` rule |
+| H2 | Display 700 | 20–34 / 1.6–1.7 | Section titles, sidebar title, header title |
+| H3 | Display 700 | 16–18 / 1.7 | Card, dialog and empty-state titles |
+| Eyebrow | Numeral 700 | 15–17 / 1.5 | Numbered section heads: `០១ · សេវាកម្ម` |
+| Body | Body 400 | 16 / 1.7 | Default |
+| Lead | Body 400 | 18 / 1.8 | Intro paragraph under a section title (`ink-muted`) |
+| Small | Body 400 | 14 / 1.6 | Meta, helper text (`ink-muted`) |
+| Micro | Body 700 | 12–13 / 1.4 | Sub-labels under numerals (`លើកទី ១`). Khmer never goes below 12 |
+| Numeral L | Numeral 700 | 22–44 / 1.2 | Stat values, roman section numbers, ticket dates |
+| Numeral M | Numeral 700 | 16–18 / 1.1–1.3 | Ledger years, pager counters, zoom % |
+| Stamp | Numeral 700 | 14 (saved) / 20 (fail) / 1.5 | Rotated stamps |
+| Label | Label 500 caps | 12, `ls:.18em` | Latin brand line under a Khmer wordmark |
 
 ## Khmer script rules
 
@@ -51,7 +60,7 @@ Self-host for offline apps or PWAs. All four are under the SIL Open Font License
   1.6–1.8, and never put a fixed `height` with `overflow:hidden` around a line of Khmer. Single-line
   controls use `min-height` and flex centring, not a fixed `line-height` equal to the height.
 - **No letter-spacing** on Khmer runs; it breaks clusters. No `text-transform`, since Khmer has no case.
-- **No faux bold.** Set `font-synthesis: none`. Moul and Koulen are already heavy.
+- **No faux bold.** Set `font-synthesis: none`, and use only the served weights 400, 500 and 700.
 - **Line breaking.** Khmer has no spaces between words. Chromium and Safari break Khmer using ICU
   dictionaries; also set `overflow-wrap: anywhere` as a fallback. In long titles you control,
   insert a zero-width space (U+200B) at word boundaries. **Never** `word-break: break-all`.
@@ -72,26 +81,26 @@ export const toKhmerDigits = (v) => String(v).replace(/[0-9]/g, (d) => KM[d]);
 `Intl.NumberFormat('km-KH', { numberingSystem: 'khmr' })` also works, but it inserts grouping separators.
 Prefer the helper for counters and years.
 
-Latin contexts (codes, URLs, hex values, version numbers) keep ASCII digits in Special Elite.
+Latin contexts (codes, URLs, hex values, version numbers) keep ASCII digits, set as Latin caps labels (`.rk-latin`) or regular body text.
 
 ## Bilingual layout
 
 - Default copy is Khmer. Where English is needed, either:
-  - Stack it: a Khmer title in Moul, with an English sub-line in Special Elite (eyebrow style) or Battambang 14 muted; or
-  - Inline it: `<span lang="en">` inside Battambang body (no font switch needed).
+  - Stack it: a Khmer title in bold display, with an English sub-line as a Latin caps label (`.rk-latin`) or 14px muted body; or
+  - Inline it: `<span lang="en">` inside the body text (same font, nothing to switch).
 - Give Khmer the larger size. English lines are about 15–20% smaller, because Khmer reads smaller at the same px.
 - `lang="km"` on `<html>`; `lang="en"` on English runs, so screen readers and hyphenation behave.
 - Date format: `ថ្ងៃទី ៦ ខែវិច្ឆិកា ឆ្នាំ២០២៦`; short form `០៦/១១/២០២៦`.
 
 ## English-primary and bilingual sites
 
-- Set `lang="en"` on `<html>` (or on a section). `retrokh.css` switches `.rk-display`, `.rk-hero-title`,
-  `.rk-section-title`, `.rk-pagehead h1`, `.rk-cta h2`, `.rk-feature h3` and `.rk-post h3` to **Koulen**, whose
-  condensed Latin reads as a 1970s poster face. Line-height drops to 1.2 for those Latin headings.
-- Body text stays Battambang, which has good Latin glyphs. Keep body line-height at 1.7 even in English, for rhythm.
+- Set `lang="en"` on `<html>` (or on a section). `retrokh.css` then tightens Latin headings: `.rk-hero-title`,
+  `.rk-section-title`, `.rk-pagehead h1` and `.rk-cta h2` become **uppercase poster caps** with 1.1 leading and
+  slight negative tracking. `.rk-display`, `.rk-title`, `.rk-feature h3` and `.rk-post h3` get 1.25 leading.
+- Body text is the same Google Sans. Keep body line-height at 1.7 even in English, for rhythm.
 - Keep one Khmer touch per screen even on English sites: the wordmark, an eyebrow (`សួស្ដី · Hello`), section
   numbers or a stamp. Mark it with `lang="km"`.
-- Bilingual headings: put the Khmer in Moul, then the English underneath in Special Elite (eyebrow style) or Koulen
+- Bilingual headings: put the Khmer in bold display, then the English underneath as a Latin caps label or in bold
   at about 60% of the size. Don't set both languages at the same size side by side.
 - English section numbers use ASCII digits (`01 · About`); Khmer ones use Khmer digits (`០១ · អំពីយើង`).
 

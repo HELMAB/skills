@@ -51,6 +51,7 @@ still paper), and red brightens.
 | shadow | `#000000` | |
 | accent / primary | `#E2735A` | 5.95 on bg; 5.32 on surface; text on it `#1C130D` |
 | focus | `#E0A526` | |
+| saved (teal text/stamps) | `#6FB3AD` | 6.8 on surface, 7.6 on bg; light sheets keep `#245A57` |
 | halftone | `#14100C` + dots `rgba(47,110,106,.35)` | |
 | rule | `rgba(217,199,160,.18)` | |
 
@@ -98,7 +99,7 @@ The canonical set lives in `assets/retrokh.css` (`--rk-*`). Use the semantic ali
     "teal": "#245A57", "tealHalftone": "#2F6E6A", "plum": "#7A3E8E",
     "dark": { "ground": "#1C130D", "surface": "#2A1D14", "sheet": "#E6DCC4", "edge": "#6E5B45", "accent": "#E2735A", "halftone": "#14100C" }
   },
-  "font": { "display": "Moul", "numeral": "Koulen", "body": "Battambang", "latin": "Special Elite" },
+  "font": { "family": "Google Sans", "weight": { "body": 400, "label": 500, "strong": 700 }, "numeric": "tabular-nums" },
   "shadow": { "1": "3px 3px 0 #2A1D14", "2": "8px 8px 0 #2A1D14" },
   "border": { "width": 2, "doubleStructural": 4, "doubleRule": 3 },
   "radius": 0,

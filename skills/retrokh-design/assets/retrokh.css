@@ -5,7 +5,7 @@
  * Fonts (put in <head>):
  * <link rel="preconnect" href="https://fonts.googleapis.com">
  * <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- * <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Moul&family=Koulen&family=Battambang:wght@400;700&family=Special+Elite&display=swap">
+ * <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap">
  */
 
 /* ───────────────────────── 1. Tokens ───────────────────────── */
@@ -52,12 +52,14 @@
   --rk-rule: rgba(36, 90, 87, .22);
   --rk-focus: var(--rk-red);
   --rk-danger: var(--rk-red);  /* error text, fail stamp, invalid field (brightens in dark) */
+  --rk-saved: var(--rk-teal);   /* saved stamp / system text on non-paper surfaces (brightens in dark) */
 
   /* Type */
-  --rk-font-display: 'Moul', 'Khmer OS Muol Light', serif;          /* big headings only, ≥16px */
-  --rk-font-numeral: 'Koulen', 'Khmer OS Bokor', sans-serif;         /* numerals, stamps, counters */
-  --rk-font-body: 'Battambang', 'Noto Sans Khmer', 'Khmer OS', serif; /* everything else */
-  --rk-font-latin: 'Special Elite', 'Courier New', monospace;        /* Latin-only labels */
+  /* One typeface: Google Sans (Khmer + Latin, 400–700). Roles come from weight, size and case, not from families */
+  --rk-font: 'Google Sans', sans-serif;
+  --rk-w-body: 400;      /* paragraphs, inputs, ghost buttons */
+  --rk-w-label: 500;     /* Latin caps labels, captions that need a lift */
+  --rk-w-strong: 700;    /* headings, numerals, buttons, stamps (max weight: never 800+) */
   --rk-leading: 1.7;            /* Khmer stacks need room: never below 1.5 */
   --rk-leading-display: 1.7;
 
@@ -88,7 +90,7 @@
     --rk-header: #1C130D; --rk-on-header: #F1E4C6;
     --rk-accent: #E2735A; --rk-on-accent: #1C130D;
     --rk-primary: #E2735A; --rk-on-primary: #1C130D; --rk-primary-shadow: #000000;
-    --rk-focus: #E0A526; --rk-rule: rgba(217, 199, 160, .18); --rk-danger: #E2735A;
+    --rk-focus: #E0A526; --rk-rule: rgba(217, 199, 160, .18); --rk-danger: #E2735A; --rk-saved: #6FB3AD;
     --rk-sheet: #E6DCC4;        /* paper sheets stay light on the night ground */
   }
 }
@@ -99,7 +101,7 @@
   --rk-header: #1C130D; --rk-on-header: #F1E4C6;
   --rk-accent: #E2735A; --rk-on-accent: #1C130D;
   --rk-primary: #E2735A; --rk-on-primary: #1C130D; --rk-primary-shadow: #000000;
-  --rk-focus: #E0A526; --rk-rule: rgba(217, 199, 160, .18); --rk-danger: #E2735A;
+  --rk-focus: #E0A526; --rk-rule: rgba(217, 199, 160, .18); --rk-danger: #E2735A; --rk-saved: #6FB3AD;
   --rk-sheet: #E6DCC4;
 }
 [data-accent="teal"] { --rk-accent: var(--rk-teal); --rk-mark: var(--rk-teal); }
@@ -109,10 +111,10 @@
 .rk, .rk-root {
   background: var(--rk-bg);
   color: var(--rk-text);
-  font-family: var(--rk-font-body);
+  font-family: var(--rk-font);
   font-size: 16px;
   line-height: var(--rk-leading);
-  font-synthesis: none;          /* never fake-bold Moul/Koulen */
+  font-synthesis: none;          /* Google Sans ships real 400–700; never fake heavier weights */
   overflow-wrap: anywhere;       /* Khmer has no spaces between words */
 }
 .rk *, .rk-root * { box-sizing: border-box; border-radius: 0; }
@@ -127,10 +129,11 @@
 .rk-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ───────────────────────── 3. Type ───────────────────────── */
-.rk-display  { font-family: var(--rk-font-display); font-weight: 400; line-height: 1.6; } /* 20–48px */
-.rk-title    { font-family: var(--rk-font-display); font-weight: 400; font-size: 22px; line-height: var(--rk-leading-display); }
-.rk-numeral  { font-family: var(--rk-font-numeral); font-weight: 400; line-height: 1.3; }
-.rk-latin    { font-family: var(--rk-font-latin); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--rk-text-muted); }
+.rk-display  { font-weight: 700; line-height: 1.6; } /* 20–48px */
+.rk-title    { font-weight: 700; font-size: 22px; line-height: var(--rk-leading-display); }
+.rk-numeral  { font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.rk-latin    { font-weight: 500; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--rk-text-muted); } /* Latin only */
+.rk-misprint { text-shadow: 3px 3px 0 var(--rk-turmeric); } /* off-register second plate: hero titles only */
 .rk-muted    { color: var(--rk-text-muted); }
 .rk-small    { font-size: 14px; line-height: 1.6; }
 .rk-label    { font-size: 14px; font-weight: 700; color: var(--rk-text-muted); }
@@ -170,7 +173,7 @@
 .rk-sheet, .rk-panel-dashed, .rk-stat, .rk-input, .rk-menu, .rk-dialog, .rk-table, .rk-tag, .rk-segmented, .rk-paper-context,
 .rk-hero-plate, .rk-feature, .rk-photo, .rk-stats, .rk-quote, .rk-logos, .rk-faq, .rk-post, .rk-ticket, .rk-section-sheet {
   --rk-text: var(--rk-ink); --rk-text-muted: var(--rk-ink-muted); --rk-edge: var(--rk-ink);
-  --rk-accent: var(--rk-red); --rk-on-accent: var(--rk-paper); --rk-focus: var(--rk-red); --rk-danger: var(--rk-red);
+  --rk-accent: var(--rk-red); --rk-on-accent: var(--rk-paper); --rk-focus: var(--rk-red); --rk-danger: var(--rk-red); --rk-saved: var(--rk-teal);
   --rk-primary: var(--rk-ink); --rk-on-primary: var(--rk-paper); --rk-primary-shadow: var(--rk-red);
   color: var(--rk-ink);
 }
@@ -197,7 +200,7 @@
 .rk-btn {
   min-height: var(--rk-touch); padding: 0 16px;
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  font-family: var(--rk-font-body); font-size: 16px; font-weight: 700; line-height: 1.4;
+  font-family: var(--rk-font); font-size: 16px; font-weight: 700; line-height: 1.4;
   border: 2px solid var(--rk-ink); border-radius: 0; text-decoration: none;
   transition: transform .06s, box-shadow .06s;
 }
@@ -226,14 +229,14 @@
 }
 .rk-input input, .rk-input select, input.rk-input, select.rk-input {
   flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
-  font-family: var(--rk-font-body); font-size: 16px; color: var(--rk-ink);
+  font-family: var(--rk-font); font-size: 16px; color: var(--rk-ink);
 }
 .rk-input:focus-within { outline: 3px solid var(--rk-focus); outline-offset: 2px; }
 textarea.rk-textarea {
   width: 100%; min-height: 120px; padding: 10px 12px; resize: vertical;
   background: var(--rk-sheet) repeating-linear-gradient(to bottom, transparent 0 26px, var(--rk-rule) 26px 27px);
   border: var(--rk-border); box-shadow: var(--rk-shadow-1);
-  font-family: var(--rk-font-body); font-size: 16px; line-height: 27px; color: var(--rk-ink);
+  font-family: var(--rk-font); font-size: 16px; line-height: 27px; color: var(--rk-ink);
 }
 .rk-check { display: inline-flex; align-items: center; gap: 10px; min-height: var(--rk-touch); }
 .rk-check input { appearance: none; width: 22px; height: 22px; margin: 0; border: var(--rk-border); background: var(--rk-sheet); display: grid; place-content: center; }
@@ -254,7 +257,7 @@ textarea.rk-textarea {
 .rk-ledger-row { height: var(--rk-touch); display: flex; align-items: center; background: transparent; border: 0; padding: 0; color: var(--rk-text); text-align: left; text-decoration: none; width: 100%; }
 .rk-ledger-key {
   width: 84px; height: var(--rk-touch); flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  border-right: 2px solid var(--rk-accent); color: var(--rk-accent); font-family: var(--rk-font-numeral); font-size: 18px; line-height: 1.1;
+  border-right: 2px solid var(--rk-accent); color: var(--rk-accent); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 18px; line-height: 1.1;
 }
 .rk-ledger-text { flex: 1; padding: 0 20px 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 /* Current item: a filled accent tab with hard shadow — the only red block on screen */
@@ -272,17 +275,17 @@ textarea.rk-textarea {
 
 /* ───────────────────────── 10. Marks: stamps, chips, badges ───────────────────────── */
 .rk-stamp {
-  display: inline-block; padding: 0 6px; border: 2px solid currentColor;
-  font-family: var(--rk-font-numeral); font-size: 14px; line-height: 1.5; transform: rotate(-5deg);
+  display: inline-block; flex-shrink: 0; white-space: nowrap; padding: 0 6px; border: 2px solid currentColor;
+  font-weight: 700; font-variant-numeric: tabular-nums; font-size: 14px; line-height: 1.5; transform: rotate(-5deg);
 }
-.rk-stamp-saved { color: var(--rk-teal); }
+.rk-stamp-saved { color: var(--rk-saved); }
 .rk-stamp-fail  { color: var(--rk-danger); border-width: 3px; font-size: 20px; padding: 0 10px; transform: rotate(-4deg); }
 .rk-chip-ink { height: var(--rk-touch); padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; background: var(--rk-ink); color: var(--rk-paper); font-size: 15px; }
-.rk-chip-ink b, .rk-chip-ink .rk-numeral { font-family: var(--rk-font-numeral); font-weight: 400; font-size: 18px; }
+.rk-chip-ink b, .rk-chip-ink .rk-numeral { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 18px; }
 .rk-tag { height: 32px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; background: var(--rk-sheet); border: var(--rk-border); color: var(--rk-ink); font-size: 14px; }
 .rk-banner {
   display: inline-block; padding: 6px 20px; background: var(--rk-ink); color: var(--rk-paper);
-  font-family: var(--rk-font-display); font-size: 16px; line-height: 1.8; transform: rotate(-2deg);
+  font-weight: 700; font-size: 16px; line-height: 1.8; transform: rotate(-2deg);
   box-shadow: 3px 3px 0 var(--rk-accent);
 }
 
@@ -298,7 +301,7 @@ textarea.rk-textarea {
 .rk-alert-warn { padding: 8px 12px; border: 2px solid var(--rk-danger); color: var(--rk-text); }
 .rk-alert-warn b { color: var(--rk-danger); }
 .rk-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 16px; text-align: center; border: 2px dashed var(--rk-edge); }
-.rk-empty > .rk-empty-title { font-family: var(--rk-font-display); font-size: 16px; line-height: 1.8; }
+.rk-empty > .rk-empty-title { font-weight: 700; font-size: 16px; line-height: 1.8; }
 .rk-scrim { position: fixed; inset: 0; background: var(--rk-scrim); }
 .rk-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: min(330px, 85vw); display: flex; flex-direction: column; gap: 16px; background: var(--rk-paper); border-right: var(--rk-border-double); box-shadow: 8px 0 0 rgba(42, 29, 20, .6); }
 .rk-dialog { max-width: 480px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); padding: 0; }
@@ -308,10 +311,10 @@ textarea.rk-textarea {
 .rk-table { width: 100%; border-collapse: collapse; background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
 .rk-table th { background: var(--rk-ink); color: var(--rk-paper); font-weight: 700; font-size: 14px; text-align: left; padding: 6px 12px; }
 .rk-table td { padding: 8px 12px; border-top: 1px dashed var(--rk-ink); }
-.rk-table td.num { font-family: var(--rk-font-numeral); font-size: 17px; text-align: right; }
+.rk-table td.num { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 17px; text-align: right; }
 .rk-table-wrap { overflow-x: auto; padding: 0 8px 8px 0; }
 .rk-stat { display: flex; flex-direction: column; padding: 14px 16px; background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-1); }
-.rk-stat .rk-stat-value { font-family: var(--rk-font-numeral); font-size: 36px; line-height: 1.2; color: var(--rk-accent); }
+.rk-stat .rk-stat-value { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 36px; line-height: 1.2; color: var(--rk-accent); }
 
 /* ───────────────────────── 13. Website ───────────────────────── */
 /* Profiles, company/org sites, shops, events, blogs. See references/websites.md. */
@@ -324,7 +327,7 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 /* Ink contexts: nav, page head, ink section, CTA band, footer. Text flips to paper; accent brightens to stay ≥4.5:1 */
 .rk-nav, .rk-pagehead, .rk-section-ink, .rk-cta, .rk-footer {
   --rk-text: var(--rk-paper); --rk-text-muted: var(--rk-paper-muted); --rk-edge: var(--rk-paper-muted);
-  --rk-accent: #E2735A; --rk-on-accent: #1C130D; --rk-focus: var(--rk-turmeric); --rk-danger: #E2735A;
+  --rk-accent: #E2735A; --rk-on-accent: #1C130D; --rk-focus: var(--rk-turmeric); --rk-danger: #E2735A; --rk-saved: #6FB3AD;
   background: var(--rk-header); color: var(--rk-paper);
 }
 .rk-nav :where(a:hover), .rk-pagehead :where(a:hover), .rk-section-ink :where(a:hover), .rk-cta :where(a:hover), .rk-footer :where(a:hover) { color: var(--rk-paper); }
@@ -342,7 +345,7 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 
 /* Inner-page header band: title + breadcrumb, followed by a zigzag strip */
 .rk-pagehead { padding: 40px 0 32px; }
-.rk-pagehead h1 { margin: 0; font-family: var(--rk-font-display); font-weight: 400; font-size: clamp(26px, 4vw, 40px); line-height: 1.6; }
+.rk-pagehead h1 { margin: 0; font-weight: 700; font-size: clamp(26px, 4vw, 40px); line-height: 1.6; }
 .rk-breadcrumb { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--rk-paper-muted); }
 .rk-breadcrumb li + li::before { content: "·"; margin-right: 6px; }
 
@@ -351,7 +354,7 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 .rk-hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; }
 .rk-hero-plate { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 40px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2);
 }
-.rk-hero-title { margin: 0; font-family: var(--rk-font-display); font-weight: 400; font-size: clamp(32px, 5vw, 56px); line-height: 1.5; }
+.rk-hero-title { margin: 0; font-weight: 700; font-size: clamp(32px, 5vw, 56px); line-height: 1.5; }
 .rk-hero-title .rk-hl { color: var(--rk-accent); }
 
 /* Sections */
@@ -360,8 +363,8 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 .rk-section-sheet { background: var(--rk-sheet); color: var(--rk-ink); }
 .rk-section-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 36px; }
 .rk-section-head.is-center { align-items: center; text-align: center; }
-.rk-eyebrow { font-family: var(--rk-font-numeral); font-size: 17px; line-height: 1.5; color: var(--rk-accent); }
-.rk-section-title { margin: 0; padding-bottom: 10px; font-family: var(--rk-font-display); font-weight: 400; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.6; border-bottom: 3px double var(--rk-edge); }
+.rk-eyebrow { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 17px; line-height: 1.5; color: var(--rk-accent); }
+.rk-section-title { margin: 0; padding-bottom: 10px; font-weight: 700; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.6; border-bottom: 3px double var(--rk-edge); }
 .rk-section-head.is-center .rk-section-title { border-bottom: 0; padding-bottom: 0; }
 .rk-lead { margin: 0; max-width: 62ch; font-size: 18px; line-height: 1.8; color: var(--rk-text-muted); }
 
@@ -370,9 +373,9 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 
 /* Feature / service card with an ink number block */
 .rk-feature { display: flex; flex-direction: column; gap: 10px; padding: 24px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
-.rk-feature h3 { margin: 0; font-family: var(--rk-font-display); font-weight: 400; font-size: 18px; line-height: 1.7; }
+.rk-feature h3 { margin: 0; font-weight: 700; font-size: 18px; line-height: 1.7; }
 .rk-feature p { margin: 0; color: var(--rk-ink-muted); }
-.rk-feature-num { width: 48px; height: 48px; display: grid; place-items: center; background: var(--rk-ink); color: var(--rk-paper); font-family: var(--rk-font-numeral); font-size: 22px; box-shadow: 3px 3px 0 var(--rk-red); }
+.rk-feature-num { width: 48px; height: 48px; display: grid; place-items: center; background: var(--rk-ink); color: var(--rk-paper); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 22px; box-shadow: 3px 3px 0 var(--rk-red); }
 
 /* Photos: printed-photo treatment (paper border, sepia, fine halftone). Placeholders get a bracketed label on a sheet chip */
 .rk-photo { margin: 0; padding: 10px 10px 8px; background: var(--rk-sheet); border: var(--rk-border); box-shadow: var(--rk-shadow-2); display: flex; flex-direction: column; gap: 8px; color: var(--rk-ink); }
@@ -391,13 +394,13 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 /* Stats band */
 .rk-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
 .rk-stats > * { display: flex; flex-direction: column; padding: 20px 24px; border-left: 2px dashed var(--rk-ink); margin-left: -2px; }
-.rk-stats b { font-family: var(--rk-font-numeral); font-weight: 400; font-size: 44px; line-height: 1.2; color: var(--rk-red); }
+.rk-stats b { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 44px; line-height: 1.2; color: var(--rk-red); }
 .rk-stats span { font-size: 15px; color: var(--rk-ink-muted); }
 
-/* Timeline: a ledger with a Koulen year column */
+/* Timeline: a ledger with a bold tabular year column */
 .rk-timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .rk-timeline > li { display: grid; grid-template-columns: 104px minmax(0, 1fr); }
-.rk-timeline-year { padding: 2px 16px 0 0; border-right: 2px solid var(--rk-accent); color: var(--rk-accent); font-family: var(--rk-font-numeral); font-size: 22px; line-height: 1.4; text-align: right; }
+.rk-timeline-year { padding: 2px 16px 0 0; border-right: 2px solid var(--rk-accent); color: var(--rk-accent); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 22px; line-height: 1.4; text-align: right; }
 .rk-timeline-body { position: relative; padding: 0 0 28px 24px; }
 .rk-timeline-body::before { content: ""; position: absolute; left: -7px; top: 10px; width: 12px; height: 12px; background: var(--rk-accent); transform: rotate(45deg); }
 .rk-timeline-body h3 { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.7; }
@@ -406,7 +409,7 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 /* Testimonial / quote */
 .rk-quote { margin: 0; display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
 .rk-quote blockquote { margin: 0; font-size: 18px; line-height: 1.8; }
-.rk-quote blockquote::before { content: "«"; display: block; font-family: var(--rk-font-display); font-size: 44px; line-height: 1; color: var(--rk-red); }
+.rk-quote blockquote::before { content: "«"; display: block; font-weight: 700; font-size: 44px; line-height: 1; color: var(--rk-red); }
 .rk-quote figcaption { padding-top: 12px; border-top: 1px dashed var(--rk-ink); font-size: 15px; color: var(--rk-ink-muted); }
 .rk-quote figcaption b { color: var(--rk-ink); }
 
@@ -417,7 +420,7 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 
 /* CTA band (ink, framed by zigzag strips in the markup) */
 .rk-cta { padding: 56px 0; text-align: center; }
-.rk-cta h2 { margin: 0 0 8px; font-family: var(--rk-font-display); font-weight: 400; font-size: clamp(22px, 3vw, 32px); line-height: 1.6; }
+.rk-cta h2 { margin: 0 0 8px; font-weight: 700; font-size: clamp(22px, 3vw, 32px); line-height: 1.6; }
 .rk-btn-paper { min-height: var(--rk-touch-primary); padding: 0 20px; background: var(--rk-paper); color: var(--rk-ink); border-color: var(--rk-paper); box-shadow: 3px 3px 0 var(--rk-red); }
 .rk-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .rk-cta .rk-actions { justify-content: center; margin-top: 20px; }
@@ -427,7 +430,7 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 .rk-faq details + details { border-top: 1px dashed var(--rk-ink); }
 .rk-faq summary { min-height: 56px; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-weight: 700; cursor: pointer; list-style: none; }
 .rk-faq summary::-webkit-details-marker { display: none; }
-.rk-faq summary::after { content: "+"; font-family: var(--rk-font-numeral); font-size: 26px; line-height: 1; color: var(--rk-red); }
+.rk-faq summary::after { content: "+"; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 26px; line-height: 1; color: var(--rk-red); }
 .rk-faq details[open] summary::after { content: "−"; }
 .rk-faq details > div { padding: 0 20px 18px; color: var(--rk-ink-muted); }
 
@@ -435,14 +438,14 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 .rk-post { display: flex; flex-direction: column; background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-2); }
 .rk-post .rk-photo-frame { border-width: 0 0 2px; }
 .rk-post-body { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 20px; }
-.rk-post time { font-family: var(--rk-font-numeral); font-size: 16px; color: var(--rk-red); }
-.rk-post h3 { margin: 0; font-family: var(--rk-font-display); font-weight: 400; font-size: 18px; line-height: 1.7; }
+.rk-post time { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 16px; color: var(--rk-red); }
+.rk-post h3 { margin: 0; font-weight: 700; font-size: 18px; line-height: 1.7; }
 .rk-post h3 a { color: var(--rk-ink); text-decoration: none; }
 .rk-post h3 a:hover { text-decoration: underline 3px var(--rk-turmeric); }
 .rk-post p { margin: 0; color: var(--rk-ink-muted); }
 .rk-ticket { display: grid; grid-template-columns: 96px minmax(0, 1fr); background: var(--rk-sheet); color: var(--rk-ink); border: var(--rk-border); box-shadow: var(--rk-shadow-1); }
 .rk-ticket-stub { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px 8px; border-right: 2px dashed var(--rk-ink); text-align: center; }
-.rk-ticket-stub b { font-family: var(--rk-font-numeral); font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--rk-red); }
+.rk-ticket-stub b { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 34px; line-height: 1.1; color: var(--rk-red); }
 .rk-ticket-stub span { font-size: 14px; font-weight: 700; }
 .rk-ticket-body { padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
 
@@ -453,7 +456,7 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 
 /* Long-form text (blog post, about page) */
 .rk-prose { max-width: 70ch; font-size: 17px; line-height: 1.85; }
-.rk-prose h2 { margin: 2em 0 .5em; font-family: var(--rk-font-display); font-weight: 400; font-size: 24px; line-height: 1.6; }
+.rk-prose h2 { margin: 2em 0 .5em; font-weight: 700; font-size: 24px; line-height: 1.6; }
 .rk-prose h3 { margin: 1.6em 0 .4em; font-size: 19px; font-weight: 700; }
 .rk-prose blockquote { margin: 1.5em 0; padding: 12px 0; border-top: 3px double var(--rk-edge); border-bottom: 3px double var(--rk-edge); font-size: 19px; }
 .rk-prose li::marker { color: var(--rk-accent); }
@@ -461,16 +464,16 @@ html:has(.rk-nav) { scroll-padding-top: 80px; }
 /* Footer */
 .rk-footer { padding: 48px 0 24px; border-top: 4px double var(--rk-paper-muted); }
 .rk-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 32px; }
-.rk-footer h2, .rk-footer h3 { margin: 0 0 8px; font-family: var(--rk-font-display); font-weight: 400; font-size: 16px; line-height: 1.8; }
+.rk-footer h2, .rk-footer h3 { margin: 0 0 8px; font-weight: 700; font-size: 16px; line-height: 1.8; }
 .rk-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
 .rk-footer a { color: var(--rk-paper-muted); text-decoration: none; }
 .rk-footer a:hover { color: var(--rk-paper); text-decoration: underline 2px var(--rk-turmeric); }
 .rk-footer-base { margin-top: 36px; padding-top: 16px; border-top: 1px dashed var(--rk-ink-faint); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
-/* English-primary headings: Koulen's condensed Latin reads as a 1970s poster face */
-.rk-display:lang(en), .rk-title:lang(en), .rk-hero-title:lang(en), .rk-section-title:lang(en),
-.rk-pagehead h1:lang(en), .rk-cta h2:lang(en), .rk-feature h3:lang(en), .rk-post h3:lang(en) {
-  font-family: var(--rk-font-numeral); letter-spacing: .01em; line-height: 1.2;
+/* English-primary headings: tighter leading and poster caps for Latin (Khmer keeps its 1.5+ leading) */
+.rk-display:lang(en), .rk-title:lang(en), .rk-feature h3:lang(en), .rk-post h3:lang(en) { line-height: 1.25; letter-spacing: -.01em; }
+.rk-hero-title:lang(en), .rk-section-title:lang(en), .rk-pagehead h1:lang(en), .rk-cta h2:lang(en) {
+  line-height: 1.1; letter-spacing: -.015em; text-transform: uppercase;
 }
 
 @media (max-width: 760px) {
