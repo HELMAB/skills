@@ -10,9 +10,9 @@ Each skill is a self-contained folder in `skills/` that you can install on its o
 ## Install
 
 ```bash
-npx skills add <your-github-user>/skills                         # all skills
-npx skills add <your-github-user>/skills --skill retrokh-design  # one skill
-npx skills add <your-github-user>/skills --list                  # list only
+npx skills add helmab/skills                         # all skills
+npx skills add helmab/skills --skill retrokh-design  # one skill
+npx skills add helmab/skills --list                  # list only
 ```
 
 - **Claude Code (manual):** copy a skill folder to `~/.claude/skills/`, for example `cp -r skills/retrokh-design ~/.claude/skills/`.
