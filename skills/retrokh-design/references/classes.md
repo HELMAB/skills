@@ -25,7 +25,7 @@ Every class in `retrokh.css`, one line each. You don't need to read the CSS itse
 All are decorative: add `aria-hidden="true"`.
 `.rk-zigzag` (14px strip, 10px on phones: under the nav and around the CTA) · `.rk-rays` (hero or splash background) ·
 `.rk-halftone` (one band, or behind sheets) · `.rk-ruled` (44px lines behind lists) · `.rk-ruled-tight` (22px) ·
-`.rk-diamonds` (12px divider; set `width:120px`) · `.rk-hatch` (loading fill).
+`.rk-diamonds` (12px divider; set `width:120px`) · `.rk-hatch` (loading fill) · `.rk-breeze` (48px New Khmer Architecture breeze-block band).
 
 ## Surfaces
 `.rk-sheet` (sheet + 2px border + 8px shadow) · `.rk-card` > `.rk-card-head` (ink strip, `១ · title`) + `.rk-card-body` ·

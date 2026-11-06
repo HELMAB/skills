@@ -1,0 +1,23 @@
+/* RetroKh skin for shadcn/ui and shadcn-vue. Import after the kit's base CSS; keep its components and a11y.
+   Then use border-2 and swap the kit's shadow-* for shadow-rk-1 / shadow-rk-2 (tailwind.v4.css). */
+:root {
+  --background: #EADBB8; --foreground: #2A1D14;
+  --card: #FBF5E6; --card-foreground: #2A1D14;
+  --popover: #FBF5E6; --popover-foreground: #2A1D14;
+  --primary: #2A1D14; --primary-foreground: #F1E4C6;
+  --secondary: #F1E4C6; --secondary-foreground: #2A1D14;
+  --muted: #F1E4C6; --muted-foreground: #5A4632;
+  --accent: #E0A526; --accent-foreground: #2A1D14;
+  --destructive: #9E2F18;
+  --border: #2A1D14; --input: #2A1D14; --ring: #9E2F18;
+  --radius: 0rem;
+}
+.dark {
+  --background: #1C130D; --foreground: #F1E4C6;
+  --card: #E6DCC4; --card-foreground: #2A1D14;
+  --popover: #E6DCC4; --popover-foreground: #2A1D14;
+  --primary: #E2735A; --primary-foreground: #1C130D;
+  --muted: #2A1D14; --muted-foreground: #D9C7A0;
+  --border: #6E5B45; --input: #6E5B45; --ring: #E0A526;
+}
+body { font-family: 'Google Sans', sans-serif; font-synthesis: none; }

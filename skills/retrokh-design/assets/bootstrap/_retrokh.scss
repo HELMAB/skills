@@ -1,0 +1,44 @@
+// RetroKh skin for Bootstrap 5 and Bootstrap 4 (incl. Bootstrap-Vue).
+// Import BEFORE Bootstrap:  @import "retrokh"; @import "bootstrap/scss/bootstrap";
+// Keep the project's brand primary instead of ink only if it reaches 4.5:1 on #F1E4C6.
+
+$font-family-sans-serif: "Google Sans", sans-serif;
+$enable-rounded: false;
+$border-radius: 0; $border-radius-sm: 0; $border-radius-lg: 0; $border-radius-pill: 0; // circles (radios, seals) stay 50%
+$custom-switch-indicator-border-radius: 0; // Bootstrap 4 switch
+$enable-gradients: false;
+$enable-shadows: true;
+
+$body-bg: #EADBB8;
+$body-color: #2A1D14;
+$border-color: #2A1D14;
+$border-width: 2px;
+$primary: #2A1D14;
+$secondary: #5A4632;
+$danger: #9E2F18;
+$warning: #E0A526;
+$info: #245A57;
+$success: #245A57;
+$light: #F1E4C6;
+$dark: #2A1D14;
+$link-color: #9E2F18;
+$headings-font-weight: 700;
+$font-weight-bold: 700;
+
+$card-bg: #FBF5E6;
+$input-bg: #FBF5E6;
+$input-border-color: #2A1D14;
+$dropdown-bg: #FBF5E6;
+$modal-content-bg: #FBF5E6;
+
+$box-shadow-sm: 3px 3px 0 #2A1D14;
+$box-shadow: 8px 8px 0 #2A1D14;
+$box-shadow-lg: 8px 8px 0 #2A1D14;
+$btn-box-shadow: 3px 3px 0 #2A1D14;
+$input-box-shadow: none;
+$input-focus-box-shadow: 0 0 0 3px #9E2F18;
+
+// After Bootstrap is imported, these classes pick up the print details.
+.btn-primary { box-shadow: 3px 3px 0 #9E2F18; }
+.btn:active { transform: translate(3px, 3px); box-shadow: none; }
+.card, .dropdown-menu, .modal-content { box-shadow: 8px 8px 0 #2A1D14; }

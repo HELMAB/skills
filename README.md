@@ -28,7 +28,7 @@ and Khmer typography. It builds in your project's own stack and checks its work 
 
 - **Style:** cream paper, brown ink, red, turmeric and teal spot colours, Google Sans, square corners, hard shadows, halftone and sunburst bands, rubber stamps.
 - **Good for:** personal profiles and CVs, company and NGO sites, shops, events, blogs, landing pages and dashboards.
-- **Works with:** HTML/CSS, Tailwind, Vue 3, Bootstrap and shadcn. Khmer-first, with English and bilingual support.
+- **Works with:** HTML/CSS, Tailwind, Vue 3, Laravel Blade, Bootstrap and shadcn. Khmer-first, with English and bilingual support.
 
 **Try:** *"Build my personal profile website in Khmer retro style"* or *"Make a company profile for my print shop, RetroKh style, Khmer and English."*
 Call it directly with `/retrokh-design`.

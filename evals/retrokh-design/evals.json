@@ -37,7 +37,7 @@
     "files": [],
     "expected_behavior": [
       "Inspects the project first, reads references/stacks.md (not the full CSS) and copies assets/tailwind.v4.css with cp",
-      "Uses Composition API with <script setup lang=\"ts\"> and typed props",
+      "Uses <script setup> and follows the project's JS/TS setting; copies assets/vue and assets/js/khmer.js with cp instead of retyping them",
       "Uses only RetroKh tokens: bg-rk-sheet / border-rk-ink / shadow-rk-2 or shadow-rk-1; no rounded-* (except rounded-full), no shadow-sm..2xl, no font-light/extrabold/black",
       "Shows the price in bold tabular figures with Khmer digits via a toKhmerDigits helper, keeping the underlying value numeric",
       "Renders the 'new' badge as a rotated stamp (ថ្មី) with its meaning also available to screen readers",

@@ -10,19 +10,9 @@ a sheet holding copy over a pattern. An **ink bar or band** is an ink-coloured s
 bordered label. Use these words consistently.
 
 ## Colour
-| Name | Hex | Role | Contrast |
-|---|---|---|---|
-| ground | `#EADBB8` | page background | ink 11.9 |
-| paper | `#F1E4C6` | surfaces; text on ink | ink 13.0 |
-| sheet | `#FBF5E6` | raised blocks | ink 15.0 |
-| paper-muted | `#D9C7A0` | secondary text and outlines on ink | 9.8 on ink |
-| ink | `#2A1D14` | text, borders, shadows, primary, ink bars | |
-| ink-muted | `#5A4632` | secondary text | 7.1 on paper |
-| ink-faint | `#6E5B45` | placeholders, hints | 5.1 on paper |
-| red | `#9E2F18` | accent: current item, brand, error · hover `#6E1F0F` | 5.8 both ways with paper |
-| turmeric | `#E0A526`, `#E9B94A` | highlight and ornament only; ink text on it | ink 7.5 |
-| teal | `#245A57`, halftone `#2F6E6A` | saved, system, offline, success | 6.2 both ways with paper |
-| plum | `#7A3E8E` | alternate accent | 5.7 with paper |
+SKILL.md has the core tokens. The extras are `paper-muted #D9C7A0` (secondary text and outlines on ink, 9.8:1),
+`ink-faint #6E5B45` (placeholders and hints, 5.1:1 on paper) and red hover `#6E1F0F`. Contrast: ink on paper is 13.0, on sheet 15.0
+and on ground 11.9. Red with paper is 5.8 both ways, teal with paper 6.2 both ways, ink on turmeric 7.5, plum with paper 5.7.
 
 - **Accent swap:** `data-accent="teal"|"plum"` changes `--rk-accent` and `--rk-mark` (the nav's current block). With a teal
   accent, offline and system states use an ink treatment, so teal keeps one job per screen.
@@ -57,11 +47,7 @@ Google Sans only; weights 400, 500 and 700 (`font-synthesis:none`).
   `overflow-wrap:anywhere` and add U+200B at word boundaries in long titles you control. Prefer wrapping to ellipsis.
 - Punctuation: ` · ` separates phrases, `។` ends a sentence, `៖` follows a label, and `« »` are quotes.
   Dates: `ថ្ងៃទី ៦ ខែវិច្ឆិកា ឆ្នាំ២០២៦` or `០៦/១១/២០២៦`.
-- Show digits as Khmer at render time and keep the data in ASCII:
-  ```js
-  const KM = '០១២៣៤៥៦៧៨៩';
-  export const toKhmerDigits = (v) => String(v).replace(/[0-9]/g, (d) => KM[d]);
-  ```
+- Show digits as Khmer at render time and keep the data in ASCII: `toKhmerDigits()` in `assets/js/khmer.js` (copy it).
   Codes, URLs and versions keep ASCII digits.
 
 ## Bilingual and English
@@ -84,4 +70,6 @@ muted remedy: **មិនអាចបើកឯកសារបានទេ** · �
 - **Banner** (`.rk-banner`): one tagline per page, on the hero or splash.
 - **Official header**, only for genuinely formal content (exam papers, certificates, civic forms): ព្រះរាជាណាចក្រកម្ពុជា (bold 18)
   / ជាតិ សាសនា ព្រះមហាក្សត្រ / `.rk-diamonds` 120px / a two-column meta grid between `3px double` rules.
+- **Breeze block** (`.rk-breeze`): the pierced screen walls of 1960s New Khmer Architecture. Use it as a 48px band (above the
+  footer, or between sections that aren't patterned) or as a side panel. Never put text on it.
 - **Placeholder text:** 8–10px ink bars at 16% opacity with varied widths under a bold roman numeral (I. II.). Never use lorem ipsum.

@@ -4,7 +4,7 @@
 Usage:
     python3 scripts/check_retrokh.py <file-or-folder> [...]
 
-Scans .html .htm .css .scss .vue .jsx .tsx .svelte .astro files (folders recursively,
+Scans .html .htm .css .scss .vue .jsx .tsx .svelte .astro and .blade.php files (folders recursively,
 skipping node_modules, dist, build, .git). Prints one line per finding:
 
     path:line: ERROR <rule>: <what is wrong> -> <how to fix>
@@ -133,13 +133,17 @@ def check_line(path, n, line, is_html):
         report(path, n, "WARN", "icon", "emoji found -> use inline stroke SVG icons")
 
 
+def is_markup(path):
+    return path.suffix in EXTENSIONS or path.name.endswith(".blade.php")
+
+
 def check_file(path):
     try:
         text = path.read_text(encoding="utf-8")
     except (OSError, UnicodeDecodeError) as exc:
         report(path, 0, "ERROR", "read", f"cannot read file: {exc}")
         return
-    is_html = path.suffix in {".html", ".htm", ".vue", ".svelte", ".astro"}
+    is_html = path.suffix in {".html", ".htm", ".vue", ".svelte", ".astro"} or path.name.endswith(".blade.php")
     for n, line in enumerate(text.splitlines(), 1):
         if "retrokh-ignore" in line:  # escape hatch for a deliberate exception
             continue
@@ -152,7 +156,7 @@ def collect(args):
         p = Path(arg)
         if p.is_dir():
             files += [f for f in sorted(p.rglob("*"))
-                      if f.suffix in EXTENSIONS and f.is_file() and not SKIP_DIRS & set(f.parts)]
+                      if is_markup(f) and f.is_file() and not SKIP_DIRS & set(f.parts)]
         elif p.is_file():
             files.append(p)
         else:
@@ -167,7 +171,7 @@ def main():
         sys.exit(2)
     files = collect(sys.argv[1:])
     if not files:
-        print("check_retrokh: no .html/.css/.vue/... files found", file=sys.stderr)
+        print("check_retrokh: no .html/.css/.vue/.blade.php/... files found", file=sys.stderr)
         sys.exit(2)
     for f in files:
         check_file(f)
