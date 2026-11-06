@@ -3,10 +3,6 @@
 Agent skills for Claude Code, Claude.ai and any agent that supports the [Agent Skills](https://agentskills.io) format.
 Each skill is a self-contained folder in `skills/` that you can install on its own.
 
-| Skill | What it does |
-|---|---|
-| [`retrokh-design`](#retrokh-design) | Builds websites and UIs that look like 1960s–70s Cambodian golden-era print |
-
 ## Install
 
 ```bash
@@ -18,9 +14,13 @@ npx skills add helmab/skills --list                  # list only
 - **Claude Code (manual):** copy a skill folder to `~/.claude/skills/`, for example `cp -r skills/retrokh-design ~/.claude/skills/`.
 - **Claude.ai:** zip a skill folder and upload it under **Settings → Capabilities → Skills**.
 
----
+## Skills
 
-## retrokh-design
+| Skill | What it does |
+|---|---|
+| [`retrokh-design`](#retrokh-design) | Builds websites and UIs that look like 1960s–70s Cambodian golden-era print |
+
+### retrokh-design
 
 RetroKh makes a screen look like a Cambodian print from the 1960s and early '70s:
 - **Look:** cream paper and brown ink, with red, turmeric and teal spot colours. One typeface (Google Sans) set big and bold.
