@@ -22,31 +22,22 @@ npx skills add helmab/skills --list                  # list only
 
 ### retrokh-design
 
-RetroKh makes a screen look like a Cambodian print from the 1960s and early '70s:
-- **Look:** cream paper and brown ink, with red, turmeric and teal spot colours. One typeface (Google Sans) set big and bold.
-- **Print details:** square corners, hard offset shadows, zigzag, halftone and sunburst bands, sepia photos and rubber stamps.
-- **Language:** Khmer-first, with English and bilingual support.
-- **Output:** plain HTML/CSS, Tailwind v3/v4 or Vue 3. It can also restyle existing Bootstrap or shadcn projects.
+Gives a website or app the look of 1960s–70s Cambodian golden-era print: cinema bills, Khmer pop record sleeves, school
+textbooks. The pages are still modern, accessible and fast. You describe the site, and the skill picks the layout, colours
+and Khmer typography. It builds in your project's own stack and checks its work before handing it over.
 
-**Try:**
-- "Build my personal profile website in Khmer retro style"
-- "Make a company profile for my print shop, RetroKh style, Khmer and English"
-- "Create an NGO site that looks like a 1970s Cambodian poster"
-- "Restyle this Vue + Tailwind dashboard as old-school Khmer print"
+- **Style:** cream paper, brown ink, red, turmeric and teal spot colours, Google Sans, square corners, hard shadows, halftone and sunburst bands, rubber stamps.
+- **Good for:** personal profiles and CVs, company and NGO sites, shops, events, blogs, landing pages and dashboards.
+- **Works with:** HTML/CSS, Tailwind, Vue 3, Bootstrap and shadcn. Khmer-first, with English and bilingual support.
 
-It triggers on phrases like *Khmer retro*, *vintage Cambodian*, *old-school Khmer* and *RetroKh*, or you can call it with `/retrokh-design`.
-
-**How it keeps token use low:**
-- `SKILL.md` is about 1.6k tokens and routes each task to the one reference file it needs.
-- The stylesheet and the page templates are installed with `cp`, so they never enter the context.
-- It finishes by running `scripts/check_retrokh.py` (Python 3.8+), fixing what the script reports and re-running until it shows 0 errors.
+**Try:** *"Build my personal profile website in Khmer retro style"* or *"Make a company profile for my print shop, RetroKh style, Khmer and English."*
+Call it directly with `/retrokh-design`.
 
 | paper | sheet | ink | red | turmeric | teal |
 |---|---|---|---|---|---|
 | `#F1E4C6` | `#FBF5E6` | `#2A1D14` | `#9E2F18` | `#E0A526` | `#245A57` |
 
-Every text pair meets WCAG AA. Eval scenarios are in [`evals/retrokh-design/`](evals/retrokh-design/). The style was distilled from
-the *Dobpi* 1970s Khmer Retro design canvas. Google Sans is used under the SIL Open Font License.
+All text colours meet WCAG AA. Evals are in [`evals/retrokh-design/`](evals/retrokh-design/).
 
 ---
 
