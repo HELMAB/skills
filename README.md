@@ -75,5 +75,5 @@ the *Dobpi* 1970s Khmer Retro design canvas. Google Sans is used under the SIL O
 ## License
 
 [MIT](LICENSE) © 2026 Hel Mab. Each skill also declares `license: MIT` in its `SKILL.md`, so the licence still applies when a
-single skill is installed on its own. Bundled fonts are not included: Google Sans loads from Google Fonts under the
+single skill is installed on its own. No fonts are bundled; Google Sans loads from Google Fonts under the
 [SIL Open Font License](https://openfontlicense.org).
