@@ -2,6 +2,15 @@
 
 All values come from the source canvas. The contrast ratios were measured (WCAG 2.x relative luminance).
 
+## Contents
+
+- [Palette and roles](#palette-and-roles)
+- [Dark mode ("night print")](#dark-mode-night-print)
+- [Shape](#shape)
+- [Space and size](#space-and-size)
+- [CSS custom properties](#css-custom-properties)
+- [Design-token JSON (for Figma / Style Dictionary)](#design-token-json-for-figma--style-dictionary)
+
 ## Palette and roles
 
 ### Paper (surfaces)

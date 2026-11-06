@@ -8,6 +8,17 @@ bulletin or a record sleeve. It should not read like a modern template painted b
 All classes below are in `assets/retrokh.css` (section 13). Working pages: `examples/company-profile.html`
 (Khmer, red accent) and `examples/personal-profile.html` (English-primary, teal accent).
 
+## Contents
+
+- [1. Plan before building](#1-plan-before-building)
+- [2. Page skeleton](#2-page-skeleton)
+- [3. Section catalogue](#3-section-catalogue)
+- [4. Recipes by site type](#4-recipes-by-site-type)
+- [5. Signature moves for websites](#5-signature-moves-for-websites)
+- [6. Images](#6-images)
+- [7. Multi-page sites](#7-multi-page-sites)
+- [8. Quality bar for websites](#8-quality-bar-for-websites)
+
 ## 1. Plan before building
 
 1. **Identify the site type** and pick its recipe from section 4.

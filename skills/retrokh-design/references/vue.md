@@ -3,6 +3,15 @@
 Components sit on `assets/retrokh.css` (import it once at the app root) so components stay thin. If the project
 uses Tailwind, swap the `rk-*` classes for the recipes in `tailwind.md`. Keep the props and the a11y the same.
 
+## Contents
+
+- [Shared helper](#shared-helper)
+- [Component set](#component-set)
+- [Vue 3 (`<script setup>`) examples](#vue-3-script-setup-examples)
+- [Website components](#website-components)
+- [shadcn-vue / Reka UI / headless kits](#shadcn-vue--reka-ui--headless-kits)
+- [Behaviour notes](#behaviour-notes)
+
 ## Shared helper
 
 ```ts

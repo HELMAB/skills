@@ -1,0 +1,48 @@
+[
+  {
+    "id": "khmer-company-profile",
+    "skills": ["retrokh-design"],
+    "query": "Build a one-page company profile website for my print shop in Phnom Penh, in Khmer, old-school Khmer style. Sections: services, our history, testimonials, contact form. Save it as index.html.",
+    "files": [],
+    "expected_behavior": [
+      "Reads references/websites.md and follows the company-profile recipe (nav, hero, services, history timeline, testimonials, CTA, contact, footer)",
+      "Writes index.html with <html lang=\"km\"> and Khmer copy throughout",
+      "Loads only Google Sans from Google Fonts (family=Google+Sans:wght@400..700) and uses no other font-family",
+      "Uses square corners and only hard shadows (3px 3px 0 / 8px 8px 0); no blur, no gradients other than the RetroKh patterns",
+      "Puts the hero copy on a sheet plate over the rays pattern, not directly on the pattern; adds a zigzag strip under the nav",
+      "Does not invent statistics, testimonials, client names, phone numbers or addresses: uses bracketed [ … ] placeholders and lists what the owner must supply",
+      "Contact form has visible <label>s, autocomplete attributes and a primary submit button of at least 48px",
+      "Runs scripts/check_retrokh.py on the output, fixes any errors and finishes with 0 errors"
+    ]
+  },
+  {
+    "id": "english-personal-profile",
+    "skills": ["retrokh-design"],
+    "query": "Make me a personal portfolio / CV site in English with a 1970s Cambodian vintage look. I'm a UX designer. Include about, skills, selected work, experience timeline and contact. Use a calmer accent than red.",
+    "files": [],
+    "expected_behavior": [
+      "Sets <html lang=\"en\"> and keeps at least one Khmer touch (wordmark, eyebrow or stamp) marked lang=\"km\"",
+      "Uses the teal (or plum) accent via data-accent and keeps red only where the rules allow",
+      "Follows the personal-profile recipe: portrait or photo frame, hero plate with name and role, skills, work grid, rk-timeline, CTA band, footer",
+      "English section titles render as uppercase poster caps with tight leading (Google Sans 700); body text 400",
+      "All photos and project images use the printed-photo frame (.rk-photo / .rk-photo-frame) or bracketed placeholders; no stock-photo URLs or invented employers",
+      "Nav collapses behind a menu toggle at 390px wide, and the page has no horizontal scroll",
+      "Runs scripts/check_retrokh.py on the output and finishes with 0 errors"
+    ]
+  },
+  {
+    "id": "vue-tailwind-component",
+    "skills": ["retrokh-design"],
+    "query": "In my Vue 3 + Tailwind v4 project, create a ProductCard.vue component in the RetroKh style: image, Khmer product name, price in riel, a 'new' badge and an add-to-cart button. Keep it accessible.",
+    "files": [],
+    "expected_behavior": [
+      "Reads references/vue.md and references/tailwind.md; imports or recommends assets/tailwind.v4.css",
+      "Uses Composition API with <script setup lang=\"ts\"> and typed props",
+      "Uses only RetroKh tokens: bg-rk-sheet / border-rk-ink / shadow-rk-2 or shadow-rk-1; no rounded-* (except rounded-full), no shadow-sm..2xl, no font-light/extrabold/black",
+      "Shows the price in bold tabular figures with Khmer digits via a toKhmerDigits helper, keeping the underlying value numeric",
+      "Renders the 'new' badge as a rotated stamp (ថ្មី) with its meaning also available to screen readers",
+      "The add-to-cart control is a real <button> at least 44px tall with a hard shadow and a press state; the image has meaningful alt text",
+      "Runs scripts/check_retrokh.py on ProductCard.vue and finishes with 0 errors"
+    ]
+  }
+]

@@ -13,6 +13,16 @@ on a pattern. Put a paper or sheet block between them.
 | Diamonds | `.rk-diamonds` | A 120×12px centred divider under official headers and section titles | full-width or tall |
 | Hatch | `.rk-hatch` | The fill of an indeterminate or loading progress bar | large areas |
 
+## Contents
+
+- [CSS](#css)
+- [Seal (round brand mark)](#seal-round-brand-mark)
+- [Stamps](#stamps)
+- [Banner (rotated ribbon)](#banner-rotated-ribbon)
+- [Official-document header](#official-document-header)
+- [Placeholder text bars](#placeholder-text-bars)
+- [Optional extensions (keep the same restraint)](#optional-extensions-keep-the-same-restraint)
+
 ## CSS
 
 ```css

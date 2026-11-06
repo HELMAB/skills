@@ -45,8 +45,11 @@ skills/
 └── <skill-name>/          # one folder per skill (this is what gets installed)
     ├── SKILL.md           # required: frontmatter (name, description) + instructions
     ├── references/        # optional: docs the agent reads on demand
+    ├── scripts/           # optional: code the agent runs (output only enters context)
     ├── assets/            # optional: files the agent copies into projects
     └── examples/          # optional: working reference output
+evals/
+└── <skill-name>/          # test scenarios + how to run them (not installed)
 docs/
 └── <skill-name>/          # screenshots for this README (not installed)
 ```
@@ -97,6 +100,8 @@ skills/retrokh-design/
 │   ├── layouts.md              # app shell, phone, splash, dashboard, form, style tile
 │   ├── tailwind.md             # v3 preset + v4 @theme recipes
 │   └── vue.md                  # Vue 3 components incl. RkSiteNav / RkSection, khmer digit helper
+├── scripts/
+│   └── check_retrokh.py        # linter for the run → fix → re-run loop (fonts, corners, shadows, lang…)
 ├── assets/
 │   ├── retrokh.css             # drop-in tokens, patterns, app + website components (light + dark)
 │   ├── tailwind.preset.js      # Tailwind v3
@@ -114,6 +119,11 @@ skills/retrokh-design/
 
 Every text pair meets WCAG AA (ink on paper 12.9:1, red on paper 5.8:1, teal on paper 6.2:1).
 
+### Evals
+
+Three scenarios (a Khmer company site, an English portfolio and a Vue + Tailwind component) are in
+[`evals/retrokh-design/`](evals/retrokh-design/), with run and grading instructions.
+
 ### Credits
 
 Distilled from the *Dobpi* 1970s Khmer Retro design canvas. The only typeface is Google Sans (Khmer + Latin),
@@ -128,9 +138,12 @@ from Google Fonts under the SIL Open Font License.
 2. Put long docs in `references/`, reusable files in `assets/` and working output in `examples/`. Keep `SKILL.md` short
    and point to those files from it.
 3. Put README screenshots in `docs/<skill-name>/`, not inside the skill folder, so they aren't installed.
-4. Add a row to the [Skills](#skills) table and a `## <skill-name>` section below it.
-5. Check the repo still lists every skill:
+4. Add at least three scenarios to `evals/<skill-name>/evals.json` and run them with Haiku, Sonnet and Opus
+   (see `evals/retrokh-design/README.md` for the format and the run commands).
+5. Add a row to the [Skills](#skills) table and a `## <skill-name>` section below it.
+6. Validate and check the repo still lists every skill:
    ```bash
+   uvx --from skills-ref agentskills validate skills/<skill-name>
    npx skills add . --list
    ```
 

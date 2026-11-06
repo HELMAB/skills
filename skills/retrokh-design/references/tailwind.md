@@ -1,5 +1,12 @@
 # Tailwind CSS
 
+## Contents
+
+- [Setup](#setup)
+- [Class recipes](#class-recipes)
+- [Rules for Tailwind output](#rules-for-tailwind-output)
+- [Website sections](#website-sections)
+
 ## Setup
 
 - **v4**: copy `assets/tailwind.v4.css` into the project (e.g. `src/styles/retrokh.css`) and add

@@ -1,9 +1,9 @@
 ---
 name: retrokh-design
-description: Design and build websites and apps in the "RetroKh" style, a Khmer old-school, 1970s print look (cream paper, dark-brown ink, red/turmeric/teal spot colours, a single typeface (Google Sans, Khmer + Latin) set big and bold, square corners, hard offset shadows, zigzag/halftone/sunburst patterns, sepia printed photos, rubber-stamp labels). Use for any site or UI that should feel Khmer retro, vintage Cambodian, 60s/70s Khmer, golden-era or old-school Khmer, including personal profiles, CVs and portfolios, company profiles, organisation, NGO and school sites, restaurants and shops, events and weddings, blogs and news, landing pages, dashboards and app screens. Also use when the user names RetroKh or wants a Khmer-language (km) site to look nostalgic or print-like. Covers HTML/CSS, Tailwind and Vue; Khmer-first with English and bilingual support.
+description: Designs and builds websites and apps in the "RetroKh" style, a Khmer old-school, 1970s print look (cream paper, dark-brown ink, red/turmeric/teal spot colours, a single typeface (Google Sans, Khmer + Latin) set big and bold, square corners, hard offset shadows, zigzag/halftone/sunburst patterns, sepia printed photos, rubber-stamp labels). Use it for any site or UI that should feel Khmer retro, vintage Cambodian, 60s/70s Khmer, golden-era or old-school Khmer, including personal profiles, CVs and portfolios, company profiles, organisation, NGO and school sites, restaurants and shops, events and weddings, blogs and news, landing pages, dashboards and app screens. Also use it when the user names RetroKh or wants a Khmer-language (km) site to look nostalgic or print-like. Covers HTML/CSS, Tailwind and Vue; Khmer-first with English and bilingual support.
 license: MIT
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
   source: "Distilled from the Dobpi 1970s Khmer Retro design canvas"
 ---
 
@@ -56,7 +56,12 @@ second plate slightly out of register.
    - `references/components.md` has the anatomy and exact specs of every component, plus states (loading, error, empty, offline, toast).
    - `references/layouts.md` has app skeletons (app shell, sidebar ledger, reader, splash, dashboard, form) and responsive rules.
 4. **Build** using the semantic tokens (`--rk-surface`, `--rk-text`, `--rk-accent`…) rather than raw hex values, so dark mode and accent swaps work.
-5. **Check the result against the checklist below** before you hand it over. Working pages to copy from:
+5. **Run the checker, fix, repeat.** Run `python3 scripts/check_retrokh.py <output files or folder>` (Python 3.8+,
+   standard library only). It reports wrong fonts or weights, rounded corners, blurred shadows, pure white or black
+   surfaces, a missing `lang` and emoji icons, each with a line number and the fix. Fix every ERROR and run it again.
+   **Only continue when it reports 0 errors.** For a deliberate exception, add a `retrokh-ignore` comment on that line.
+6. **Then walk the delivery checklist below** for what the script can't judge (colour roles, contrast of any new
+   colours, copy, layout at 390px). Fix and re-check until every item passes. Working pages to copy from:
    `examples/company-profile.html` (Khmer company site) and `examples/personal-profile.html` (English-primary
    profile/CV).
 
@@ -130,6 +135,7 @@ Apps and shared:
 
 ## Delivery checklist
 
+- [ ] `scripts/check_retrokh.py` reports 0 errors.
 - [ ] Only Google Sans is loaded (`wght@400..700`) and used everywhere; `lang="km"`.
 - [ ] Only token colours are used, and each colour is in its single role. Text pairs ≥4.5:1 (see the tokens table).
 - [ ] `border-radius: 0`; only the two shadow levels; no blur anywhere.

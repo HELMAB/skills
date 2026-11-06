@@ -7,6 +7,24 @@ Class names refer to `assets/retrokh.css`. Each spec states the exact values so 
 Every control is a real element (`<button>`, `<a href>`, `<input>` with a `<label>`), and every icon-only control
 has a Khmer `aria-label`.
 
+## Contents
+
+- [Icons](#icons)
+- [Buttons](#buttons)
+- [Segmented control (pager, zoom)](#segmented-control-pager-zoom)
+- [Inputs](#inputs)
+- [Tabs](#tabs)
+- [Header (app bar)](#header-app-bar)
+- [Sidebar and ledger navigation](#sidebar-and-ledger-navigation)
+- [Drawer (phone)](#drawer-phone)
+- [Sheets and cards](#sheets-and-cards)
+- [Lists, tables, menus](#lists-tables-menus)
+- [Chips and tags](#chips-and-tags)
+- [Feedback states](#feedback-states)
+- [Dialog](#dialog)
+- [Compare / split view](#compare--split-view)
+- [Bottom navigation (phone reader)](#bottom-navigation-phone-reader)
+
 ## Icons
 
 Use inline stroke SVG on a 24×24 viewBox with `fill="none" stroke="currentColor" stroke-width="2.4"` (2.6 for chevrons and
