@@ -48,7 +48,7 @@ skills/retrokh-design/
 │   ├── components.md           # buttons, inputs, tabs, header, ledger nav, drawer, cards, tables, states
 │   ├── layouts.md              # app shell, phone, splash, dashboard, form, landing, style tile
 │   ├── tailwind.md             # v3 preset + v4 @theme recipes
-│   └── vue-react.md            # component set, React + Vue examples, khmer digit helper
+│   └── vue.md                  # Vue 3 component set + SFC examples, khmer digit helper
 ├── assets/
 │   ├── retrokh.css             # drop-in tokens, patterns, components (light + dark)
 │   ├── tailwind.preset.js      # Tailwind v3

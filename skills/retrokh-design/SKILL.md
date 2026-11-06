@@ -1,6 +1,6 @@
 ---
 name: retrokh-design
-description: Design and build UI in the "RetroKh" style, a Khmer old-school, 1970s print look (cream paper, dark-brown ink, spot red/turmeric/teal, Moul and Koulen Khmer display type, square corners, hard offset shadows, zigzag/halftone/sunburst patterns, rubber-stamp labels). Use whenever the user asks for Khmer retro, Cambodian vintage, 60s/70s Khmer, "old school Khmer", golden-era, letterpress or RetroKh styling, or wants a Khmer-language (km) app, page, dashboard, poster or component to feel nostalgic or print-like. Covers HTML/CSS, Tailwind, Vue and React, with Khmer-first bilingual typography rules.
+description: Design and build UI in the "RetroKh" style, a Khmer old-school, 1970s print look (cream paper, dark-brown ink, spot red/turmeric/teal, Moul and Koulen Khmer display type, square corners, hard offset shadows, zigzag/halftone/sunburst patterns, rubber-stamp labels). Use whenever the user asks for Khmer retro, Cambodian vintage, 60s/70s Khmer, "old school Khmer", golden-era, letterpress or RetroKh styling, or wants a Khmer-language (km) app, page, dashboard, poster or component to feel nostalgic or print-like. Covers HTML/CSS, Tailwind and Vue, with Khmer-first bilingual typography rules.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -40,7 +40,7 @@ second plate slightly out of register.
      Fonts link from its header, then wrap the app in `class="rk"` and set `lang="km"`.
    - Tailwind: see `references/tailwind.md` and `assets/tailwind.preset.js` (v3) or
      `assets/tailwind.v4.css` (v4).
-   - Vue or React: see `references/vue-react.md`. It covers the components and the
+   - Vue: see `references/vue.md`. It covers the components and the
      `toKhmerDigits` helper.
 2. **Read the reference for the task.**
    - `references/tokens.md` has the full palette, roles, contrast ratios, dark mode and accent swaps.
