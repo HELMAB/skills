@@ -18,13 +18,6 @@ npx skills add helmab/skills --list                  # list only
 - **Claude Code (manual):** copy a skill folder to `~/.claude/skills/`, for example `cp -r skills/retrokh-design ~/.claude/skills/`.
 - **Claude.ai:** zip a skill folder and upload it under **Settings → Capabilities → Skills**.
 
-## Layout
-
-```
-skills/<name>/   SKILL.md + references/ scripts/ assets/   ← installed
-evals/<name>/    test scenarios and how to run them        ← not installed
-```
-
 ---
 
 ## retrokh-design
