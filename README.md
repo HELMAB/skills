@@ -46,8 +46,7 @@ skills/
     ├── SKILL.md           # required: frontmatter (name, description) + instructions
     ├── references/        # optional: docs the agent reads on demand
     ├── scripts/           # optional: code the agent runs (output only enters context)
-    ├── assets/            # optional: files the agent copies into projects
-    └── examples/          # optional: working reference output
+    └── assets/            # optional: files the agent copies into projects (cp costs no tokens)
 evals/
 └── <skill-name>/          # test scenarios + how to run them (not installed)
 docs/
@@ -90,25 +89,21 @@ The skill triggers on phrases such as *Khmer retro*, *old school Khmer*, *Cambod
 
 ```
 skills/retrokh-design/
-├── SKILL.md                    # laws, workflow, token table, signature moves, checklist
-├── references/
-│   ├── tokens.md               # palette + roles + contrast, dark mode, shape, space, token JSON
-│   ├── typography.md           # Google Sans roles (weight/size/case), Khmer script rules, numerals, voice
-│   ├── patterns.md             # zigzag, halftone, rays, ruled, diamonds, seal, stamps, official header
-│   ├── components.md           # buttons, inputs, tabs, header, ledger nav, drawer, cards, tables, states
-│   ├── websites.md             # site planning, section catalogue, recipes per site type, images
-│   ├── layouts.md              # app shell, phone, splash, dashboard, form, style tile
-│   ├── tailwind.md             # v3 preset + v4 @theme recipes
-│   └── vue.md                  # Vue 3 components incl. RkSiteNav / RkSection, khmer digit helper
+├── SKILL.md                    # era, 7 rules, workflow (inspect → defaults → copy → read on demand → verify), tokens
+├── references/                 # each read only when the task needs it
+│   ├── classes.md              # every retrokh.css class in one line + skeletons, icons, states
+│   ├── websites.md             # site plan, rhythm, recipes per site type, images, page must-haves
+│   ├── style.md                # colour + contrast, dark mode, shape, type, Khmer text, bilingual, voice, ornament
+│   └── stacks.md               # Tailwind v4/v3, Vue 3 SFCs, shadcn, Bootstrap 5/4 adapters
 ├── scripts/
 │   └── check_retrokh.py        # linter for the run → fix → re-run loop (fonts, corners, shadows, lang…)
-├── assets/
-│   ├── retrokh.css             # drop-in tokens, patterns, app + website components (light + dark)
-│   ├── tailwind.preset.js      # Tailwind v3
-│   └── tailwind.v4.css         # Tailwind v4
-└── examples/
-    ├── company-profile.html    # Khmer company site (nav, hero, services, timeline, news, FAQ, contact)
-    └── personal-profile.html   # English-primary profile / CV
+└── assets/                     # copied into projects with cp, never read into context
+    ├── retrokh.css             # tokens, patterns, app + website components (light + dark)
+    ├── tailwind.preset.js      # Tailwind v3
+    ├── tailwind.v4.css         # Tailwind v4
+    └── templates/
+        ├── company-profile.html    # Khmer company site: copy next to retrokh.css, then edit
+        └── personal-profile.html   # English-primary profile / CV
 ```
 
 ### Palette
@@ -135,8 +130,8 @@ from Google Fonts under the SIL Open Font License.
 
 1. Create `skills/<skill-name>/SKILL.md`. The folder name must match the `name:` in its frontmatter (lowercase,
    hyphens). Write a `description:` that says what the skill does **and** when it should trigger (max 1024 characters).
-2. Put long docs in `references/`, reusable files in `assets/` and working output in `examples/`. Keep `SKILL.md` short
-   and point to those files from it.
+2. Keep `SKILL.md` short (the guide's limit is 500 lines; aim for far less) and put details in `references/`, one level deep,
+   each read only when needed. Put files the agent copies into projects in `assets/`, and tell it to `cp` them, not Read them.
 3. Put README screenshots in `docs/<skill-name>/`, not inside the skill folder, so they aren't installed.
 4. Add at least three scenarios to `evals/<skill-name>/evals.json` and run them with Haiku, Sonnet and Opus
    (see `evals/retrokh-design/README.md` for the format and the run commands).

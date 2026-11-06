@@ -1,151 +1,91 @@
 ---
 name: retrokh-design
-description: Designs and builds websites and apps in the "RetroKh" style, a Khmer old-school, 1970s print look (cream paper, dark-brown ink, red/turmeric/teal spot colours, a single typeface (Google Sans, Khmer + Latin) set big and bold, square corners, hard offset shadows, zigzag/halftone/sunburst patterns, sepia printed photos, rubber-stamp labels). Use it for any site or UI that should feel Khmer retro, vintage Cambodian, 60s/70s Khmer, golden-era or old-school Khmer, including personal profiles, CVs and portfolios, company profiles, organisation, NGO and school sites, restaurants and shops, events and weddings, blogs and news, landing pages, dashboards and app screens. Also use it when the user names RetroKh or wants a Khmer-language (km) site to look nostalgic or print-like. Covers HTML/CSS, Tailwind and Vue; Khmer-first with English and bilingual support.
+description: Designs and builds websites and UIs in RetroKh, the look of 1960s–70s Cambodian golden-era print (cream paper, brown ink, red/turmeric/teal spot colours, Google Sans, square corners, hard offset shadows, zigzag/halftone/sunburst bands, sepia photos, rubber stamps). Use it when the user wants a Khmer retro, vintage Cambodian or old-school Khmer site, page, component or restyle, or names RetroKh. Khmer-first; HTML/CSS, Tailwind, Vue, Bootstrap.
 license: MIT
 metadata:
-  version: "1.3.0"
-  source: "Distilled from the Dobpi 1970s Khmer Retro design canvas"
+  version: "2.0.0"
 ---
 
-# RetroKh: Khmer 1970s print design system
+# RetroKh
 
-RetroKh makes a website or app look like a 1970s Cambodian printed piece: a cinema bill, a school
-prospectus, a ministry bulletin, a shop sign or a record sleeve. It suits any kind of site: a personal
-profile, a company or organisation site, a shop, an event page, a blog or an app screen. It uses cream stock, dark-brown ink and
-three spot colours laid down flat. Everything is **printed, not rendered**: no blur, no
-rounded corners, no gradients except the printed patterns, and shadows that look like a
-second plate slightly out of register.
+Make the screen look like a Cambodian print from the 1960s and early '70s, pressed on cream stock with two or three flat inks.
 
-## The six laws
+## The era
 
-1. **Every colour has exactly one job.** Paper is for surfaces, ink is for text and primary
-   actions, red marks *where you are*, turmeric is for highlight and ornament, and teal is
-   for system, offline and saved states. Never use a spot colour just for decoration on a control.
-2. **There are two shadow levels and no blur.** Controls get `3px 3px 0`. Sheets, panels and
-   menus get `8px 8px 0`. Shadows are ink colour (black in dark mode). The primary button's
-   shadow is red.
-3. **Corners are square, everywhere.** `border-radius: 0`. The only round things are radio
-   buttons, seals and logos.
-4. **One typeface: Google Sans, nothing else.** Roles come from weight, size and case: display 700, numerals 700
-   with `tabular-nums`, body 400, and Latin caps labels 500 with `.18em` tracking. Use only weights 400, 500 and 700.
-   The retro character comes from colour, patterns, shadows, stamps and the `.rk-misprint` hero shadow, not from fonts.
-5. **Khmer needs vertical room.** Keep line-height between 1.6 and 1.8, never clip Khmer text
-   with a fixed height plus `overflow:hidden`, and never letter-space Khmer.
-6. **Ornament is a band, never a backdrop under text.** Use the zigzag strip under the header,
-   sunburst rays on a splash, halftone behind the document reader and diamonds as a divider.
-   Patterns are always `aria-hidden`, and body text never sits directly on a pattern.
+- **Evoke:** cinema bills, Khmer pop record sleeves, school textbooks and exam papers, ministry bulletins, shop
+  signs, the crisp geometry of New Khmer Architecture. Show flat spot inks, halftone photos, slight misregistration,
+  rubber stamps, ruled ledgers, Khmer numerals and ornament bands.
+- **Never:** modern gloss (gradients, blur, glass, rounded corners, soft shadows), emoji, Western disco or psychedelic
+  70s clichés, Thai or Lao motifs passed off as Khmer, the flag, royal arms or Angkor silhouettes as decoration,
+  and any war or 1975–79 imagery.
+
+## Rules
+
+1. **One job per colour.** Paper is for surfaces. Ink is for text and primary actions. Red marks *you are here* and the brand.
+   Turmeric is only for highlights and ornament. Teal is for system, saved and success states.
+2. **Hard shadows, no blur.** Controls get `3px 3px 0`; sheets and menus get `8px 8px 0`. The primary button's shadow is red.
+3. **Square corners.** `50%` is only for radios, seals and portraits.
+4. **Google Sans only, weights 400, 500 and 700.** Headings and numerals are 700 (numerals `tabular-nums`), body text is 400,
+   and Latin caps labels are 500 with `.18em` tracking.
+5. **Khmer needs room.** Line-height ≥1.5 for headings and ≥1.7 for body. No letter-spacing or caps on Khmer, and never
+   clip it. Show Khmer digits with `toKhmerDigits()` at render time; keep the data in ASCII.
+6. **Patterns are `aria-hidden` bands.** Copy sits on a sheet or plate, never directly on a pattern. Per page: rays only in
+   the hero, at most one halftone band and one ink band.
+7. **Never invent facts** (stats, quotes, clients, prices, contacts). Write `[ … ]` placeholders in the page's language
+   and list them for the owner.
 
 ## Workflow
 
-1. **Choose the stack and load the tokens.**
-   - Plain HTML, or any framework that takes CSS: copy `assets/retrokh.css`, add the Google
-     Fonts link from its header, then wrap the app in `class="rk"` and set `lang="km"`.
-   - Tailwind: see `references/tailwind.md` and `assets/tailwind.preset.js` (v3) or
-     `assets/tailwind.v4.css` (v4).
-   - Vue: see `references/vue.md`. It covers the components and the
-     `toKhmerDigits` helper.
-2. **Identify what you are building.**
-   - **A website** (profile, CV, portfolio, company, organisation, NGO, school, shop, restaurant, event,
-     blog, landing page): read `references/websites.md` first. It has the plan, page skeleton, section
-     catalogue, a recipe per site type, the image treatment and a quality bar.
-   - **An app screen or dashboard**: read `references/layouts.md`.
-3. **Read the references the task needs.**
-   - `references/tokens.md` has the full palette, roles, contrast ratios, dark mode and accent swaps.
-   - `references/typography.md` covers Khmer and Latin pairing, the size scale, numerals, line breaking and copy tone.
-   - `references/patterns.md` covers the zigzag, halftone, rays, ruled paper, diamonds, seals and stamps, and where each one goes.
-   - `references/components.md` has the anatomy and exact specs of every component, plus states (loading, error, empty, offline, toast).
-   - `references/layouts.md` has app skeletons (app shell, sidebar ledger, reader, splash, dashboard, form) and responsive rules.
-4. **Build** using the semantic tokens (`--rk-surface`, `--rk-text`, `--rk-accent`…) rather than raw hex values, so dark mode and accent swaps work.
-5. **Run the checker, fix, repeat.** Run `python3 scripts/check_retrokh.py <output files or folder>` (Python 3.8+,
-   standard library only). It reports wrong fonts or weights, rounded corners, blurred shadows, pure white or black
-   surfaces, a missing `lang` and emoji icons, each with a line number and the fix. Fix every ERROR and run it again.
-   **Only continue when it reports 0 errors.** For a deliberate exception, add a `retrokh-ignore` comment on that line.
-6. **Then walk the delivery checklist below** for what the script can't judge (colour roles, contrast of any new
-   colours, copy, layout at 390px). Fix and re-check until every item passes. Working pages to copy from:
-   `examples/company-profile.html` (Khmer company site) and `examples/personal-profile.html` (English-primary
-   profile/CV).
+1. **Inspect the project before writing** (≤5 reads): `package.json`/`composer.json`, the framework, the CSS approach
+   (Tailwind, Sass, Bootstrap, shadcn, plain CSS), existing tokens and components, i18n, folder layout and lint config.
+   Follow its conventions and add no dependency it doesn't need. If its brand colour reaches 4.5:1 on paper, use it as
+   `--rk-accent`; otherwise ask. With no project, build standalone HTML.
+2. **Choose defaults without asking**, and state them in one line:
+   - Language: `km`, or `en` if the user writes in English or asks for it.
+   - Accent: red for commerce and culture, teal (`data-accent="teal"`) for professional, NGO and education, plum for arts and events.
+   - Signature moves: pick 2–4 for the whole site.
+3. **Install by copying, not reading.** `retrokh.css` is about 9k tokens, so never Read it; `references/classes.md` lists
+   every class it defines.
 
-## Core tokens (quick reference)
+   | Stack | Install |
+   |---|---|
+   | HTML, React/JSX, Blade, Svelte, Astro | `cp assets/retrokh.css` into the project's styles; use `class`/`className` |
+   | Tailwind v4 / v3 | `cp assets/tailwind.v4.css` / `assets/tailwind.preset.js` (see stacks.md) |
+   | Vue 3 | either of the above + SFC patterns in stacks.md |
+   | Bootstrap, shadcn, other kits | restyle through the kit's variables (stacks.md); never replace the kit |
+
+4. **Read only what the task needs.**
+
+   | Task | Read |
+   |---|---|
+   | Which class or component to use, states, icons | `references/classes.md` |
+   | A website: profile, company, NGO, school, shop, event, blog, landing page | `references/websites.md` |
+   | Colours, dark mode, contrast, type scale, Khmer text, patterns, copy | `references/style.md` |
+   | Tailwind, Vue, Bootstrap, shadcn | `references/stacks.md` |
+
+   For a whole page, start from a template instead of a blank file. Copy `assets/templates/company-profile.html`
+   (Khmer) or `personal-profile.html` (English) into the same folder as `retrokh.css`, then edit the content in place.
+5. **Build** with semantic tokens (`--rk-surface`, `--rk-text`, `--rk-accent`…), real `<button>`, `<a href>` and
+   `<label>` elements, Khmer `aria-label`s, 44px hit targets (48px for primary) and a visible focus outline.
+6. **Verify in a loop.** Run `python3 scripts/check_retrokh.py <files or folder>`, fix every ERROR, and re-run until it
+   reports 0 errors. Add a `retrokh-ignore` comment only for a deliberate exception. Then check what the script can't:
+   colour roles, the layout at 390px (nav collapses, no horizontal scroll) and dark mode. End with the files changed,
+   the defaults you chose and the placeholders the owner must fill.
+
+## Tokens
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| ground | `#EADBB8` | `#1C130D` | page background behind panels |
-| paper | `#F1E4C6` | `#2A1D14` | default surface; text on ink |
-| sheet | `#FBF5E6` | `#E6DCC4` | raised sheet, inputs, cards (stays light) |
-| ink | `#2A1D14` | `#F1E4C6` | text, primary action, header bar |
+| ground | `#EADBB8` | `#1C130D` | page background |
+| paper | `#F1E4C6` | `#2A1D14` | surfaces; text on ink |
+| sheet | `#FBF5E6` | `#E6DCC4` | raised cards, inputs, plates (stay light) |
+| ink | `#2A1D14` | `#F1E4C6` | text, borders, shadows, primary, ink bars |
 | ink-muted | `#5A4632` | `#D9C7A0` | secondary text (7.1:1) |
-| ink-faint | `#6E5B45` | (edge) | placeholders, hints (5.1:1); dark-mode borders |
-| paper-muted | `#D9C7A0` | | secondary text and outlines on ink |
-| red (accent) | `#9E2F18` | `#E2735A` | current item, brand mark, error (5.8:1) |
-| turmeric | `#E0A526` (+`#E9B94A`) | same | `<mark>`, zigzag, rays (ink text on it) |
-| teal | `#245A57` (halftone `#2F6E6A`) | same | offline, saved, system, success |
-| plum | `#7A3E8E` | | optional alternate accent |
+| red | `#9E2F18` | `#E2735A` | accent: current item, brand, error (5.8:1) |
+| turmeric | `#E0A526` / `#E9B94A` | same | `<mark>`, zigzag, rays; ink text on it |
+| teal | `#245A57` | `#6FB3AD` | saved, system, offline; halftone base `#2F6E6A` |
+| plum | `#7A3E8E` | | alternate accent |
 
-Font: **Google Sans only** (it covers Khmer and Latin). Display 700 · numerals 700 + `tabular-nums` · body 400 · Latin labels 500 caps.
-Google Fonts: `https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap`.
-
-Sizes: 44px minimum hit target, 48px for primary actions. Spacing runs on a 4px base: 4·8·12·16·20·24·32·40·56.
-Borders are `2px solid` ink. Use `4px double` for structural edges (the sidebar edge, the outer frame) and `3px double`
-for title rules. Use `2px dashed` for secondary containers and dividers inside segmented controls, and `1px dashed`
-between list or menu rows.
-
-## Signature moves (use 2–4 per site or screen, not all)
-
-Websites:
-- A **rays hero with a printed plate**: the copy sits on a sheet with an `8px` shadow over a sunburst, never on the rays.
-- **Printed photos**: sepia, a fine halftone, a paper border, the hard shadow, and one tilted print per page.
-- **Numbered section heads** (`០១ · សេវាកម្ម`) over a double rule, and a **ledger timeline** with bold tabular years.
-- An **ink CTA band** framed by zigzag strips, and an ink footer with a `4px double` top edge.
-
-Apps and shared:
-- An **ink header bar** with a **14px zigzag strip** (red/turmeric) directly under it.
-- A **ledger rail**: an 84px column of bold tabular numerals with an accent right rule, on 44px ruled paper.
-- The **current item** as a filled accent tab with a `3px 3px 0` ink shadow. It is the only red block on the screen.
-- **Rubber stamps**: bold text in a 2px box rotated −5°, teal for "saved" (បានទាញយក) and red for "failed" (បរាជ័យ).
-- A **printed sheet** in `#FBF5E6` with a 2px ink border and an `8px 8px 0` shadow, sitting on a halftone teal backdrop.
-- A **splash** with a sunburst-rays background, a giant bold title with a `3px 3px 0` paper text-shadow and an ink banner rotated −2°.
-- An **official-document header** (only for formal or civic content): ព្រះរាជាណាចក្រកម្ពុជា / ជាតិ សាសនា ព្រះមហាក្សត្រ,
-  then a diamond divider and a double-ruled meta grid.
-- A **segmented control** (pager, zoom) in one bordered box with 2px dashed inner dividers and bold tabular counters such as `១៣៣ / ១៣៨`.
-
-## Khmer-first bilingual rules
-
-- Set `lang="km"` on the root and `lang="en"` on English runs. Use Khmer copy by default. When the user wants an
-  English or bilingual site, set `lang="en"` on the root: Latin headings switch to tight poster caps automatically, and
-  the look stays the same (see `typography.md`).
-- Use Khmer numerals (០១២៣៤៥៦៧៨៩) in Khmer UI, especially counters, years and page numbers. Convert at render
-  time with `toKhmerDigits()`. Never store them; keep data in ASCII digits.
-- Latin brand words and codes (DOBPI, URLs, hex values) go in `.rk-latin`: 12px, weight 500, uppercase, `letter-spacing: .18em`, muted.
-- Never invent facts on a website (stats, testimonials, clients, prices, dates, contacts). Use `[ … ]` placeholders
-  in the page's language and list what the owner must supply.
-- Use the polite, concise government/school register: «សូមពិនិត្យអ៊ីនធឺណិត ហើយព្យាយាមម្ដងទៀត». Labels are verbs or nouns, not sentences.
-- Write a separate Khmer `aria-label` for every icon-only button (បិទ, ទាញយក, ស្វែងរក, ម៉ឺនុយ…).
-
-## Anti-patterns (reject these)
-
-- Rounded corners, pill buttons, soft or blurred shadows, glassmorphism, neumorphism.
-- Gradient washes, pure `#FFFFFF` or `#000000` surfaces (black is allowed only as the dark-mode shadow), emoji as icons.
-- Any font other than Google Sans (serif, mono, display or Khmer-specific families). Weights above 700; set `font-synthesis: none`.
-- Thin or light display text: headings are always 700. Body text at 700 except for emphasis, buttons and the current item.
-- `letter-spacing` or `text-transform` on Khmer. Line-height below 1.5. Truncating Khmer titles mid-cluster.
-- Turmeric or teal used as a text colour on paper for body copy (turmeric fails contrast; teal is reserved for status).
-- More than one red "current" block on a screen. Patterns behind paragraphs.
-- Decorating with the national flag, the royal coat of arms or Angkor Wat silhouettes. These are national symbols, not
-  ornaments. The only exception is the official-document header pattern, used for genuinely formal content.
-
-## Delivery checklist
-
-- [ ] `scripts/check_retrokh.py` reports 0 errors.
-- [ ] Only Google Sans is loaded (`wght@400..700`) and used everywhere; `lang="km"`.
-- [ ] Only token colours are used, and each colour is in its single role. Text pairs ≥4.5:1 (see the tokens table).
-- [ ] `border-radius: 0`; only the two shadow levels; no blur anywhere.
-- [ ] Headings 700; numerals 700 tabular; body 400; Khmer line-height ≥1.5 for headings and ≥1.6 for body; no clipped Khmer.
-- [ ] Hit targets ≥44px (48px primary); real `<button>`, `<a href>` and `<label>`; Khmer `aria-label` on icon buttons.
-- [ ] Visible focus: a 3px outline in red on paper, or in turmeric on ink bars and in dark mode.
-- [ ] Patterns are `aria-hidden` and never sit behind text; at most 2–4 signature moves.
-- [ ] Dark mode via tokens (night ground `#1C130D`, accent `#E2735A`, sheets stay light `#E6DCC4`).
-- [ ] Phone width (390px): nav collapses, the hero and splits stack, grids go to 1 column, the drawer replaces the
-      sidebar, the zigzag drops to 10px, tables scroll inside a box, and there is no horizontal scroll.
-- [ ] Websites: skip link, landmarks, one `h1`, meta and OG tags; one halftone band, one ink band, rays only in the hero;
-      every photo in a `.rk-photo` frame; no fabricated content.
-- [ ] `prefers-reduced-motion` respected; the only motion is the 3px "press" translate on buttons.
+Font: `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400..700&display=swap">`
+(it covers Khmer and Latin). Spacing runs on a 4px base. Borders are `2px solid` ink, `4px double` for structural edges and
+`3px double` under titles.

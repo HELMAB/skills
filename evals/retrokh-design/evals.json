@@ -5,7 +5,7 @@
     "query": "Build a one-page company profile website for my print shop in Phnom Penh, in Khmer, old-school Khmer style. Sections: services, our history, testimonials, contact form. Save it as index.html.",
     "files": [],
     "expected_behavior": [
-      "Reads references/websites.md and follows the company-profile recipe (nav, hero, services, history timeline, testimonials, CTA, contact, footer)",
+      "Copies assets/retrokh.css and assets/templates/company-profile.html with cp (does not Read retrokh.css), reads references/websites.md and follows the company-profile recipe (nav, hero, services, history timeline, testimonials, CTA, contact, footer)",
       "Writes index.html with <html lang=\"km\"> and Khmer copy throughout",
       "Loads only Google Sans from Google Fonts (family=Google+Sans:wght@400..700) and uses no other font-family",
       "Uses square corners and only hard shadows (3px 3px 0 / 8px 8px 0); no blur, no gradients other than the RetroKh patterns",
@@ -36,7 +36,7 @@
     "query": "In my Vue 3 + Tailwind v4 project, create a ProductCard.vue component in the RetroKh style: image, Khmer product name, price in riel, a 'new' badge and an add-to-cart button. Keep it accessible.",
     "files": [],
     "expected_behavior": [
-      "Reads references/vue.md and references/tailwind.md; imports or recommends assets/tailwind.v4.css",
+      "Inspects the project first, reads references/stacks.md (not the full CSS) and copies assets/tailwind.v4.css with cp",
       "Uses Composition API with <script setup lang=\"ts\"> and typed props",
       "Uses only RetroKh tokens: bg-rk-sheet / border-rk-ink / shadow-rk-2 or shadow-rk-1; no rounded-* (except rounded-full), no shadow-sm..2xl, no font-light/extrabold/black",
       "Shows the price in bold tabular figures with Khmer digits via a toKhmerDigits helper, keeping the underlying value numeric",
