@@ -23,7 +23,6 @@ npx skills add helmab/skills --list                  # list only
 ```
 skills/<name>/   SKILL.md + references/ scripts/ assets/   ← installed
 evals/<name>/    test scenarios and how to run them        ← not installed
-docs/<name>/     README screenshots                        ← not installed
 ```
 
 ---
@@ -35,13 +34,6 @@ RetroKh makes a screen look like a Cambodian print from the 1960s and early '70s
 - **Print details:** square corners, hard offset shadows, zigzag, halftone and sunburst bands, sepia photos and rubber stamps.
 - **Language:** Khmer-first, with English and bilingual support.
 - **Output:** plain HTML/CSS, Tailwind v3/v4 or Vue 3. It can also restyle existing Bootstrap or shadcn projects.
-
-![RetroKh company profile](docs/retrokh-design/company-profile.png)
-
-<details><summary>Personal profile (English-primary)</summary>
-
-![RetroKh personal profile](docs/retrokh-design/personal-profile.png)
-</details>
 
 **Try:**
 - "Build my personal profile website in Khmer retro style"
@@ -72,7 +64,7 @@ the *Dobpi* 1970s Khmer Retro design canvas. Google Sans is used under the SIL O
 2. Keep `SKILL.md` lean. The [best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
    cap it at 500 lines. Put the details in `references/`, one level deep, with a table of contents for any file over 100 lines.
    Put files the agent should copy (not read) in `assets/`.
-3. Put screenshots in `docs/<name>/` and at least three scenarios in `evals/<name>/evals.json`.
+3. Add at least three scenarios to `evals/<name>/evals.json`.
 4. Add a row to the table above and a `## <name>` section.
 5. Validate:
    ```bash
